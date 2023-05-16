@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <LinearLayout
+        android:id="@+id/linearColumnone"
+        style="@style/groupStyleindigo_700"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtOne"
+            style="@style/txtIntermedium48"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/_22pxh"
+            android:layout_marginTop="@dimen/_30pxv"
+            android:layout_marginEnd="@dimen/_22pxh"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="앱 이름"
+            tools:text="@string/lbl" />
+
+        <FrameLayout
+            android:id="@+id/frameStacksearch"
+            style="@style/groupStylewhite_A700cornerRadius"
+            android:layout_width="@dimen/_346pxh"
+            android:layout_height="@dimen/_53pxv"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/_22pxh"
+            android:layout_marginTop="@dimen/_21pxv"
+            android:layout_marginEnd="@dimen/_22pxh">
+
+            <ImageView
+                android:id="@+id/imageSearch"
+                android:layout_width="@dimen/_17pxh"
+                android:layout_height="@dimen/_17pxh"
+                android:layout_gravity="bottom|start"
+                android:layout_marginStart="@dimen/_18pxh"
+                android:layout_marginTop="@dimen/_16pxv"
+                android:layout_marginEnd="@dimen/_18pxh"
+                android:layout_marginBottom="@dimen/_16pxv"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_search"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_search" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/linearColumntwo"
+            style="@style/groupStylewhite_1"
+            android:layout_marginTop="@dimen/_18pxv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTwo"
+                style="@style/txtInterregular24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/_30pxh"
+                android:layout_marginTop="@dimen/_18pxv"
+                android:layout_marginEnd="@dimen/_30pxh"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="출발"
+                tools:text="@string/lbl2" />
+
+            <LinearLayout
+                android:id="@+id/linearRowthree"
+                style="@style/groupStylegray_200cornerRadius"
+                android:layout_width="match_parent"
+                android:layout_height="83dp"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_17pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtThree"
+                    style="@style/txtNotoSansKRnotosanskrregular20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_24pxh"
+                    android:layout_marginTop="@dimen/_23pxv"
+                    android:layout_marginBottom="@dimen/_21pxv"
+                    android:layout_weight="0.36"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="출발 호선"
+                    tools:text="출발 호선" />
+
+                <Spinner
+                    android:id="@+id/spinnerTwoTwo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_150pxh"
+                    android:layout_marginTop="@dimen/_20pxv"
+                    android:layout_marginEnd="@dimen/_24pxh"
+                    android:layout_marginBottom="@dimen/_20pxv"
+                    android:layout_weight="0.64"
+                    android:background="@drawable/layer_list_bg_white_a700_radius_10"
+                    android:minHeight="48dp"
+                    tools:ignore="TouchTargetSizeCheck"
+                    tools:listitem="@layout/spinner_item" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearRowfour"
+                style="@style/groupStylegray_200cornerRadius"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtFour"
+                    style="@style/txtInterregular20"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_30pxh"
+                    android:layout_marginTop="@dimen/_19pxv"
+                    android:layout_marginBottom="@dimen/_23pxv"
+                    android:layout_weight="0.46"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="방향 (다음역)"
+                    tools:text="@string/lbl5" />
+
+                <LinearLayout
+                    android:id="@+id/linearRowrectangletwo"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_52pxh"
+                    android:layout_marginTop="@dimen/_19pxv"
+                    android:layout_marginEnd="@dimen/_23pxh"
+                    android:layout_marginBottom="@dimen/_18pxv"
+                    android:layout_weight="0.54"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:textColor="@color/black"
+                        android:id="@+id/viewRectangleTwo"
+                        android:layout_width="@dimen/_105pxh"
+                        android:layout_height="@dimen/_31pxv"
+                        android:background="@drawable/rectangle_bg_gray_100_border_gray_500" />
+
+                    <TextView
+                        android:id="@+id/txtFive"
+                        style="@style/txtInterregular16"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_9pxh"
+                        android:layout_marginTop="@dimen/_6pxv"
+                        android:layout_marginBottom="@dimen/_4pxv"
+                        android:layout_weight="0.12"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:text="역"
+                        tools:text="@string/lbl6" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/imageArrowdownOne"
+                android:layout_width="@dimen/_15pxh"
+                android:layout_height="@dimen/_15pxh"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_arrowdown"
+                tools:ignore="ContentDescription"
+                tools:src="@drawable/img_arrowdown" />
+
+            <TextView
+                android:id="@+id/txtSix"
+                style="@style/txtInterregular24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/_26pxh"
+                android:layout_marginEnd="@dimen/_26pxh"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="도착"
+                tools:text="@string/lbl7" />
+
+            <LinearLayout
+                android:id="@+id/linearRowseven"
+                style="@style/groupStylegray_200cornerRadius"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_6pxv"
+                android:layout_marginEnd="@dimen/_18pxh"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtSeven"
+                    style="@style/txtNotoSansKRnotosanskrregular20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_24pxh"
+                    android:layout_marginTop="@dimen/_23pxv"
+                    android:layout_marginBottom="@dimen/_21pxv"
+                    android:layout_weight="0.36"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="도착 호선"
+                    tools:text="도착 호선" />
+
+                <Spinner
+                    android:id="@+id/spinnerTwoThree"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_150pxh"
+                    android:layout_marginTop="@dimen/_20pxv"
+                    android:layout_marginEnd="@dimen/_24pxh"
+                    android:layout_marginBottom="@dimen/_20pxv"
+                    android:layout_weight="0.64"
+                    android:background="@drawable/layer_list_bg_white_a700_radius_10"
+                    android:minHeight="48dp"
+                    tools:listitem="@layout/spinner_item" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearRoweight"
+                style="@style/groupStylegray_200cornerRadius"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_7pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtEight"
+                    style="@style/txtInterregular20"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_39pxh"
+                    android:layout_marginTop="@dimen/_21pxv"
+                    android:layout_marginBottom="@dimen/_21pxv"
+                    android:layout_weight="0.48"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="방향 (다음역)}"
+                    tools:text="@string/lbl5" />
+
+                <EditText
+                    android:textColor="@color/black"
+                    android:id="@+id/viewRectangleTwoOne"
+                    android:layout_width="@dimen/_105pxh"
+                    android:layout_height="@dimen/_31pxv"
+                    android:layout_marginStart="@dimen/_49pxh"
+                    android:layout_marginTop="@dimen/_20pxv"
+                    android:layout_marginBottom="@dimen/_17pxv"
+                    android:background="@drawable/rectangle_bg_gray_100_border_gray_500" />
+
+                <TextView
+                    android:id="@+id/txtNine"
+                    style="@style/txtInterregular16"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_9pxh"
+                    android:layout_marginTop="@dimen/_26pxv"
+                    android:layout_marginEnd="@dimen/_17pxh"
+                    android:layout_marginBottom="@dimen/_21pxv"
+                    android:layout_weight="0.06"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="역"
+                    tools:text="@string/lbl6" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn"
+                style="@style/btnSolidRounded"
+                android:layout_width="@dimen/_182pxh"
+                android:layout_height="@dimen/_48pxv"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_20pxv"
+                android:layout_marginBottom="@dimen/_20pxv"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:paddingStart="@dimen/_30pxh"
+                android:paddingTop="@dimen/_11pxv"
+                android:paddingEnd="@dimen/_30pxh"
+                android:paddingBottom="@dimen/_11pxv"
+                android:singleLine="true"
+                android:text="@string/lbl9"
+                android:textAllCaps="false"
+                tools:text="@string/lbl9" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
