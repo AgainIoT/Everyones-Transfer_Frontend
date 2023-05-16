@@ -23,10 +23,17 @@
             android:layout_marginEnd="@dimen/_22pxh"
             android:ellipsize="end"
             android:singleLine="true"
+<<<<<<< HEAD
             android:text="앱 이름"
             tools:text="@string/lbl" />
 
         <FrameLayout
+=======
+            android:text="모두의 환승"
+            tools:text="모두의 환승" />
+
+        <LinearLayout
+>>>>>>> hummingbbird
             android:id="@+id/frameStacksearch"
             style="@style/groupStylewhite_A700cornerRadius"
             android:layout_width="@dimen/_346pxh"
@@ -36,7 +43,11 @@
             android:layout_marginTop="@dimen/_21pxv"
             android:layout_marginEnd="@dimen/_22pxh">
 
+<<<<<<< HEAD
             <ImageView
+=======
+            <ImageButton
+>>>>>>> hummingbbird
                 android:id="@+id/imageSearch"
                 android:layout_width="@dimen/_17pxh"
                 android:layout_height="@dimen/_17pxh"
@@ -45,18 +56,37 @@
                 android:layout_marginTop="@dimen/_16pxv"
                 android:layout_marginEnd="@dimen/_18pxh"
                 android:layout_marginBottom="@dimen/_16pxv"
+<<<<<<< HEAD
                 android:scaleType="fitXY"
                 android:src="@drawable/img_search"
                 tools:ignore="ContentDescription"
                 tools:src="@drawable/img_search" />
         </FrameLayout>
+=======
+                android:src="@drawable/magnifier" />
+
+            <EditText
+                android:id="@+id/Et_Search"
+                android:layout_width="match_parent"
+                android:layout_height="100px"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/_15pxh" />
+
+        </LinearLayout>
+>>>>>>> hummingbbird
 
         <LinearLayout
             android:id="@+id/linearColumntwo"
             style="@style/groupStylewhite_1"
+<<<<<<< HEAD
             android:layout_marginTop="@dimen/_18pxv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+=======
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_18pxv"
+>>>>>>> hummingbbird
             android:orientation="vertical">
 
             <TextView
@@ -72,12 +102,20 @@
                 android:singleLine="true"
                 android:text="출발"
                 tools:text="@string/lbl2" />
+<<<<<<< HEAD
 
+=======
+<!--            -->
+>>>>>>> hummingbbird
             <LinearLayout
                 android:id="@+id/linearRowthree"
                 style="@style/groupStylegray_200cornerRadius"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="83dp"
+=======
+                android:layout_height="@dimen/_70pxh"
+>>>>>>> hummingbbird
                 android:layout_marginStart="@dimen/_20pxh"
                 android:layout_marginTop="@dimen/_17pxv"
                 android:layout_marginEnd="@dimen/_20pxh"
@@ -85,6 +123,7 @@
 
                 <TextView
                     android:id="@+id/txtThree"
+<<<<<<< HEAD
                     style="@style/txtNotoSansKRnotosanskrregular20"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -96,6 +135,18 @@
                     android:singleLine="true"
                     android:text="출발 호선"
                     tools:text="출발 호선" />
+=======
+                    style="@style/txtInterregular20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_30pxh"
+                    android:layout_marginTop="@dimen/_19pxv"
+                    android:layout_marginBottom="@dimen/_23pxv"
+                    android:layout_weight="0.46"
+
+                    android:text="출발 호선"
+                    tools:text="출발 호선"/>
+>>>>>>> hummingbbird
 
                 <Spinner
                     android:id="@+id/spinnerTwoTwo"
@@ -116,7 +167,11 @@
                 android:id="@+id/linearRowfour"
                 style="@style/groupStylegray_200cornerRadius"
                 android:layout_width="match_parent"
+<<<<<<< HEAD
                 android:layout_height="wrap_content"
+=======
+                android:layout_height="@dimen/_70pxh"
+>>>>>>> hummingbbird
                 android:layout_marginStart="@dimen/_20pxh"
                 android:layout_marginTop="@dimen/_10pxv"
                 android:layout_marginEnd="@dimen/_20pxh"
@@ -131,8 +186,12 @@
                     android:layout_marginTop="@dimen/_19pxv"
                     android:layout_marginBottom="@dimen/_23pxv"
                     android:layout_weight="0.46"
+<<<<<<< HEAD
                     android:ellipsize="end"
                     android:singleLine="true"
+=======
+                    android:gravity="center_horizontal"
+>>>>>>> hummingbbird
                     android:text="방향 (다음역)"
                     tools:text="@string/lbl5" />
 
@@ -145,6 +204,7 @@
                     android:layout_marginEnd="@dimen/_23pxh"
                     android:layout_marginBottom="@dimen/_18pxv"
                     android:layout_weight="0.54"
+<<<<<<< HEAD
                     android:orientation="horizontal">
 
                     <EditText
@@ -153,10 +213,22 @@
                         android:layout_width="@dimen/_105pxh"
                         android:layout_height="@dimen/_31pxv"
                         android:background="@drawable/rectangle_bg_gray_100_border_gray_500" />
+=======
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/viewRectangleTwo"
+                        android:layout_width="@dimen/_105pxh"
+                        android:layout_height="@dimen/_31pxv"
+                        android:background="@drawable/rectangle_bg_gray_100_border_gray_500"
+                        android:textColor="@color/black" />
+>>>>>>> hummingbbird
 
                     <TextView
                         android:id="@+id/txtFive"
                         style="@style/txtInterregular16"
+<<<<<<< HEAD
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_9pxh"
@@ -165,6 +237,13 @@
                         android:layout_weight="0.12"
                         android:ellipsize="end"
                         android:singleLine="true"
+=======
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_9pxh"
+                        android:layout_marginBottom="@dimen/_4pxv"
+>>>>>>> hummingbbird
                         android:text="역"
                         tools:text="@string/lbl6" />
                 </LinearLayout>
@@ -182,7 +261,11 @@
                 tools:src="@drawable/img_arrowdown" />
 
             <TextView
+<<<<<<< HEAD
                 android:id="@+id/txtSix"
+=======
+                android:id="@+id/txtNine"
+>>>>>>> hummingbbird
                 style="@style/txtInterregular24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -193,6 +276,7 @@
                 android:singleLine="true"
                 android:text="도착"
                 tools:text="@string/lbl7" />
+<<<<<<< HEAD
 
             <LinearLayout
                 android:id="@+id/linearRowseven"
@@ -217,6 +301,31 @@
                     android:singleLine="true"
                     android:text="도착 호선"
                     tools:text="도착 호선" />
+=======
+<!---->
+            <LinearLayout
+                android:id="@+id/linearRowfive"
+                style="@style/groupStylegray_200cornerRadius"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_17pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtSix"
+                    style="@style/txtInterregular20"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_30pxh"
+                    android:layout_marginTop="@dimen/_19pxv"
+                    android:layout_marginBottom="@dimen/_23pxv"
+                    android:layout_weight="0.46"
+
+                    android:text="출발 호선"
+                    tools:text="출발 호선"/>
+>>>>>>> hummingbbird
 
                 <Spinner
                     android:id="@+id/spinnerTwoThree"
@@ -229,10 +338,15 @@
                     android:layout_weight="0.64"
                     android:background="@drawable/layer_list_bg_white_a700_radius_10"
                     android:minHeight="48dp"
+<<<<<<< HEAD
+=======
+                    tools:ignore="TouchTargetSizeCheck"
+>>>>>>> hummingbbird
                     tools:listitem="@layout/spinner_item" />
             </LinearLayout>
 
             <LinearLayout
+<<<<<<< HEAD
                 android:id="@+id/linearRoweight"
                 style="@style/groupStylegray_200cornerRadius"
                 android:layout_width="match_parent"
@@ -303,6 +417,72 @@
                 android:text="@string/lbl9"
                 android:textAllCaps="false"
                 tools:text="@string/lbl9" />
+=======
+                android:id="@+id/linearRowsix"
+                style="@style/groupStylegray_200cornerRadius"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70pxh"
+                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:layout_marginEnd="@dimen/_20pxh"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtSeven"
+                    style="@style/txtInterregular20"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_30pxh"
+                    android:layout_marginTop="@dimen/_19pxv"
+                    android:layout_marginBottom="@dimen/_23pxv"
+                    android:layout_weight="0.46"
+                    android:gravity="center_horizontal"
+                    android:text="방향 (다음역)"
+                    tools:text="@string/lbl5" />
+
+                <LinearLayout
+                    android:id="@+id/linearRowrectanglethree"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_52pxh"
+                    android:layout_marginTop="@dimen/_19pxv"
+                    android:layout_marginEnd="@dimen/_23pxh"
+                    android:layout_marginBottom="@dimen/_18pxv"
+                    android:layout_weight="0.54"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/viewRectangleThree"
+                        android:layout_width="@dimen/_105pxh"
+                        android:layout_height="@dimen/_31pxv"
+                        android:background="@drawable/rectangle_bg_gray_100_border_gray_500"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/txtEight"
+                        style="@style/txtInterregular16"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_9pxh"
+                        android:layout_marginBottom="@dimen/_4pxv"
+                        android:text="역"
+                        tools:text="@string/lbl6" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn"
+                android:layout_width="@dimen/_120pxh"
+                android:layout_height="@dimen/_60pxh"
+                android:textSize="@dimen/_16pxh"
+                android:backgroundTint="#36458F"
+                android:layout_marginTop="@dimen/_30pxh"
+                android:layout_gravity="center_horizontal"
+                android:textColor="#FFFFFF"
+                tools:text="등  록" />
+>>>>>>> hummingbbird
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
