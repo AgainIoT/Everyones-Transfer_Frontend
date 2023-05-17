@@ -14,9 +14,12 @@
         android:theme="@style/Theme.Sksunny_subway"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
+=======
+>>>>>>> hummingbbird
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
