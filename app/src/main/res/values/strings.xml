@@ -12,7 +12,6 @@
     <string name="lbl5">방향 (다음역)</string>
     <string name="lbl2">출발</string>
     <string name="lbl3">출발역</string>
-<<<<<<< HEAD
 
     <string name="lbl16">다음</string>
     <string name="lbl17">완료</string>
@@ -25,6 +24,4 @@
     <string name="lbl14">개찰구</string>
     <string name="lbl15">하차</string>
 
-=======
->>>>>>> hummingbbird
 </resources>
