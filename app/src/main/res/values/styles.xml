@@ -30,7 +30,6 @@
     </style>
     <style name="txtIntermedium48">
         <item name="android:textSize">@dimen/_48pxh</item>
-
         <item name="android:textColor">@color/white_A700</item>
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:textFontWeight" tools:targetApi="p">500</item>
