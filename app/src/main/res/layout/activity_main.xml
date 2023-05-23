@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:id="@+id/linearColumnone"
@@ -14,8 +14,6 @@
 
         <TextView
             android:id="@+id/txtOne"
-            android:textSize="@dimen/_30pxh"
-            android:textColor="#ffffff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -25,6 +23,8 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:text="모두의 환승"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/_30pxh"
             tools:text="모두의 환승" />
 
         <LinearLayout
@@ -45,8 +45,7 @@
                 android:layout_marginEnd="@dimen/_18pxh"
                 android:layout_marginBottom="@dimen/_16pxv"
                 android:scaleType="fitXY"
-                android:src="@drawable/manifier"
-                />
+                android:src="@drawable/manifier" />
 
             <EditText
                 android:id="@+id/Et_Search"
@@ -60,9 +59,9 @@
         <LinearLayout
             android:id="@+id/linearColumntwo"
             style="@style/groupStylewhite_1"
-            android:layout_marginTop="@dimen/_18pxv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_18pxv"
             android:orientation="vertical">
 
             <TextView
@@ -151,23 +150,23 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:textColor="@color/black"
                         android:id="@+id/viewRectangleTwo"
                         android:layout_width="@dimen/_105pxh"
                         android:layout_height="@dimen/_31pxv"
                         android:background="@drawable/rectangle_bg_gray_100_border_gray_500"
                         android:gravity="center_horizontal"
-                        android:orientation="horizontal" />
+                        android:orientation="horizontal"
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:id="@+id/txtFive"
                         style="@style/txtInterregular16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
                         android:layout_marginStart="@dimen/_9pxh"
                         android:layout_marginTop="@dimen/_6pxv"
                         android:layout_marginBottom="@dimen/_4pxv"
-                        android:layout_gravity="center_horizontal"
                         android:text="역"
                         tools:text="@string/lbl6" />
                 </LinearLayout>
@@ -178,7 +177,7 @@
                 android:layout_width="@dimen/_15pxh"
                 android:layout_height="@dimen/_15pxh"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="@dimen/_20pxh"
+                android:layout_marginTop="@dimen/_20pxh"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_arrowdown"
                 tools:ignore="ContentDescription"
@@ -257,6 +256,7 @@
                     android:gravity="center_horizontal"
                     android:text="방향 (다음역)"
                     tools:text="@string/lbl5" />
+
                 <LinearLayout
                     android:id="@+id/linearRowrectanglethree"
                     android:layout_width="0dp"
@@ -269,36 +269,36 @@
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
 
-                <EditText
-                    android:id="@+id/viewRectangleThree"
-                    android:layout_width="@dimen/_105pxh"
-                    android:layout_height="@dimen/_31pxv"
-                    android:background="@drawable/rectangle_bg_gray_100_border_gray_500"
-                    android:textColor="@color/black" />
+                    <EditText
+                        android:id="@+id/viewRectangleThree"
+                        android:layout_width="@dimen/_105pxh"
+                        android:layout_height="@dimen/_31pxv"
+                        android:background="@drawable/rectangle_bg_gray_100_border_gray_500"
+                        android:textColor="@color/black" />
 
-                <TextView
-                    android:id="@+id/txtNine"
-                    style="@style/txtInterregular16"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_9pxh"
-                    android:layout_marginBottom="@dimen/_4pxv"
-                    android:text="역"
-                    tools:text="@string/lbl6" />
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/txtNine"
+                        style="@style/txtInterregular16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginStart="@dimen/_9pxh"
+                        android:layout_marginBottom="@dimen/_4pxv"
+                        android:text="역"
+                        tools:text="@string/lbl6" />
+                </LinearLayout>
             </LinearLayout>
 
             <Button
                 android:id="@+id/btn"
                 android:layout_width="@dimen/_120pxh"
                 android:layout_height="@dimen/_60pxh"
-                android:textSize="@dimen/_16pxh"
-                android:backgroundTint="#36458F"
-                android:layout_marginTop="@dimen/_30pxh"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_30pxh"
+                android:backgroundTint="#36458F"
+                android:text="등 록"
                 android:textColor="#FFFFFF"
-                tools:text="등  록" />
+                android:textSize="@dimen/_16pxh" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
