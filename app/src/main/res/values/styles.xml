@@ -49,6 +49,10 @@
     <style name="blue_rectangle">
         <item name="android:background">@drawable/blue_rectangle</item>
     </style>
+    <style name="bottom_btn" parent="@style/blue_rectangle">
+        <item name="android:textColor">@color/white_A700</item>
+        <item name="android:textSize">20dp</item>
+    </style>
     <style name="white_lefttop_rectangle">
         <item name="android:background">@drawable/white_lefttop_rectangle</item>
     </style>

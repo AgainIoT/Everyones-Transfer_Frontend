@@ -159,47 +159,37 @@
                 android:layout_weight="1" />
 
             <LinearLayout
-                android:id="@+id/linearRow"
+                android:id="@+id/buttonArea"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center"
                 android:background="@color/indigo_700"
                 android:orientation="horizontal">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/editBtn"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    style="@style/bottom_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_30pxh"
-                    android:layout_marginEnd="@dimen/_30pxh"
                     android:layout_weight="1"
-                    android:singleLine="true"
-                    android:text="기존 내용 수정"
-                    android:textAlignment="center"
-                    android:textColor="@color/white_A700"
-                    android:textSize="@dimen/_20sp" />
+                    android:text="기존 내용 변경" />
 
                 <View
-                    android:id="@+id/lineLineTwentyOne"
+                    android:id="@+id/border"
                     android:layout_width="1dp"
                     android:layout_height="@dimen/_71pxv"
                     android:background="@color/white_A700" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/completeBtn"
-                    style="@style/txtInterregular24white"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    style="@style/bottom_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/_30pxh"
-                    android:layout_marginEnd="@dimen/_30pxh"
                     android:layout_weight="1"
-                    android:singleLine="true"
-                    android:text="수정 완료"
-                    android:textAlignment="center"
-                    android:textColor="@color/white_A700"
-                    android:textSize="@dimen/_20sp" />
+                    android:text="기존 내용 변경" />
+
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
