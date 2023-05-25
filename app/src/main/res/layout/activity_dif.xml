@@ -14,6 +14,7 @@
         android:background="@color/white_A700"
         android:gravity="center_horizontal"
         android:orientation="vertical"
+        app:layout_constraintHeight_percent="0.45"
         app:layout_constraintBottom_toTopOf="@+id/lowerHalf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,106 +96,56 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <!--            <LinearLayout-->
-            <!--                android:id="@+id/navbar"-->
-            <!--                style="@style/groupStyle"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="@dimen/_90pxh"-->
-            <!--                android:orientation="horizontal">-->
-
-            <!--                <EditText-->
-            <!--                    android:id="@+id/elevator"-->
-            <!--                    style="@style/etSolidRounded"-->
-            <!--                    android:layout_width="0dp"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_weight="0.25"-->
-            <!--                    android:background="@drawable/white_leftbottom_rectangle"-->
-            <!--                    android:ellipsize="end"-->
-            <!--                    android:hint="@string/lbl4"-->
-            <!--                    android:inputType="text"-->
-            <!--                    android:paddingStart="@dimen/_16pxh"-->
-            <!--                    android:paddingTop="@dimen/_23pxv"-->
-            <!--                    android:paddingEnd="@dimen/_17pxh"-->
-            <!--                    android:paddingBottom="@dimen/_21pxv"-->
-            <!--                    android:singleLine="true"-->
-            <!--                    android:text="@string/lbl12"-->
-            <!--                    android:textColorHint="@color/indigo_700"-->
-            <!--                    tools:text="@string/lbl12" />-->
-
-            <!--                <TextView-->
-            <!--                    android:id="@+id/walk"-->
-            <!--                    style="@style/txtSolid"-->
-            <!--                    android:layout_width="0dp"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_weight="0.25"-->
-            <!--                    android:ellipsize="end"-->
-            <!--                    android:paddingStart="@dimen/_30pxh"-->
-            <!--                    android:paddingTop="@dimen/_23pxv"-->
-            <!--                    android:paddingEnd="@dimen/_30pxh"-->
-            <!--                    android:paddingBottom="@dimen/_21pxv"-->
-            <!--                    android:singleLine="true"-->
-            <!--                    android:text="@string/lbl13"-->
-            <!--                    tools:text="@string/lbl13" />-->
-
-            <!--                <EditText-->
-            <!--                    android:id="@+id/pass"-->
-            <!--                    style="@style/etSolid"-->
-            <!--                    android:layout_width="0dp"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_weight="0.25"-->
-            <!--                    android:background="@drawable/rectangle_bg_white_a700"-->
-            <!--                    android:ellipsize="end"-->
-            <!--                    android:hint="@string/lbl6"-->
-            <!--                    android:inputType="text"-->
-            <!--                    android:paddingStart="@dimen/_29pxh"-->
-            <!--                    android:paddingTop="@dimen/_23pxv"-->
-            <!--                    android:paddingEnd="@dimen/_29pxh"-->
-            <!--                    android:paddingBottom="@dimen/_21pxv"-->
-            <!--                    android:singleLine="true"-->
-            <!--                    android:text="@string/lbl14"-->
-            <!--                    android:textColorHint="@color/indigo_700"-->
-            <!--                    tools:text="@string/lbl14" />-->
-
-            <!--                <TextView-->
-            <!--                    android:id="@+id/getOff"-->
-            <!--                    style="@style/txtSolid_1"-->
-            <!--                    android:layout_width="0dp"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_weight="0.25"-->
-            <!--                    android:ellipsize="end"-->
-            <!--                    android:paddingStart="@dimen/_30pxh"-->
-            <!--                    android:paddingTop="@dimen/_23pxv"-->
-            <!--                    android:paddingEnd="@dimen/_30pxh"-->
-            <!--                    android:paddingBottom="@dimen/_21pxv"-->
-            <!--                    android:singleLine="true"-->
-            <!--                    android:text="@string/lbl15"-->
-            <!--                    tools:text="@string/lbl15" />-->
-            <!--            </LinearLayout>-->
-
-
             <LinearLayout
+                android:id="@+id/navbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@+id/newOne"
                 tools:layout_editor_absoluteX="0dp">
 
                 <androidx.appcompat.widget.AppCompatButton
+                    style="@style/etSolidRounded"
+                    android:id="@+id/elevator"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="엘리베이터" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    style="@style/navbarRecBtn"
+                    android:id="@+id/walk"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="이동" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    style="@style/navbarRecBtn"
+                    android:id="@+id/pass"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="개찰구" />
 
                 <androidx.appcompat.widget.AppCompatButton
+                    style="@style/navbarRecBtn"
+                    android:id="@+id/getOff"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="하차" />
             </LinearLayout>
+
+            <ScrollView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/buttonArea"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/navbar" />
 
             <LinearLayout
                 android:id="@+id/buttonArea"

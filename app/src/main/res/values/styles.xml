@@ -17,13 +17,13 @@
         <item name="android:background">@drawable/rectangle_bg_gray_200_radius_10</item>
     </style>
     <style name="white_subtitle">
-        <item name="android:textSize">@dimen/_24pxh</item>
+        <item name="android:textSize">@dimen/_22pxh</item>
         <item name="android:textColor">@color/white_A700</item>
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
     </style>
     <style name="black_subtitle">
-        <item name="android:textSize">@dimen/_24pxh</item>
+        <item name="android:textSize">@dimen/_22pxh</item>
         <item name="android:textColor">@color/black_900</item>
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
@@ -92,12 +92,12 @@
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
         <item name="android:background">@drawable/rectangle_bg_white_a700</item>
     </style>
-    <style name="etSolid">
+    <style name="navbarRecBtn">
         <item name="android:textSize">@dimen/_14pxh</item>
         <item name="android:textColor">@color/indigo_700</item>
         <item name="android:fontFamily">@font/noto_sans_kr</item>
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
-        <item name="android:background">@drawable/rectangle_bg_white_a700</item>
+        <item name="android:background">@color/white_A700</item>
     </style>
     <style name="txtSolid_1">
         <item name="android:textSize">@dimen/_14pxh</item>
