@@ -1,66 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
+    android:gravity="center_horizontal">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/upperHalf"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1.5"
+        android:layout_height="0dp"
         android:background="@color/white_A700"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/lowerHalf"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/upperArea"
             style="@style/blue_rightbottom_rectangle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/oldOne"
                 style="@style/white_subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginStart="@dimen/_30pxh"
-                android:layout_marginTop="@dimen/_18pxv"
-                android:layout_marginEnd="@dimen/_30pxh"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="기존 내용" />
+                android:text="기존 내용"
+                app:layout_constraintBottom_toTopOf="@+id/upperScroll"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ScrollView
                 android:id="@+id/upperScroll"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/oldOne" />
 
-        </LinearLayout>
-    </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lowerHalf"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@color/indigo_700"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upperHalf">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/lowerArea"
             style="@style/white_lefttop_rectangle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
-            android:orientation="vertical">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
 
             <TextView
@@ -68,103 +87,124 @@
                 style="@style/black_subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginStart="@dimen/_30pxh"
-                android:layout_marginTop="@dimen/_18pxv"
-                android:layout_marginEnd="@dimen/_30pxh"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="18dp"
                 android:ellipsize="end"
                 android:singleLine="true"
-                android:text="입력한 내용" />
+                android:text="입력한 내용"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!--            <LinearLayout-->
+            <!--                android:id="@+id/navbar"-->
+            <!--                style="@style/groupStyle"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="@dimen/_90pxh"-->
+            <!--                android:orientation="horizontal">-->
+
+            <!--                <EditText-->
+            <!--                    android:id="@+id/elevator"-->
+            <!--                    style="@style/etSolidRounded"-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_weight="0.25"-->
+            <!--                    android:background="@drawable/white_leftbottom_rectangle"-->
+            <!--                    android:ellipsize="end"-->
+            <!--                    android:hint="@string/lbl4"-->
+            <!--                    android:inputType="text"-->
+            <!--                    android:paddingStart="@dimen/_16pxh"-->
+            <!--                    android:paddingTop="@dimen/_23pxv"-->
+            <!--                    android:paddingEnd="@dimen/_17pxh"-->
+            <!--                    android:paddingBottom="@dimen/_21pxv"-->
+            <!--                    android:singleLine="true"-->
+            <!--                    android:text="@string/lbl12"-->
+            <!--                    android:textColorHint="@color/indigo_700"-->
+            <!--                    tools:text="@string/lbl12" />-->
+
+            <!--                <TextView-->
+            <!--                    android:id="@+id/walk"-->
+            <!--                    style="@style/txtSolid"-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_weight="0.25"-->
+            <!--                    android:ellipsize="end"-->
+            <!--                    android:paddingStart="@dimen/_30pxh"-->
+            <!--                    android:paddingTop="@dimen/_23pxv"-->
+            <!--                    android:paddingEnd="@dimen/_30pxh"-->
+            <!--                    android:paddingBottom="@dimen/_21pxv"-->
+            <!--                    android:singleLine="true"-->
+            <!--                    android:text="@string/lbl13"-->
+            <!--                    tools:text="@string/lbl13" />-->
+
+            <!--                <EditText-->
+            <!--                    android:id="@+id/pass"-->
+            <!--                    style="@style/etSolid"-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_weight="0.25"-->
+            <!--                    android:background="@drawable/rectangle_bg_white_a700"-->
+            <!--                    android:ellipsize="end"-->
+            <!--                    android:hint="@string/lbl6"-->
+            <!--                    android:inputType="text"-->
+            <!--                    android:paddingStart="@dimen/_29pxh"-->
+            <!--                    android:paddingTop="@dimen/_23pxv"-->
+            <!--                    android:paddingEnd="@dimen/_29pxh"-->
+            <!--                    android:paddingBottom="@dimen/_21pxv"-->
+            <!--                    android:singleLine="true"-->
+            <!--                    android:text="@string/lbl14"-->
+            <!--                    android:textColorHint="@color/indigo_700"-->
+            <!--                    tools:text="@string/lbl14" />-->
+
+            <!--                <TextView-->
+            <!--                    android:id="@+id/getOff"-->
+            <!--                    style="@style/txtSolid_1"-->
+            <!--                    android:layout_width="0dp"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_weight="0.25"-->
+            <!--                    android:ellipsize="end"-->
+            <!--                    android:paddingStart="@dimen/_30pxh"-->
+            <!--                    android:paddingTop="@dimen/_23pxv"-->
+            <!--                    android:paddingEnd="@dimen/_30pxh"-->
+            <!--                    android:paddingBottom="@dimen/_21pxv"-->
+            <!--                    android:singleLine="true"-->
+            <!--                    android:text="@string/lbl15"-->
+            <!--                    tools:text="@string/lbl15" />-->
+            <!--            </LinearLayout>-->
+
 
             <LinearLayout
-                android:id="@+id/navbar"
-                style="@style/groupStyle"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_90pxh"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/newOne"
+                tools:layout_editor_absoluteX="0dp">
 
-                <EditText
-                    android:id="@+id/elevator"
-                    style="@style/etSolidRounded"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.25"
-                    android:background="@drawable/white_leftbottom_rectangle"
-                    android:ellipsize="end"
-                    android:hint="@string/lbl4"
-                    android:inputType="text"
-                    android:paddingStart="@dimen/_16pxh"
-                    android:paddingTop="@dimen/_23pxv"
-                    android:paddingEnd="@dimen/_17pxh"
-                    android:paddingBottom="@dimen/_21pxv"
-                    android:singleLine="true"
-                    android:text="@string/lbl12"
-                    android:textColorHint="@color/indigo_700"
-                    tools:text="@string/lbl12" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/walk"
-                    style="@style/txtSolid"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.25"
-                    android:ellipsize="end"
-                    android:paddingStart="@dimen/_30pxh"
-                    android:paddingTop="@dimen/_23pxv"
-                    android:paddingEnd="@dimen/_30pxh"
-                    android:paddingBottom="@dimen/_21pxv"
-                    android:singleLine="true"
-                    android:text="@string/lbl13"
-                    tools:text="@string/lbl13" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-                <EditText
-                    android:id="@+id/pass"
-                    style="@style/etSolid"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.25"
-                    android:background="@drawable/rectangle_bg_white_a700"
-                    android:ellipsize="end"
-                    android:hint="@string/lbl6"
-                    android:inputType="text"
-                    android:paddingStart="@dimen/_29pxh"
-                    android:paddingTop="@dimen/_23pxv"
-                    android:paddingEnd="@dimen/_29pxh"
-                    android:paddingBottom="@dimen/_21pxv"
-                    android:singleLine="true"
-                    android:text="@string/lbl14"
-                    android:textColorHint="@color/indigo_700"
-                    tools:text="@string/lbl14" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-                <TextView
-                    android:id="@+id/getOff"
-                    style="@style/txtSolid_1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.25"
-                    android:ellipsize="end"
-                    android:paddingStart="@dimen/_30pxh"
-                    android:paddingTop="@dimen/_23pxv"
-                    android:paddingEnd="@dimen/_30pxh"
-                    android:paddingBottom="@dimen/_21pxv"
-                    android:singleLine="true"
-                    android:text="@string/lbl15"
-                    tools:text="@string/lbl15" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </LinearLayout>
-
-            <ScrollView
-                android:id="@+id/lowerScroll"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1" />
 
             <LinearLayout
                 android:id="@+id/buttonArea"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center"
                 android:background="@color/indigo_700"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/editBtn"
@@ -188,9 +228,9 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="기존 내용 변경" />
+                    android:text="입력 완료" />
 
             </LinearLayout>
-        </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
