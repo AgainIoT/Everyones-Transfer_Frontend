@@ -90,7 +90,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
-                android:background="@drawable/rectangle_bg_white_a700_radius_bl_40"
+                android:background="@drawable/white_leftbottom_rectangle"
                 android:ellipsize="end"
                 android:hint="@string/lbl4"
                 android:inputType="text"
