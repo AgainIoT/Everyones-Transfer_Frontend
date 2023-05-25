@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:id="@+id/linearColumnone"
-        style="@style/groupStyleindigo_700"
+        style="@style/blue_rectangle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
@@ -58,7 +58,7 @@
 
         <LinearLayout
             android:id="@+id/linearColumntwo"
-            style="@style/groupStylewhite_1"
+            style="@style/white_lefttop_rectangle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/_18pxv"
@@ -66,7 +66,6 @@
 
             <TextView
                 android:id="@+id/txtTwo"
-                style="@style/txtInterregular24"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -76,7 +75,8 @@
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="출발"
-                tools:text="@string/lbl2" />
+                style="@style/black_subtitle"
+                 />
 
             <LinearLayout
                 android:id="@+id/linearRowthree"
@@ -185,7 +185,7 @@
 
             <TextView
                 android:id="@+id/txtSix"
-                style="@style/txtInterregular24"
+                style="@style/black_subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -209,14 +209,13 @@
                 <TextView
                     android:id="@+id/txtSeven"
                     style="@style/txtInterregular20"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_30pxh"
                     android:layout_marginTop="@dimen/_19pxv"
                     android:layout_marginBottom="@dimen/_23pxv"
                     android:layout_weight="0.46"
-                    android:text="도착 호선"
-                    tools:text="도착 호선" />
+                    android:text="도착 호선"/>
 
                 <Spinner
                     android:id="@+id/spinnerTwoThree"

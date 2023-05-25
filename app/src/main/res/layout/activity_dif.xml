@@ -2,211 +2,204 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/linearColumnone"
+        android:id="@+id/upperHalf"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="1.5"
+        android:background="@color/white_A700"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/upperarea"
+            android:id="@+id/upperArea"
+            style="@style/blue_rightbottom_rectangle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1.5"
-            android:background="@color/white_A700"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/linearColumntwo"
-                style="@style/groupStyleblue_1"
+            <TextView
+                android:id="@+id/oldOne"
+                style="@style/white_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginStart="@dimen/_30pxh"
+                android:layout_marginTop="@dimen/_18pxv"
+                android:layout_marginEnd="@dimen/_30pxh"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="기존 내용" />
+
+            <ScrollView
+                android:id="@+id/upperScroll"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:layout_height="match_parent" />
 
-                <TextView
-                    android:id="@+id/oldOne"
-                    style="@style/white_subtitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginStart="@dimen/_30pxh"
-                    android:layout_marginTop="@dimen/_18pxv"
-                    android:layout_marginEnd="@dimen/_30pxh"
-                    android:ellipsize="end"
-                    android:singleLine="true"
-                    android:text="기존 내용" />
-
-                <ScrollView
-                    android:id="@+id/upperscroll"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </LinearLayout>
         </LinearLayout>
+    </LinearLayout>
 
+
+    <LinearLayout
+        android:id="@+id/lowerHalf"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/indigo_700"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/lowerarea"
+            android:id="@+id/lowerArea"
+            style="@style/white_lefttop_rectangle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/indigo_700"
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/bottomGroup"
-                style="@style/groupStylewhite_1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/newOne"
+                style="@style/black_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/_30pxh"
+                android:layout_marginTop="@dimen/_18pxv"
+                android:layout_marginEnd="@dimen/_30pxh"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="입력한 내용" />
+
+            <LinearLayout
+                android:id="@+id/navbar"
+                style="@style/groupStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_90pxh"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/elevator"
+                    style="@style/etSolidRounded"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:background="@drawable/white_leftbottom_rectangle"
+                    android:ellipsize="end"
+                    android:hint="@string/lbl4"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/_16pxh"
+                    android:paddingTop="@dimen/_23pxv"
+                    android:paddingEnd="@dimen/_17pxh"
+                    android:paddingBottom="@dimen/_21pxv"
+                    android:singleLine="true"
+                    android:text="@string/lbl12"
+                    android:textColorHint="@color/indigo_700"
+                    tools:text="@string/lbl12" />
 
                 <TextView
-                    android:id="@+id/newOne"
-                    style="@style/black_subtitle"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/walk"
+                    style="@style/txtSolid"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginStart="@dimen/_30pxh"
-                    android:layout_marginTop="@dimen/_18pxv"
-                    android:layout_marginEnd="@dimen/_30pxh"
+                    android:layout_weight="0.25"
                     android:ellipsize="end"
+                    android:paddingStart="@dimen/_30pxh"
+                    android:paddingTop="@dimen/_23pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingBottom="@dimen/_21pxv"
                     android:singleLine="true"
-                    android:text="입력한 내용" />
+                    android:text="@string/lbl13"
+                    tools:text="@string/lbl13" />
 
-                <LinearLayout
-                    android:id="@+id/linearNavbar"
-                    style="@style/groupStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_90pxh"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/etSix"
-                        style="@style/etSolidRounded"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
-                        android:background="@drawable/rectangle_bg_white_a700_radius_bl_40"
-                        android:ellipsize="end"
-                        android:hint="@string/lbl4"
-                        android:inputType="text"
-                        android:paddingStart="@dimen/_16pxh"
-                        android:paddingTop="@dimen/_23pxv"
-                        android:paddingEnd="@dimen/_17pxh"
-                        android:paddingBottom="@dimen/_21pxv"
-                        android:singleLine="true"
-                        android:text="@string/lbl12"
-                        android:textColorHint="@color/indigo_700"
-                        tools:text="@string/lbl12" />
-
-                    <TextView
-                        android:id="@+id/txtOptionOne"
-                        style="@style/txtSolid"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
-                        android:ellipsize="end"
-                        android:paddingStart="@dimen/_30pxh"
-                        android:paddingTop="@dimen/_23pxv"
-                        android:paddingEnd="@dimen/_30pxh"
-                        android:paddingBottom="@dimen/_21pxv"
-                        android:singleLine="true"
-                        android:text="@string/lbl13"
-                        tools:text="@string/lbl13" />
-
-                    <EditText
-                        android:id="@+id/etOptionTwo"
-                        style="@style/etSolid"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
-                        android:background="@drawable/rectangle_bg_white_a700"
-                        android:ellipsize="end"
-                        android:hint="@string/lbl6"
-                        android:inputType="text"
-                        android:paddingStart="@dimen/_29pxh"
-                        android:paddingTop="@dimen/_23pxv"
-                        android:paddingEnd="@dimen/_29pxh"
-                        android:paddingBottom="@dimen/_21pxv"
-                        android:singleLine="true"
-                        android:text="@string/lbl14"
-                        android:textColorHint="@color/indigo_700"
-                        tools:text="@string/lbl14" />
-
-                    <TextView
-                        android:id="@+id/txtOptionThree"
-                        style="@style/txtSolid_1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
-                        android:ellipsize="end"
-                        android:paddingStart="@dimen/_30pxh"
-                        android:paddingTop="@dimen/_23pxv"
-                        android:paddingEnd="@dimen/_30pxh"
-                        android:paddingBottom="@dimen/_21pxv"
-                        android:singleLine="true"
-                        android:text="@string/lbl15"
-                        tools:text="@string/lbl15" />
-                </LinearLayout>
-
-                <ScrollView
-                    android:id="@+id/lowerscroll"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1" />
-
-                <LinearLayout
-                    android:id="@+id/linearRow"
-                    android:layout_width="match_parent"
+                <EditText
+                    android:id="@+id/pass"
+                    style="@style/etSolid"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
-                    android:background="@color/indigo_700"
-                    android:orientation="horizontal">
+                    android:layout_weight="0.25"
+                    android:background="@drawable/rectangle_bg_white_a700"
+                    android:ellipsize="end"
+                    android:hint="@string/lbl6"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/_29pxh"
+                    android:paddingTop="@dimen/_23pxv"
+                    android:paddingEnd="@dimen/_29pxh"
+                    android:paddingBottom="@dimen/_21pxv"
+                    android:singleLine="true"
+                    android:text="@string/lbl14"
+                    android:textColorHint="@color/indigo_700"
+                    tools:text="@string/lbl14" />
 
-                    <TextView
-                        android:id="@+id/txtEleven"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_30pxh"
-                        android:layout_marginEnd="@dimen/_30pxh"
-                        android:layout_weight="1"
-                        android:singleLine="true"
-                        android:textSize="@dimen/_20sp"
-                        android:textColor="@color/white_A700"
-                        android:text="기존 내용 수정"
-                        android:textAlignment="center" />
+                <TextView
+                    android:id="@+id/getOff"
+                    style="@style/txtSolid_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:ellipsize="end"
+                    android:paddingStart="@dimen/_30pxh"
+                    android:paddingTop="@dimen/_23pxv"
+                    android:paddingEnd="@dimen/_30pxh"
+                    android:paddingBottom="@dimen/_21pxv"
+                    android:singleLine="true"
+                    android:text="@string/lbl15"
+                    tools:text="@string/lbl15" />
+            </LinearLayout>
 
-                    <View
-                        android:id="@+id/lineLineTwentyOne"
-                        android:layout_width="1dp"
-                        android:layout_height="@dimen/_71pxv"
-                        android:background="@color/white_A700" />
+            <ScrollView
+                android:id="@+id/lowerScroll"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
 
-                    <TextView
-                        android:id="@+id/txtTwelve"
-                        style="@style/txtInterregular24white"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_30pxh"
-                        android:layout_marginEnd="@dimen/_30pxh"
-                        android:layout_weight="1"
-                        android:singleLine="true"
-                        android:textSize="@dimen/_20sp"
-                        android:textColor="@color/white_A700"
-                        android:text="수정 완료"
-                        android:textAlignment="center"
-                         />
-                </LinearLayout>
+            <LinearLayout
+                android:id="@+id/linearRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:background="@color/indigo_700"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/editBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_30pxh"
+                    android:layout_marginEnd="@dimen/_30pxh"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text="기존 내용 수정"
+                    android:textAlignment="center"
+                    android:textColor="@color/white_A700"
+                    android:textSize="@dimen/_20sp" />
+
+                <View
+                    android:id="@+id/lineLineTwentyOne"
+                    android:layout_width="1dp"
+                    android:layout_height="@dimen/_71pxv"
+                    android:background="@color/white_A700" />
+
+                <TextView
+                    android:id="@+id/completeBtn"
+                    style="@style/txtInterregular24white"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_30pxh"
+                    android:layout_marginEnd="@dimen/_30pxh"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text="수정 완료"
+                    android:textAlignment="center"
+                    android:textColor="@color/white_A700"
+                    android:textSize="@dimen/_20sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
