@@ -36,13 +36,13 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
+
                     <Spinner
                         android:id="@+id/spinnerThree"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.33"
-                        android:background="@drawable/layer_list_bg_gray_200_radius_10"
-                        tools:listitem="@layout/spinner_item" />
+                        android:background="@drawable/layer_list_bg_gray_200_radius_10" />
 
                     <Spinner
                         android:id="@+id/spinnerFour"
@@ -50,8 +50,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_21pxh"
                         android:layout_weight="0.33"
-                        android:background="@drawable/layer_list_bg_gray_200_radius_10"
-                        tools:listitem="@layout/spinner_item" />
+                        android:background="@drawable/layer_list_bg_gray_200_radius_10" />
 
                     <Spinner
                         android:id="@+id/spinnerFive"
@@ -59,8 +58,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_22pxh"
                         android:layout_weight="0.33"
-                        android:background="@drawable/layer_list_bg_gray_200_radius_10"
-                        tools:listitem="@layout/spinner_item" />
+                        android:background="@drawable/layer_list_bg_gray_200_radius_10" />
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
 
@@ -316,8 +314,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.33"
-                        android:background="@drawable/layer_list_bg_gray_200_radius_10"
-                        tools:listitem="@layout/spinner_item" />
+                        android:background="@drawable/layer_list_bg_gray_200_radius_10" />
 
                     <Spinner
                         android:id="@+id/spinnerFourteen"
@@ -325,8 +322,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_21pxh"
                         android:layout_weight="0.33"
-                        android:background="@drawable/layer_list_bg_gray_200_radius_10"
-                        tools:listitem="@layout/spinner_item" />
+                        android:background="@drawable/layer_list_bg_gray_200_radius_10" />
 
                     <Spinner
                         android:id="@+id/spinnerFifteen"
@@ -334,8 +330,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_22pxh"
                         android:layout_weight="0.33"
-                        android:background="@drawable/layer_list_bg_gray_200_radius_10"
-                        tools:listitem="@layout/spinner_item" />
+                        android:background="@drawable/layer_list_bg_gray_200_radius_10" />
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>

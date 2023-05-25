@@ -111,8 +111,7 @@
                     android:layout_weight="0.64"
                     android:background="@drawable/layer_list_bg_white_a700_radius_10"
                     android:minHeight="48dp"
-                    tools:ignore="TouchTargetSizeCheck"
-                    tools:listitem="@layout/spinner_item" />
+                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
 
             <LinearLayout
@@ -229,8 +228,7 @@
                     android:layout_weight="0.64"
                     android:background="@drawable/layer_list_bg_white_a700_radius_10"
                     android:minHeight="48dp"
-                    tools:ignore="TouchTargetSizeCheck"
-                    tools:listitem="@layout/spinner_item" />
+                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
 
             <LinearLayout
