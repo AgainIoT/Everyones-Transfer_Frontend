@@ -20,11 +20,15 @@ public class DifActivity extends AppCompatActivity {
         }
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
-        RecyclerView recyclerView = findViewById(R.id.upperScroll);
-        recyclerView.setLayoutManager(new LinearLayoutManager((this)));
+        RecyclerView upperScroll = findViewById(R.id.upperScroll);
+        RecyclerView lowerScroll = findViewById(R.id.lowerScroll);
+        upperScroll.setLayoutManager(new LinearLayoutManager((this)));
+        lowerScroll.setLayoutManager(new LinearLayoutManager((this)));
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        RecyclerAdapter adapter = new RecyclerAdapter(list);
-        recyclerView.setAdapter(adapter);
+        RecyclerAdapter upperAdapter = new RecyclerAdapter(list);
+        upperScroll.setAdapter(upperAdapter);
+        RecyclerAdapter lowerAdapter = new RecyclerAdapter(list);
+        upperScroll.setAdapter(lowerAdapter);
     }
 }
