@@ -98,7 +98,7 @@
                         android:ellipsize="end"
                         android:hint="@string/lbl4"
                         android:inputType="text"
-                        android:paddingStart="@dimen/_16pxh"
+                        android:paddingStart="@dimen/_17pxh"
                         android:paddingTop="@dimen/_23pxv"
                         android:paddingEnd="@dimen/_17pxh"
                         android:paddingBottom="@dimen/_21pxv"
