@@ -14,9 +14,9 @@
         android:background="@color/white_A700"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        app:layout_constraintHeight_percent="0.45"
         app:layout_constraintBottom_toTopOf="@+id/lowerHalf"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.45"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -45,16 +45,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ScrollView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/upperScroll"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginTop="10dp"
-                android:contentDescription="기존 내용"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/oldOne" />
+                app:layout_constraintTop_toBottomOf="@+id/oldOne">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -108,47 +108,48 @@
                 tools:layout_editor_absoluteX="0dp">
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/navbarRoundBtn"
                     android:id="@+id/elevator"
+                    style="@style/navbarRoundBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="엘리베이터" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/navbarRecBtn"
                     android:id="@+id/walk"
+                    style="@style/navbarRecBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="이동" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/navbarRecBtn"
                     android:id="@+id/pass"
+                    style="@style/navbarRecBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="개찰구" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    style="@style/navbarRecBtn"
                     android:id="@+id/getOff"
+                    style="@style/navbarRecBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="하차" />
             </LinearLayout>
 
-            <ScrollView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/lowerScroll"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toTopOf="@+id/buttonArea"
-                android:contentDescription="입력한 내"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/navbar" />
+                app:layout_constraintTop_toBottomOf="@+id/navbar">
+
+            </androidx.recyclerview.widget.RecyclerView>
 
             <LinearLayout
                 android:id="@+id/buttonArea"
