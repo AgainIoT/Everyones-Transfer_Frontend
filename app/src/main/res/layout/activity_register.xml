@@ -86,7 +86,7 @@
 
             <EditText
                 android:id="@+id/etSix"
-                style="@style/etSolidRounded"
+                style="@style/navbarRecBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
@@ -120,7 +120,7 @@
 
             <EditText
                 android:id="@+id/etOptionTwo"
-                style="@style/etSolid"
+                style="@style/navbarRecBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
