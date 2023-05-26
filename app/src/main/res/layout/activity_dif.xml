@@ -35,9 +35,8 @@
                 style="@style/white_subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
-                android:layout_marginRight="30dp"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="기존 내용"
@@ -49,6 +48,7 @@
                 android:id="@+id/upperScroll"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginTop="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="10dp"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="입력한 내용"
@@ -168,7 +168,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="기존 내용 변경" />
+                    android:text="기존 내용 유지" />
 
                 <View
                     android:id="@+id/border"
@@ -183,7 +183,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
-                    android:text="입력 완료" />
+                    android:text="수정 완료" />
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
