@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -96,10 +97,10 @@
 
                 <RadioButton
                     android:id="@+id/elevator"
+                    style="@style/navbarRoundBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
-                    android:background="@drawable/selector_radio_button"
                     android:button="@null"
                     android:paddingStart="@dimen/_16pxh"
                     android:paddingTop="@dimen/_23pxv"
@@ -111,6 +112,7 @@
 
                 <RadioButton
                     android:id="@+id/move"
+                    style="@style/navbarRecBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
@@ -126,6 +128,7 @@
 
                 <RadioButton
                     android:id="@+id/gate"
+                    style="@style/navbarRecBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
@@ -141,6 +144,7 @@
 
                 <RadioButton
                     android:id="@+id/quit"
+                    style="@style/navbarRecBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.25"
@@ -203,7 +207,7 @@
                     android:layout_height="400dp"
                     android:layout_gravity="start"
                     android:scaleType="fitXY"
-                    android:src = "@drawable/rectangle_bg_indigo_a700_radius_tr_40"
+                    android:src="@drawable/rectangle_bg_indigo_a700_radius_tr_40"
                     tools:ignore="ContentDescription"
                     tools:src="@drawable/rectangle_bg_indigo_a700_radius_tr_40" />
 

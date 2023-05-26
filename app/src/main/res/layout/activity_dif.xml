@@ -48,12 +48,12 @@
                 android:id="@+id/upperScroll"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:scrollbars="vertical"
                 android:layout_marginTop="10dp"
+                android:scrollbars="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/oldOne"/>
+                app:layout_constraintTop_toBottomOf="@+id/oldOne" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -97,48 +97,57 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
+            <RadioGroup
                 android:id="@+id/navbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toBottomOf="@+id/newOne"
-                tools:layout_editor_absoluteX="0dp">
+                app:layout_constraintTop_toBottomOf="@+id/newOne">
 
-                <androidx.appcompat.widget.AppCompatButton
+                <RadioButton
                     android:id="@+id/elevator"
                     style="@style/navbarRoundBtn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="엘리베이터" />
+                    android:button="@null"
+                    android:text="엘리베이터"
+                    android:textAlignment="center" />
 
-                <androidx.appcompat.widget.AppCompatButton
+                <RadioButton
                     android:id="@+id/walk"
                     style="@style/navbarRecBtn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="이동" />
+                    android:button="@null"
+                    android:text="이동"
+                    android:textAlignment="center" />
 
-                <androidx.appcompat.widget.AppCompatButton
+                <RadioButton
                     android:id="@+id/pass"
                     style="@style/navbarRecBtn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="개찰구" />
+                    android:button="@null"
+                    android:text="개찰구"
+                    android:textAlignment="center" />
 
-                <androidx.appcompat.widget.AppCompatButton
+                <RadioButton
                     android:id="@+id/getOff"
                     style="@style/navbarRecBtn"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="하차" />
-            </LinearLayout>
+                    android:button="@null"
+                    android:text="하차"
+                    android:textAlignment="center" />
+
+
+            </RadioGroup>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/lowerScroll"
