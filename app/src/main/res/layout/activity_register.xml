@@ -112,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:ellipsize="end"
-                android:paddingStart="@dimen/_30pxh"
+                android:paddingStart="@dimen/_38pxh"
                 android:paddingTop="@dimen/_23pxv"
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_21pxv"
@@ -130,7 +130,7 @@
                 android:ellipsize="end"
                 android:hint="@string/lbl6"
                 android:inputType="text"
-                android:paddingStart="@dimen/_29pxh"
+                android:paddingStart="@dimen/_32pxh"
                 android:paddingTop="@dimen/_23pxv"
                 android:paddingEnd="@dimen/_29pxh"
                 android:paddingBottom="@dimen/_21pxv"
@@ -146,7 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0.25"
                 android:ellipsize="end"
-                android:paddingStart="@dimen/_30pxh"
+                android:paddingStart="@dimen/_38pxh"
                 android:paddingTop="@dimen/_23pxv"
                 android:paddingEnd="@dimen/_30pxh"
                 android:paddingBottom="@dimen/_21pxv"
@@ -188,108 +188,6 @@
             android:layout_marginTop="@dimen/_21pxv"
             android:layout_marginEnd="@dimen/_1pxh">
 
-            <FrameLayout
-                android:id="@+id/frameStackrectangleeleven"
-                android:layout_width="@dimen/_388pxh"
-                android:layout_height="@dimen/_141pxv"
-                android:layout_gravity="center"
-                android:layout_marginEnd="@dimen/_1pxh">
-
-                <ImageView
-                    android:id="@+id/imageRectangleEleven"
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:layout_gravity="start"
-                    android:scaleType="fitXY"
-                    android:src = "@drawable/rectangle_bg_indigo_a700_radius_tr_40"
-                    tools:ignore="ContentDescription"
-                    tools:src="@drawable/rectangle_bg_indigo_a700_radius_tr_40" />
-
-                <LinearLayout
-                    android:id="@+id/linearRow"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
-                    android:layout_marginStart="@dimen/_56pxh"
-                    android:layout_marginEnd="@dimen/_56pxh"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:id="@+id/linearRoweleven"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.66"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/txtEleven"
-                            style="@style/txtInterregular24white"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_18pxv"
-                            android:layout_marginBottom="@dimen/_22pxv"
-                            android:layout_weight="0.68"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text="@string/lbl16"
-                            tools:text="@string/lbl16" />
-
-                        <ImageView
-                            android:id="@+id/imageVector"
-                            android:layout_width="@dimen/_20pxh"
-                            android:layout_height="@dimen/_20pxh"
-                            android:layout_marginStart="@dimen/_8pxh"
-                            android:layout_marginTop="@dimen/_25pxv"
-                            android:layout_marginBottom="@dimen/_26pxv"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/img_vector"
-                            tools:ignore="ContentDescription"
-                            tools:src="@drawable/img_vector" />
-
-                        <View
-                            android:id="@+id/lineLineTwentyOne"
-                            android:layout_width="0dp"
-                            android:layout_height="@dimen/_71pxv"
-                            android:layout_marginStart="@dimen/_60pxh"
-                            android:layout_weight="0.02"
-                            android:background="@color/white_A700" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/linearRowtwelve"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_68pxh"
-                        android:layout_marginTop="@dimen/_17pxv"
-                        android:layout_marginBottom="@dimen/_23pxv"
-                        android:layout_weight="0.34"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/txtTwelve"
-                            style="@style/txtInterregular24white"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.75"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text="@string/lbl17"
-                            tools:text="@string/lbl17" />
-
-                        <ImageView
-                            android:id="@+id/imageDashboard"
-                            android:layout_width="@dimen/_15pxh"
-                            android:layout_height="@dimen/_17pxh"
-                            android:layout_marginStart="@dimen/_8pxh"
-                            android:layout_marginTop="@dimen/_7pxv"
-                            android:layout_marginBottom="@dimen/_5pxv"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/img_dashboard"
-                            tools:ignore="ContentDescription"
-                            tools:src="@drawable/img_dashboard" />
-                    </LinearLayout>
-                </LinearLayout>
-            </FrameLayout>
 
             <LinearLayout
                 android:id="@+id/linearColumnthirteen"
@@ -339,5 +237,83 @@
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearRow"
+            android:layout_width="410dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_211pxh"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/linearRoweleven"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="#36458F"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtEleven"
+                    style="@style/txtInterregular24white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_18pxv"
+                    android:layout_marginBottom="@dimen/_22pxv"
+                    android:text="다음"
+                    tools:text="다음" />
+
+                <ImageView
+                    android:id="@+id/imageVector"
+                    android:layout_width="@dimen/_20pxh"
+                    android:layout_height="@dimen/_20pxh"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="@dimen/_25pxv"
+                    android:layout_marginBottom="@dimen/_26pxv"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_vector"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_vector" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/Line_21" />
+
+            <LinearLayout
+                android:id="@+id/linearRowtwelve"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:background="#36458F"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtTwelve"
+                    style="@style/txtInterregular24white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_18pxv"
+                    android:layout_marginBottom="@dimen/_22pxv"
+                    android:text="완료"
+                    tools:text="완료" />
+
+                <ImageView
+                    android:id="@+id/imageDashboard"
+                    android:layout_width="@dimen/_20pxh"
+                    android:layout_height="@dimen/_20pxh"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="@dimen/_25pxv"
+                    android:layout_marginBottom="@dimen/_26pxv"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_dashboard"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_dashboard" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
