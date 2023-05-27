@@ -48,12 +48,12 @@
                 android:id="@+id/upperScroll"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:scrollbars="vertical"
                 android:layout_marginTop="10dp"
+                android:scrollbars="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/oldOne"/>
+                app:layout_constraintTop_toBottomOf="@+id/oldOne" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -109,35 +109,39 @@
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/elevator"
-                    style="@style/navbarRoundBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="엘리베이터" />
+                    android:background="@drawable/selector_prim_button"
+                    android:text="엘리베이터"
+                    android:textColor="@drawable/selector_radio_text" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/walk"
-                    style="@style/navbarRecBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="이동" />
+                    android:background="@drawable/selector_rect_button"
+                    android:text="이동"
+                    android:textColor="@drawable/selector_radio_text" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/pass"
-                    style="@style/navbarRecBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="개찰구" />
+                    android:background="@drawable/selector_rect_button"
+                    android:text="개찰구"
+                    android:textColor="@drawable/selector_radio_text" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/getOff"
-                    style="@style/navbarRecBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="하차" />
+                    android:background="@drawable/selector_rect_button"
+                    android:text="하차"
+                    android:textColor="@drawable/selector_radio_text" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
