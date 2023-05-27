@@ -41,14 +41,14 @@
                     <Spinner
                         android:id="@+id/spinnerThree"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_weight="0.33"
                         android:background="@drawable/layer_list_bg_gray_200_radius_10" />
 
                     <Spinner
                         android:id="@+id/spinnerFour"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_marginStart="@dimen/_21pxh"
                         android:layout_weight="0.33"
                         android:background="@drawable/layer_list_bg_gray_200_radius_10" />
@@ -56,7 +56,7 @@
                     <Spinner
                         android:id="@+id/spinnerFive"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:layout_marginStart="@dimen/_22pxh"
                         android:layout_weight="0.33"
                         android:background="@drawable/layer_list_bg_gray_200_radius_10" />
@@ -167,161 +167,160 @@
             tools:ignore="ContentDescription"
             tools:src="@drawable/reg_img_arrowdown_black_900" />
 
-        <FrameLayout
-            android:id="@+id/frameStackthirteen"
-            android:layout_width="@dimen/_389pxh"
-            android:layout_height="@dimen/_141pxv"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/_21pxv"
-            android:layout_marginEnd="@dimen/_1pxh">
 
-            <FrameLayout
+            <LinearLayout
                 android:id="@+id/frameStackrectangleeleven"
                 android:layout_width="@dimen/_388pxh"
                 android:layout_height="@dimen/_141pxv"
                 android:layout_gravity="center"
+                android:layout_weight="8"
                 android:layout_marginEnd="@dimen/_1pxh">
 
-                <ImageView
-                    android:id="@+id/imageRectangleEleven"
-                    android:layout_width="match_parent"
-                    android:layout_height="400dp"
-                    android:layout_gravity="start"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/rectangle_bg_indigo_a700_radius_tr_40"
-                    tools:ignore="ContentDescription"
-                    tools:src="@drawable/rectangle_bg_indigo_a700_radius_tr_40" />
-
                 <LinearLayout
-                    android:id="@+id/linearRow"
+                    android:id="@+id/linearColumnthirteen"
+                    style="@style/groupStylewhite_A700cornerRadius40"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|center"
-                    android:layout_marginStart="@dimen/_56pxh"
-                    android:layout_marginEnd="@dimen/_56pxh"
-                    android:orientation="horizontal">
+                    android:layout_gravity="top|start"
+                    android:layout_marginBottom="@dimen/_10pxv"
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:id="@+id/linearRoweleven"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.66"
+                        android:id="@+id/linearRowthirteen"
+                        style="@style/groupStylecornerRadius"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_24pxh"
+                        android:layout_marginTop="@dimen/_15pxv"
+                        android:layout_marginEnd="@dimen/_22pxh"
+                        android:layout_marginBottom="@dimen/_17pxv"
                         android:orientation="horizontal">
 
-                        <TextView
-                            android:id="@+id/txtEleven"
-                            style="@style/txtInterregular24white"
+                        <Spinner
+                            android:id="@+id/spinnerThirteen"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_18pxv"
-                            android:layout_marginBottom="@dimen/_22pxv"
-                            android:layout_weight="0.68"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text="@string/lbl16"
-                            tools:text="@string/lbl16" />
+                            android:layout_height="40dp"
+                            android:layout_weight="0.33"
+                            android:background="@drawable/layer_list_bg_gray_200_radius_10" />
 
-                        <ImageView
-                            android:id="@+id/imageVector"
-                            android:layout_width="@dimen/_20pxh"
-                            android:layout_height="@dimen/_20pxh"
-                            android:layout_marginStart="@dimen/_8pxh"
-                            android:layout_marginTop="@dimen/_25pxv"
-                            android:layout_marginBottom="@dimen/_26pxv"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/img_vector"
-                            tools:ignore="ContentDescription"
-                            tools:src="@drawable/img_vector" />
-
-                        <View
-                            android:id="@+id/lineLineTwentyOne"
+                        <Spinner
+                            android:id="@+id/spinnerFourteen"
                             android:layout_width="0dp"
-                            android:layout_height="@dimen/_71pxv"
-                            android:layout_marginStart="@dimen/_60pxh"
-                            android:layout_weight="0.02"
-                            android:background="@color/white_A700" />
+                            android:layout_height="40dp"
+                            android:layout_marginStart="@dimen/_21pxh"
+                            android:layout_weight="0.33"
+                            android:background="@drawable/layer_list_bg_gray_200_radius_10" />
+
+                        <Spinner
+                            android:id="@+id/spinnerFifteen"
+                            android:layout_width="0dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="@dimen/_22pxh"
+                            android:layout_weight="0.33"
+                            android:background="@drawable/layer_list_bg_gray_200_radius_10" />
                     </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/linearRowtwelve"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_68pxh"
-                        android:layout_marginTop="@dimen/_17pxv"
-                        android:layout_marginBottom="@dimen/_23pxv"
-                        android:layout_weight="0.34"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/txtTwelve"
-                            style="@style/txtInterregular24white"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.75"
-                            android:ellipsize="end"
-                            android:singleLine="true"
-                            android:text="@string/lbl17"
-                            tools:text="@string/lbl17" />
-
-                        <ImageView
-                            android:id="@+id/imageDashboard"
-                            android:layout_width="@dimen/_15pxh"
-                            android:layout_height="@dimen/_17pxh"
-                            android:layout_marginStart="@dimen/_8pxh"
-                            android:layout_marginTop="@dimen/_7pxv"
-                            android:layout_marginBottom="@dimen/_5pxv"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/img_dashboard"
-                            tools:ignore="ContentDescription"
-                            tools:src="@drawable/img_dashboard" />
-                    </LinearLayout>
-                </LinearLayout>
-            </FrameLayout>
-
-            <LinearLayout
-                android:id="@+id/linearColumnthirteen"
-                style="@style/groupStylewhite_A700cornerRadius40"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|start"
-                android:layout_marginBottom="@dimen/_10pxv"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/linearRowthirteen"
-                    style="@style/groupStylecornerRadius"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/_24pxh"
-                    android:layout_marginTop="@dimen/_15pxv"
-                    android:layout_marginEnd="@dimen/_22pxh"
-                    android:layout_marginBottom="@dimen/_17pxv"
-                    android:orientation="horizontal">
-
-                    <Spinner
-                        android:id="@+id/spinnerThirteen"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.33"
-                        android:background="@drawable/layer_list_bg_gray_200_radius_10" />
-
-                    <Spinner
-                        android:id="@+id/spinnerFourteen"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_21pxh"
-                        android:layout_weight="0.33"
-                        android:background="@drawable/layer_list_bg_gray_200_radius_10" />
-
-                    <Spinner
-                        android:id="@+id/spinnerFifteen"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_22pxh"
-                        android:layout_weight="0.33"
-                        android:background="@drawable/layer_list_bg_gray_200_radius_10" />
                 </LinearLayout>
             </LinearLayout>
-        </FrameLayout>
+
+
+        <LinearLayout
+            android:id="@+id/linearRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:layout_weight="0.002"
+            android:background="#36458F"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/linearRoweleven"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.45"
+                android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/linearNext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="2dp"
+                android:paddingRight="20dp"
+                android:layout_marginStart="30dp">
+
+                <TextView
+                    android:id="@+id/txtEleven"
+                    style="@style/txtInterregular24white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_19pxv"
+                    android:layout_marginBottom="@dimen/_22pxv"
+                    android:layout_marginStart="35dp"
+                    android:gravity="center"
+                    android:paddingStart="12dp"
+                    android:textSize="20dp"
+                    android:text="@string/lbl16"
+                    tools:text="@string/lbl16" />
+
+                <ImageView
+                    android:id="@+id/imageVector"
+                    android:layout_width="@dimen/_16pxh"
+                    android:layout_height="@dimen/_16pxh"
+                    android:layout_marginStart="@dimen/_8pxh"
+                    android:layout_marginTop="@dimen/_27pxv"
+                    android:layout_marginBottom="@dimen/_26pxv"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_vector"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_vector" />
+            </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.05"
+                android:src="@drawable/line22"/>
+
+
+            <LinearLayout
+                android:id="@+id/linearComplete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_66pxh"
+                android:layout_marginTop="@dimen/_17pxv"
+                android:layout_marginBottom="@dimen/_23pxv"
+                android:layout_weight="0.3"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtTwelve"
+                    style="@style/txtInterregular24white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/_5pxh"
+                    android:textSize="20dp"
+                    android:text="@string/lbl17"
+                    tools:text="@string/lbl17" />
+
+                <ImageView
+                    android:id="@+id/imageDashboard"
+                    android:layout_width="@dimen/_15pxh"
+                    android:layout_height="@dimen/_15pxh"
+                    android:layout_marginStart="@dimen/_6pxh"
+                    android:layout_marginTop="@dimen/_7pxv"
+                    android:layout_marginBottom="@dimen/_5pxv"
+                    android:scaleType="fitXY"
+                    android:layout_gravity="center"
+                    android:src="@drawable/img_dashboard"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_dashboard" />
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
