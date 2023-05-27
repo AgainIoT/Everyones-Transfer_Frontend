@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal">
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/upperHalf"
         android:layout_width="match_parent"
@@ -19,7 +18,6 @@
         app:layout_constraintHeight_percent="0.45"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/upperArea"
             style="@style/blue_rightbottom_rectangle"
@@ -29,7 +27,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
             <TextView
                 android:id="@+id/oldOne"
                 style="@style/white_subtitle"
@@ -43,7 +40,6 @@
                 app:layout_constraintBottom_toTopOf="@+id/upperScroll"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/upperScroll"
                 android:layout_width="match_parent"
@@ -54,12 +50,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/oldOne" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lowerHalf"
         android:layout_width="0dp"
@@ -71,7 +63,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upperHalf">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/lowerArea"
             style="@style/white_lefttop_rectangle"
@@ -82,8 +73,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
-
             <TextView
                 android:id="@+id/newOne"
                 style="@style/black_subtitle"
@@ -96,7 +85,6 @@
                 android:text="입력한 내용"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
             <RadioGroup
                 android:id="@+id/navbar"
                 android:layout_width="match_parent"
@@ -105,7 +93,6 @@
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@+id/newOne">
-
                 <RadioButton
                     android:id="@+id/elevator"
                     style="@style/navbarRoundBtn"
@@ -115,22 +102,25 @@
                     android:button="@null"
                     android:background="@drawable/selector_prim_button"
                     android:text="엘리베이터"
-                    android:textColor="@drawable/selector_radio_text" 
+                    android:textColor="@drawable/selector_radio_text"
                     android:textAlignment="center" />
 
                 <RadioButton
                     android:id="@+id/walk"
+                    style="@style/navbarRecBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@null"
                     android:background="@drawable/selector_rect_button"
                     android:text="이동"
-                    android:textAlignment="center"
-                    android:textColor="@drawable/selector_radio_text"/>
+                    android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@drawable/selector_radio_text"/>
 
                 <RadioButton
                     android:id="@+id/pass"
+                    style="@style/navbarRecBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -142,6 +132,7 @@
 
                 <RadioButton
                     android:id="@+id/getOff"
+                    style="@style/navbarRecBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -150,7 +141,9 @@
                     android:text="하차"
                     android:textColor="@drawable/selector_radio_text"
                     android:textAlignment="center" />
-              
+
+
+
             </RadioGroup>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -161,9 +154,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/navbar">
-
             </androidx.recyclerview.widget.RecyclerView>
-
             <LinearLayout
                 android:id="@+id/buttonArea"
                 android:layout_width="0dp"
@@ -173,96 +164,19 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
-
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/editBtn"
                     style="@style/bottom_btn"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_90pxh"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/etSix"
-                        style="@style/etSolidRounded"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
-                        android:background="@drawable/rectangle_bg_white_a700_radius_bl_40"
-                        android:ellipsize="end"
-                        android:hint="@string/lbl4"
-                        android:inputType="text"
-                        android:paddingStart="@dimen/_17pxh"
-                        android:paddingTop="@dimen/_23pxv"
-                        android:paddingEnd="@dimen/_17pxh"
-                        android:paddingBottom="@dimen/_21pxv"
-                        android:singleLine="true"
-                        android:text="@string/lbl12"
-                        android:textColorHint="@color/indigo_700"
-                        tools:text="@string/lbl12" />
-
-                    <TextView
-                        android:id="@+id/txtOptionOne"
-                        style="@style/txtSolid"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
-                        android:ellipsize="end"
-                        android:paddingStart="@dimen/_38pxh"
-                        android:paddingTop="@dimen/_23pxv"
-                        android:paddingEnd="@dimen/_30pxh"
-                        android:paddingBottom="@dimen/_21pxv"
-                        android:singleLine="true"
-                        android:text="@string/lbl13"
-                        tools:text="@string/lbl13" />
-
-                    <EditText
-                        android:id="@+id/etOptionTwo"
-                        style="@style/etSolid"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
-                        android:background="@drawable/rectangle_bg_white_a700"
-                        android:ellipsize="end"
-                        android:hint="@string/lbl6"
-                        android:inputType="text"
-                        android:paddingStart="@dimen/_31pxh"
-                        android:paddingTop="@dimen/_23pxv"
-                        android:paddingEnd="@dimen/_29pxh"
-                        android:paddingBottom="@dimen/_21pxv"
-                        android:singleLine="true"
-                        android:text="@string/lbl14"
-                        android:textColorHint="@color/indigo_700"
-                        tools:text="@string/lbl14" />
-
-                    <TextView
-                        android:id="@+id/txtOptionThree"
-                        style="@style/txtSolid_1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.25"
-                        android:ellipsize="end"
-                        android:paddingStart="@dimen/_39pxh"
-                        android:paddingTop="@dimen/_23pxv"
-                        android:paddingEnd="@dimen/_30pxh"
-                        android:paddingBottom="@dimen/_21pxv"
-                        android:singleLine="true"
-                        android:text="@string/lbl15"
-                        tools:text="@string/lbl15" />
-                </LinearLayout>
-
-                <ScrollView
-                    android:id="@+id/lowerscroll"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:text="기존 내용 유지" />
-
                 <View
                     android:id="@+id/border"
                     android:layout_width="1dp"
                     android:layout_height="@dimen/_71pxv"
                     android:background="@color/white_A700" />
-
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/completeBtn"
                     style="@style/bottom_btn"
@@ -271,7 +185,6 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:text="수정 완료" />
-
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
