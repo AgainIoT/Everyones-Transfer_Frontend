@@ -113,40 +113,44 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@null"
+                    android:background="@drawable/selector_prim_button"
                     android:text="엘리베이터"
+                    android:textColor="@drawable/selector_radio_text" 
                     android:textAlignment="center" />
 
                 <RadioButton
                     android:id="@+id/walk"
-                    style="@style/navbarRecBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@null"
+                    android:background="@drawable/selector_rect_button"
                     android:text="이동"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text"/>
 
                 <RadioButton
                     android:id="@+id/pass"
-                    style="@style/navbarRecBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@null"
+                    android:background="@drawable/selector_rect_button"
                     android:text="개찰구"
+                    android:textColor="@drawable/selector_radio_text"
                     android:textAlignment="center" />
 
                 <RadioButton
                     android:id="@+id/getOff"
-                    style="@style/navbarRecBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:button="@null"
+                    android:background="@drawable/selector_rect_button"
                     android:text="하차"
+                    android:textColor="@drawable/selector_radio_text"
                     android:textAlignment="center" />
-
-
+              
             </RadioGroup>
 
             <androidx.recyclerview.widget.RecyclerView
