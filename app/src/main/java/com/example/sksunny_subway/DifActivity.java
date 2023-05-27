@@ -37,6 +37,6 @@ public class DifActivity extends AppCompatActivity {
         RecyclerAdapter upperAdapter = new RecyclerAdapter(list);
         upperScroll.setAdapter(upperAdapter);
         RecyclerAdapter lowerAdapter = new RecyclerAdapter(list);
-        upperScroll.setAdapter(lowerAdapter);
+        lowerScroll.setAdapter(lowerAdapter);
     }
 }

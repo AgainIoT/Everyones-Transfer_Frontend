@@ -5,6 +5,7 @@
     android:id="@+id/linearLayout2"
     style="@style/groupStylegray_200cornerRadius"
     android:layout_width="match_parent"
+    android:layout_marginTop="10dp"
     android:layout_height="60dp"
     android:gravity="center_horizontal">
 
