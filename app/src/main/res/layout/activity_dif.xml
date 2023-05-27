@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/upperHalf"
         android:layout_width="match_parent"
@@ -18,6 +19,7 @@
         app:layout_constraintHeight_percent="0.45"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/upperArea"
             style="@style/blue_rightbottom_rectangle"
@@ -27,6 +29,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
             <TextView
                 android:id="@+id/oldOne"
                 style="@style/white_subtitle"
@@ -40,18 +43,26 @@
                 app:layout_constraintBottom_toTopOf="@+id/upperScroll"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/upperScroll"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="30dp"
                 android:scrollbars="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/oldOne" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/lowerHalf"
         android:layout_width="0dp"
@@ -63,6 +74,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/upperHalf">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/lowerArea"
             style="@style/white_lefttop_rectangle"
@@ -73,6 +85,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
+
             <TextView
                 android:id="@+id/newOne"
                 style="@style/black_subtitle"
@@ -85,6 +99,7 @@
                 android:text="입력한 내용"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <RadioGroup
                 android:id="@+id/navbar"
                 android:layout_width="match_parent"
@@ -93,56 +108,50 @@
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@+id/newOne">
+
                 <RadioButton
                     android:id="@+id/elevator"
-                    style="@style/navbarRoundBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:button="@null"
                     android:background="@drawable/selector_prim_button"
+                    android:button="@null"
                     android:text="엘리베이터"
-                    android:textColor="@drawable/selector_radio_text"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
 
                 <RadioButton
                     android:id="@+id/walk"
-                    style="@style/navbarRecBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:button="@null"
                     android:background="@drawable/selector_rect_button"
+                    android:button="@null"
                     android:text="이동"
-                    android:textAlignment="center" />
-                android:textAlignment="center"
-                android:textColor="@drawable/selector_radio_text"/>
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
 
                 <RadioButton
                     android:id="@+id/pass"
-                    style="@style/navbarRecBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:button="@null"
                     android:background="@drawable/selector_rect_button"
+                    android:button="@null"
                     android:text="개찰구"
-                    android:textColor="@drawable/selector_radio_text"
-                    android:textAlignment="center" />
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
 
                 <RadioButton
                     android:id="@+id/getOff"
-                    style="@style/navbarRecBtn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:button="@null"
                     android:background="@drawable/selector_rect_button"
+                    android:button="@null"
                     android:text="하차"
-                    android:textColor="@drawable/selector_radio_text"
-                    android:textAlignment="center" />
-
-
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
 
             </RadioGroup>
 
@@ -150,11 +159,16 @@
                 android:id="@+id/lowerScroll"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/buttonArea"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/navbar">
+
             </androidx.recyclerview.widget.RecyclerView>
+
             <LinearLayout
                 android:id="@+id/buttonArea"
                 android:layout_width="0dp"
@@ -164,6 +178,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/editBtn"
                     style="@style/bottom_btn"
@@ -172,11 +187,13 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:text="기존 내용 유지" />
+
                 <View
                     android:id="@+id/border"
                     android:layout_width="1dp"
                     android:layout_height="@dimen/_71pxv"
                     android:background="@color/white_A700" />
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/completeBtn"
                     style="@style/bottom_btn"
@@ -185,6 +202,7 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:text="수정 완료" />
+
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
