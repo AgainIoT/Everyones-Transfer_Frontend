@@ -2,6 +2,7 @@ package com.example.sksunny_subway;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 import android.view.View;
@@ -26,7 +27,24 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         LinearLayout btn_next = findViewById(R.id.linearRoweleven);
-        LinearLayout btn_finish = findViewById(R.id.linearRowtwelve);
+        LinearLayout btn_finish = findViewById(R.id.linearComplete);
+
+        btn_next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), DifActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_finish.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), DifActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // 층 선택 Dropdown
         Spinner spinnerThree = findViewById(R.id.spinnerThree);
         Spinner spinnerThirteen = findViewById(R.id.spinnerThirteen);
