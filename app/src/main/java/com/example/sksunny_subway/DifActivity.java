@@ -1,12 +1,14 @@
 package com.example.sksunny_subway;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -19,8 +21,8 @@ public class DifActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dif);
 
-        TextView btn_modify = findViewById(R.id.txtEleven);
-        TextView btn_complete = findViewById(R.id.txtTwelve);
+        AppCompatButton btn_modify = findViewById(R.id.editBtn);
+        AppCompatButton btn_complete = findViewById(R.id.completeBtn);
 
         ArrayList<String> list = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
