@@ -6,7 +6,6 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/linearColumnsix"
         style="@style/groupStylewhite_A700"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,7 +13,6 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/linearColumnthree"
             style="@style/groupStyleindigo_701"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -22,7 +20,6 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_25pxh"
@@ -32,21 +29,19 @@
                 app:contentInsetStart="0dp">
 
                 <LinearLayout
-                    android:id="@+id/linearRowthree"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-
                     <Spinner
-                        android:id="@+id/spinnerThree"
+                        android:id="@+id/spinner_stfloors"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="0.33"
                         android:background="@drawable/layer_list_bg_gray_200_radius_10" />
 
                     <Spinner
-                        android:id="@+id/spinnerFour"
+                        android:id="@+id/spinner_stlines"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_marginStart="@dimen/_21pxh"
@@ -54,7 +49,7 @@
                         android:background="@drawable/layer_list_bg_gray_200_radius_10" />
 
                     <Spinner
-                        android:id="@+id/spinnerFive"
+                        android:id="@+id/spinner_stlocations"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_marginStart="@dimen/_22pxh"
@@ -64,7 +59,6 @@
             </androidx.appcompat.widget.Toolbar>
 
             <ImageView
-                android:id="@+id/imageArrowdownThree"
                 android:layout_width="@dimen/_15pxh"
                 android:layout_height="@dimen/_15pxh"
                 android:layout_gravity="center_horizontal"
@@ -79,7 +73,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearNavbar"
             style="@style/groupStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -148,13 +141,7 @@
 
     </LinearLayout>
 
-
-
-
-
-
         <LinearLayout
-            android:id="@+id/frameStackrectangleeleven"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_141pxv"
             android:layout_gravity="center"
@@ -163,7 +150,6 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/imageArrowdownSeven"
                 android:layout_width="13dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center_horizontal"
@@ -175,7 +161,6 @@
                 tools:src="@drawable/reg_img_arrowdown_black_900" />
 
             <LinearLayout
-                android:id="@+id/linearColumnthirteen"
                 style="@style/groupStylewhite_A700cornerRadius40"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -183,7 +168,6 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:id="@+id/linearRowthirteen"
                     style="@style/groupStylecornerRadius"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -194,14 +178,14 @@
                     android:orientation="horizontal">
 
                     <Spinner
-                        android:id="@+id/spinnerThirteen"
+                        android:id="@+id/spinner_arfloors"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_weight="0.33"
                         android:background="@drawable/layer_list_bg_gray_200_radius_10" />
 
                     <Spinner
-                        android:id="@+id/spinnerFourteen"
+                        android:id="@+id/spinner_arlines"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_marginStart="@dimen/_21pxh"
@@ -209,7 +193,7 @@
                         android:background="@drawable/layer_list_bg_gray_200_radius_10" />
 
                     <Spinner
-                        android:id="@+id/spinnerFifteen"
+                        android:id="@+id/spinner_arlocations"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_marginStart="@dimen/_22pxh"
@@ -219,7 +203,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/linearRow"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center"
@@ -228,14 +211,13 @@
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/linearRoweleven"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.45"
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:id="@+id/linearNext"
+                        android:id="@+id/layout_next"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
@@ -244,7 +226,6 @@
                         android:layout_marginStart="30dp">
 
                         <TextView
-                            android:id="@+id/txtEleven"
                             style="@style/txtInterregular24white"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -258,7 +239,6 @@
                             tools:text="@string/lbl16" />
 
                         <ImageView
-                            android:id="@+id/imageVector"
                             android:layout_width="@dimen/_16pxh"
                             android:layout_height="@dimen/_16pxh"
                             android:layout_marginStart="@dimen/_8pxh"
@@ -272,18 +252,14 @@
 
                 </LinearLayout>
 
-
-
-
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.05"
                     android:src="@drawable/line22"/>
 
-
                 <LinearLayout
-                    android:id="@+id/linearComplete"
+                    android:id="@+id/layout_finish"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_66pxh"
@@ -293,7 +269,6 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/txtTwelve"
                         style="@style/txtInterregular24white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -304,7 +279,6 @@
                         tools:text="@string/lbl17" />
 
                     <ImageView
-                        android:id="@+id/imageDashboard"
                         android:layout_width="@dimen/_15pxh"
                         android:layout_height="@dimen/_15pxh"
                         android:layout_marginStart="@dimen/_6pxh"
