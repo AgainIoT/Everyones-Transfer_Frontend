@@ -3,12 +3,13 @@ package com.example.sksunny_subway;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 import java.util.ArrayList;
@@ -19,8 +20,26 @@ public class DifActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dif);
 
-        TextView btn_modify = findViewById(R.id.txtEleven);
-        TextView btn_complete = findViewById(R.id.txtTwelve);
+        AppCompatButton maintainBtn = findViewById(R.id.maintainBtn);
+        AppCompatButton completeBtn = findViewById(R.id.completeBtn);
+
+        maintainBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "기존 내용을 유지합니다.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        completeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "수정된 내용이 저장되었습니다.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ArrayList<String> list = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
