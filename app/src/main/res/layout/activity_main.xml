@@ -37,22 +37,38 @@
             android:layout_marginTop="@dimen/_21pxv"
             android:layout_marginEnd="@dimen/_22pxh">
 
-            <ImageButton
-                android:id="@+id/imageSearch"
-                android:layout_width="@dimen/_17pxh"
-                android:layout_height="@dimen/_17pxh"
-                android:layout_marginTop="@dimen/_16pxv"
-                android:layout_marginEnd="@dimen/_18pxh"
-                android:layout_marginBottom="@dimen/_16pxv"
-                android:scaleType="fitXY"
-                android:src="@drawable/manifier" />
 
             <EditText
                 android:id="@+id/Et_Search"
-                android:layout_width="match_parent"
+                android:layout_weight = "1.5"
+                android:layout_width="0dp"
                 android:layout_height="100px"
                 android:layout_gravity="center"
-                android:layout_marginRight="@dimen/_15pxh" />
+                android:layout_marginStart="@dimen/_18pxh"
+                android:hint="정확한 역명을 입력해주세요. (예: 가산디지털단지)"
+                android:textSize="11sp" />
+
+            <TextView
+                style="@style/txtInterregular16"
+                android:layout_weight = "0.1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="7dp"
+                android:text="역"
+                android:textSize = "12sp"
+                tools:text="@string/lbl6" />
+
+            <ImageView
+                android:id="@+id/Image_Search"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_17pxh"
+                android:layout_marginTop="17dp"
+                android:layout_marginEnd="@dimen/_18pxh"
+                android:layout_marginBottom="@dimen/_16pxv"
+                android:scaleType="fitXY"
+                android:src="@drawable/manifier"
+                android:layout_weight="0.1" />
 
         </LinearLayout>
 
@@ -101,7 +117,7 @@
                     tools:text="출발 호선" />
 
                 <Spinner
-                    android:id="@+id/spinnerTwoTwo"
+                    android:id="@+id/spinner_stline"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_150pxh"
@@ -149,7 +165,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/viewRectangleTwo"
+                        android:id="@+id/start_nextst"
                         android:layout_width="@dimen/_105pxh"
                         android:layout_height="@dimen/_31pxv"
                         android:background="@drawable/rectangle_bg_gray_100_border_gray_500"
@@ -217,9 +233,9 @@
                     android:text="도착 호선"/>
 
                 <Spinner
-                    android:id="@+id/spinnerTwoThree"
+                    android:id="@+id/spinner_arline"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="27dp"
                     android:layout_marginStart="@dimen/_150pxh"
                     android:layout_marginTop="@dimen/_20pxv"
                     android:layout_marginEnd="@dimen/_24pxh"
@@ -267,7 +283,7 @@
                     android:orientation="horizontal">
 
                     <EditText
-                        android:id="@+id/viewRectangleThree"
+                        android:id="@+id/arrive_nextst"
                         android:layout_width="@dimen/_105pxh"
                         android:layout_height="@dimen/_31pxv"
                         android:background="@drawable/rectangle_bg_gray_100_border_gray_500"
@@ -287,7 +303,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn"
+                android:id="@+id/register_btn"
                 android:layout_width="@dimen/_120pxh"
                 android:layout_height="@dimen/_60pxh"
                 android:layout_gravity="center_horizontal"
