@@ -42,11 +42,20 @@
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/rectangle_dhi_0.xml" value="0.1" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/rectangle_radius_10.xml" value="0.1" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/reg_img_arrowdown_black_900.xml" value="0.1" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/selector_radio_button.xml" value="0.1215" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/selector_radio_text.xml" value="0.185" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/white_lefttop_rectangle.xml" value="0.186" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/font/inter.xml" value="0.1" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/font/noto_sans_kr.xml" value="0.21197916666666666" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/activity_dif.xml" value="0.22395833333333334" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/activity_register.xml" value="0.1" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/activity_register.xml" value="0.16" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/item_list.xml" value="0.22395833333333334" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/selector_radio_button.xml" value="0.15625" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/spinner_inner.xml" value="0.22291666666666668" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/spinner_item.xml" value="0.1" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/spinner_outer.xml" value="0.264" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/test.xml" value="0.17239583333333333" />
       </map>
     </option>
   </component>

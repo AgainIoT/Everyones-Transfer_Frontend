@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -84,73 +85,80 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/etSix"
-                style="@style/navbarRecBtn"
-                android:layout_width="0dp"
+            <RadioGroup
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:background="@drawable/white_leftbottom_rectangle"
-                android:ellipsize="end"
-                android:hint="@string/lbl4"
-                android:inputType="text"
-                android:paddingStart="@dimen/_16pxh"
-                android:paddingTop="@dimen/_23pxv"
-                android:paddingEnd="@dimen/_17pxh"
-                android:paddingBottom="@dimen/_21pxv"
-                android:singleLine="true"
-                android:text="@string/lbl12"
-                android:textColorHint="@color/indigo_700"
-                tools:text="@string/lbl12" />
+                android:layout_marginTop="32dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/txtOptionOne"
-                style="@style/txtSolid"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:ellipsize="end"
-                android:paddingStart="@dimen/_30pxh"
-                android:paddingTop="@dimen/_23pxv"
-                android:paddingEnd="@dimen/_30pxh"
-                android:paddingBottom="@dimen/_21pxv"
-                android:singleLine="true"
-                android:text="@string/lbl13"
-                tools:text="@string/lbl13" />
+                <RadioButton
+                    android:id="@+id/elevator"
+                    style="@style/navbarRoundBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:button="@null"
+                    android:paddingStart="@dimen/_16pxh"
+                    android:paddingTop="@dimen/_23pxv"
+                    android:paddingEnd="@dimen/_17pxh"
+                    android:paddingBottom="@dimen/_21pxv"
+                    android:text="@string/lbl12"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
 
-            <EditText
-                android:id="@+id/etOptionTwo"
-                style="@style/navbarRecBtn"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:background="@drawable/white_rectangle"
-                android:ellipsize="end"
-                android:hint="@string/lbl6"
-                android:inputType="text"
-                android:paddingStart="@dimen/_29pxh"
-                android:paddingTop="@dimen/_23pxv"
-                android:paddingEnd="@dimen/_29pxh"
-                android:paddingBottom="@dimen/_21pxv"
-                android:singleLine="true"
-                android:text="@string/lbl14"
-                android:textColorHint="@color/indigo_700"
-                tools:text="@string/lbl14" />
+                <RadioButton
+                    android:id="@+id/move"
+                    style="@style/navbarRecBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:paddingStart="@dimen/_16pxh"
+                    android:paddingTop="@dimen/_23pxv"
+                    android:paddingEnd="@dimen/_17pxh"
+                    android:paddingBottom="@dimen/_21pxv"
+                    android:text="@string/lbl13"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
 
-            <TextView
-                android:id="@+id/txtOptionThree"
-                style="@style/txtSolid_1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.25"
-                android:ellipsize="end"
-                android:paddingStart="@dimen/_30pxh"
-                android:paddingTop="@dimen/_23pxv"
-                android:paddingEnd="@dimen/_30pxh"
-                android:paddingBottom="@dimen/_21pxv"
-                android:singleLine="true"
-                android:text="@string/lbl15"
-                tools:text="@string/lbl15" />
+                <RadioButton
+                    android:id="@+id/gate"
+                    style="@style/navbarRecBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:paddingStart="@dimen/_16pxh"
+                    android:paddingTop="@dimen/_23pxv"
+                    android:paddingEnd="@dimen/_17pxh"
+                    android:paddingBottom="@dimen/_21pxv"
+                    android:text="@string/lbl14"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
+
+                <RadioButton
+                    android:id="@+id/quit"
+                    style="@style/navbarRecBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.25"
+                    android:background="@drawable/selector_radio_button"
+                    android:button="@null"
+                    android:paddingStart="@dimen/_16pxh"
+                    android:paddingTop="@dimen/_23pxv"
+                    android:paddingEnd="@dimen/_17pxh"
+                    android:paddingBottom="@dimen/_21pxv"
+                    android:text="@string/lbl15"
+                    android:textAlignment="center"
+                    android:textColor="@drawable/selector_radio_text" />
+            </RadioGroup>
+
         </LinearLayout>
 
         <LinearLayout
@@ -199,7 +207,7 @@
                     android:layout_height="400dp"
                     android:layout_gravity="start"
                     android:scaleType="fitXY"
-                    android:src = "@drawable/rectangle_bg_indigo_a700_radius_tr_40"
+                    android:src="@drawable/rectangle_bg_indigo_a700_radius_tr_40"
                     tools:ignore="ContentDescription"
                     tools:src="@drawable/rectangle_bg_indigo_a700_radius_tr_40" />
 
