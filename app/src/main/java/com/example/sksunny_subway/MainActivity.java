@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -33,12 +34,27 @@ public class MainActivity extends AppCompatActivity {
         ImageView Image_Search = findViewById(R.id.Image_Search);
         EditText Et_Search = (EditText)findViewById(R.id.Et_Search);
 
+        EditText start_nextst = (EditText)findViewById(R.id.start_nextst);
+        EditText arrive_nextst= (EditText)findViewById(R.id.arrive_nextst);
+
         Image_Search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String station = Et_Search.getText().toString();
+                //백엔드로 받아오는데 response가 true이면 입력 아니면 확인해주세요 메세지 띄우기
             }
         });
+
+
+        //사용자가 역 검색을 하지 않고 다음역을 입력할려고 할때 입력하지 못하게 막기
+        if (lines.size() == 0) {
+            start_nextst.setInputType(InputType.TYPE_NULL);
+            arrive_nextst.setInputType(InputType.TYPE_NULL);
+        }
+
+
+
+
 
         register_btn.setOnClickListener(new View.OnClickListener() {
             @Override

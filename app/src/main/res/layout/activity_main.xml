@@ -117,7 +117,7 @@
                     tools:text="출발 호선" />
 
                 <Spinner
-                    android:id="@+id/spinnerTwoTwo"
+                    android:id="@+id/spinner_stline"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_150pxh"
@@ -233,9 +233,9 @@
                     android:text="도착 호선"/>
 
                 <Spinner
-                    android:id="@+id/spinnerTwoThree"
+                    android:id="@+id/spinner_arline"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="27dp"
                     android:layout_marginStart="@dimen/_150pxh"
                     android:layout_marginTop="@dimen/_20pxv"
                     android:layout_marginEnd="@dimen/_24pxh"
