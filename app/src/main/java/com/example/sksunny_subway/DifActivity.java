@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 public class DifActivity extends AppCompatActivity {
@@ -16,6 +18,9 @@ public class DifActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dif);
+
+        TextView btn_modify = findViewById(R.id.txtEleven);
+        TextView btn_complete = findViewById(R.id.txtTwelve);
 
         ArrayList<String> list = new ArrayList<>();
         for (int i = 0; i < 100; i++) {

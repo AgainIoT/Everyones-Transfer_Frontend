@@ -3,12 +3,12 @@ package com.example.sksunny_subway;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -24,6 +24,9 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+
+        LinearLayout btn_next = findViewById(R.id.linearRoweleven);
+        LinearLayout btn_finish = findViewById(R.id.linearRowtwelve);
         // 층 선택 Dropdown
         Spinner spinnerThree = findViewById(R.id.spinnerThree);
         Spinner spinnerThirteen = findViewById(R.id.spinnerThirteen);
