@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         //백엔드로 받아온 라인 정보
         ArrayList<String> lines = new ArrayList<>();
         AdapterSpinner adapterlines;
@@ -36,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
         EditText start_nextst = (EditText)findViewById(R.id.start_nextst);
         EditText arrive_nextst= (EditText)findViewById(R.id.arrive_nextst);
+        start_nextst.setInputType(InputType.TYPE_NULL);
+        arrive_nextst.setInputType(InputType.TYPE_NULL);
 
         Image_Search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,16 +47,6 @@ public class MainActivity extends AppCompatActivity {
                 //백엔드로 받아오는데 response가 true이면 입력 아니면 확인해주세요 메세지 띄우기
             }
         });
-
-
-        //사용자가 역 검색을 하지 않고 다음역을 입력할려고 할때 입력하지 못하게 막기
-        if (lines.size() == 0) {
-            start_nextst.setInputType(InputType.TYPE_NULL);
-            arrive_nextst.setInputType(InputType.TYPE_NULL);
-        }
-
-
-
 
 
         register_btn.setOnClickListener(new View.OnClickListener() {
