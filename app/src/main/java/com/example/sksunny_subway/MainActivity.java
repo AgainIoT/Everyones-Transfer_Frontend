@@ -26,6 +26,7 @@ import android.widget.EditText;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Network;
 import com.android.volley.NetworkResponse;
+import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     final String API_KEY = BuildConfig.API_KEY;
 
     ArrayList<String> lines = new ArrayList<>();    // train lines passing through the station
+    private ArrayAdapter<String> adapter;
     static RequestQueue requestQueue;
 
     @Override
@@ -58,6 +60,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         AdapterSpinner adapterlines;
+
+        Spinner startLine_spinner = (Spinner) findViewById(R.id.spinner_stline);
+        Spinner endLine_spinner = (Spinner) findViewById(R.id.spinner_arline);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, lines);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        startLine_spinner.setAdapter(adapter);
+        endLine_spinner.setAdapter(adapter);
+
+        lines.add("호선 입력");
 
         Button register_btn = (Button) findViewById(R.id.register_btn);
         ImageView Image_Search = findViewById(R.id.Image_Search);
@@ -78,12 +89,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String station = Et_Search.getText().toString();
-                //백엔드로 받아오는데 response가 true이면 입력 아니면 확인해주세요 메세지 띄우기
-                try{
-                    getStationList(station);
-                } catch (Exception exception){
-                    Toast.makeText(getApplicationContext(), "정확한 역 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
-                }
+                getStationList(station);
             }
         });
 
@@ -99,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getStationList(String stationName) {
-
         try {
             // request body
             JSONObject jsonParams = new JSONObject();
@@ -126,7 +131,11 @@ public class MainActivity extends AppCompatActivity {
                                 for (int i = 0; i < jsonarr.length(); i++) {
                                     lineArr.add(jsonarr.getString(i));
                                 }
-                                lines = lineArr;
+                                lines.clear();
+                                lines.addAll(lineArr);
+                                if (adapter != null){
+                                    adapter.notifyDataSetChanged();
+                                }
 
                                 // get cookie from the received headers
                                 String recieved_cookie = headers.getString("Set-Cookie");
@@ -150,14 +159,17 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     NetworkResponse respone = error.networkResponse;
-                    Toast.makeText(getApplicationContext(), "정확한 역 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
                     if (error instanceof ServerError && respone != null) {
+                        Toast.makeText(getApplicationContext(), "정확한 역 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
                         try {
                             String res = new String(respone.data, HttpHeaderParser.parseCharset(respone.headers, "utf-8"));
                             Log.e("volley error", res);
                         } catch (UnsupportedEncodingException e) {
                             e.printStackTrace();
                         }
+                    }
+                    if (error instanceof NoConnectionError){
+                        Toast.makeText(getApplicationContext(), "인터넷 상태가 좋지 않습니다", Toast.LENGTH_SHORT).show();
                     }
                     Log.e("e", Log.getStackTraceString(error));
                 }
@@ -169,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void getRoot() {
+    private void getRoot() {
 
         try {
             // request body
