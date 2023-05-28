@@ -6,7 +6,6 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,14 +25,13 @@ public class JsonRequest extends JsonObjectRequest {
 
             JSONObject jsonResponse = new JSONObject();
             jsonResponse.put("data", new JSONObject(jsonString));
+            assert response.headers != null;
             jsonResponse.put("headers", new JSONObject(response.headers));
 
             return Response.success(jsonResponse,
                     HttpHeaderParser.parseCacheHeaders(response));
-        } catch (UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException | JSONException e) {
             return Response.error(new ParseError(e));
-        } catch (JSONException je) {
-            return Response.error(new ParseError(je));
         }
     }
 }
