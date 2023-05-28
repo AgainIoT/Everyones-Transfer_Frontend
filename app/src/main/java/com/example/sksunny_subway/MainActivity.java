@@ -45,6 +45,8 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    //백엔드로 받아온 라인 정보
+    ArrayList<String> lines = new ArrayList<>();
     static RequestQueue requestQueue;
     final String API_KEY = BuildConfig.API_KEY;
 
@@ -53,9 +55,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        //백엔드로 받아온 라인 정보
-        ArrayList<String> lines = new ArrayList<>();
         AdapterSpinner adapterlines;
 
         Button register_btn = (Button) findViewById(R.id.register_btn);
@@ -109,9 +108,16 @@ public class MainActivity extends AppCompatActivity {
                     new Response.Listener<JSONObject>() {
                         @Override
                         public void onResponse(JSONObject response) {
+
                             try {
+                                ArrayList<String> arr = new ArrayList<>();
                                 JSONObject data = response.getJSONObject("data");
                                 JSONObject headers = response.getJSONObject("headers");
+                                JSONArray jsonarr = data.getJSONArray("Line");
+                                for (int i = 0; i < jsonarr.length();i++){
+                                    arr.add(jsonarr.getString(i));
+                                }
+                                lines = arr;
                                 Log.i("data", String.valueOf(data));
                                 Log.i("headers", String.valueOf(headers));
                                 Log.d("cookie", String.valueOf(headers.getString("Set-Cookie")));
