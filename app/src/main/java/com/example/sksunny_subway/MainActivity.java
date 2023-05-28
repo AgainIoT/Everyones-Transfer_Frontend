@@ -1,5 +1,6 @@
 package com.example.sksunny_subway;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,6 +17,8 @@ import android.widget.Toast;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.EditText;
+
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,6 +32,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,14 +48,16 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> lines = new ArrayList<>();
         AdapterSpinner adapterlines;
 
-        Button register_btn = (Button)findViewById(R.id.register_btn);
+        Button register_btn = (Button) findViewById(R.id.register_btn);
         ImageView Image_Search = findViewById(R.id.Image_Search);
-        EditText Et_Search = (EditText)findViewById(R.id.Et_Search);
+        EditText Et_Search = (EditText) findViewById(R.id.Et_Search);
 
-        EditText start_nextst = (EditText)findViewById(R.id.start_nextst);
-        EditText arrive_nextst= (EditText)findViewById(R.id.arrive_nextst);
+        EditText start_nextst = (EditText) findViewById(R.id.start_nextst);
+        EditText arrive_nextst = (EditText) findViewById(R.id.arrive_nextst);
         start_nextst.setInputType(InputType.TYPE_NULL);
         arrive_nextst.setInputType(InputType.TYPE_NULL);
+
+        sendRequest();
 
         Image_Search.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,29 +75,53 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        final TextView textView = (TextView) findViewById(R.id.txtOne);
-        // ...
+    }
 
-        // Instantiate the RequestQueue.
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="http://www.google.com";
+    public void sendRequest() {
 
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        textView.setText("Response is: "+ response.substring(0,500));
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                textView.setText("That didn't work!");
-            }
-        });
+        final String API_KEY = BuildConfig.API_KEY;
 
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
+        try {
+            // request body
+            JSONObject jsonParams = new JSONObject();
+            jsonParams.put("stationName", "디지털미디어시티");
+            jsonParams.put("APP_KEY", API_KEY);
+            Log.i("request body", jsonParams.toString());
+
+            RequestQueue queue = Volley.newRequestQueue(this);
+            String url = "http://3.39.25.196:8000/station/getStationList";
+
+            // Request a jsonObject response from the provided URL.
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonParams,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            try {
+                                String responseString = "=======================================";
+                                responseString += "\n" + "stationName : " + response.getString("stationName");
+                                responseString += "\n" + "collectionID : " +  response.getString("collectionID");
+                                responseString += "\n" + "LineCnt : " + response.getString("LineCnt");
+                                responseString += "\n" + "Line : " + response.getString("Line");
+                                responseString += "\n" + "returnValue : " + response.getString("returnValue");
+                                responseString += "\n=======================================";
+                                Log.i("response", responseString);
+                            } catch (JSONException ex) {
+                                Log.e("Ex", ex.toString());
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Log.e("error", error.getMessage());
+                        }
+                    });
+
+            // By adding the request to the RequestQueue, make the request.
+            queue.add(jsonObjectRequest);
+            // Instantiate the RequestQueue.
+        } catch (JSONException ex) {
+            Log.e("exception", ex.toString());
+        }
     }
 }
