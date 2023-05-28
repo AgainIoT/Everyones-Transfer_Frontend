@@ -1,19 +1,15 @@
 package com.example.sksunny_subway;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Response;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.JsonObjectRequest;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class JsonRequest extends JsonObjectRequest {
     public JsonRequest(int method, String url, JSONObject jsonRequest, Response.Listener
@@ -29,14 +25,13 @@ public class JsonRequest extends JsonObjectRequest {
 
             JSONObject jsonResponse = new JSONObject();
             jsonResponse.put("data", new JSONObject(jsonString));
+            assert response.headers != null;
             jsonResponse.put("headers", new JSONObject(response.headers));
 
             return Response.success(jsonResponse,
                     HttpHeaderParser.parseCacheHeaders(response));
-        } catch (UnsupportedEncodingException e) {
+        } catch (UnsupportedEncodingException | JSONException e) {
             return Response.error(new ParseError(e));
-        } catch (JSONException je) {
-            return Response.error(new ParseError(je));
         }
     }
 }

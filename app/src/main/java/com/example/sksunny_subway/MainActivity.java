@@ -49,9 +49,7 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     final String API_KEY = BuildConfig.API_KEY;
 
-    //백엔드로 받아온 라인 정보
-    ArrayList<String> lines = new ArrayList<>();
-    //    Map<String, String> cookie = new HashMap<String, String>();
+    ArrayList<String> lines = new ArrayList<>();    // train lines passing through the station
     static RequestQueue requestQueue;
 
     @Override
@@ -81,7 +79,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String station = Et_Search.getText().toString();
                 //백엔드로 받아오는데 response가 true이면 입력 아니면 확인해주세요 메세지 띄우기
-                getStationList();
+                try{
+                    getStationList(station);
+                } catch (Exception exception){
+                    Toast.makeText(getApplicationContext(), "정확한 역 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -96,12 +98,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void getStationList() {
+    public void getStationList(String stationName) {
 
         try {
             // request body
             JSONObject jsonParams = new JSONObject();
-            jsonParams.put("stationName", "디지털미디어시티");
+            jsonParams.put("stationName", stationName);
             jsonParams.put("APP_KEY", API_KEY);
             Log.i("request body", jsonParams.toString());
 
@@ -148,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     NetworkResponse respone = error.networkResponse;
+                    Toast.makeText(getApplicationContext(), "정확한 역 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
                     if (error instanceof ServerError && respone != null) {
                         try {
                             String res = new String(respone.data, HttpHeaderParser.parseCharset(respone.headers, "utf-8"));
@@ -161,7 +164,6 @@ public class MainActivity extends AppCompatActivity {
             });
             // By adding the request to the RequestQueue, make the request.
             requestQueue.add(jsonRequest);
-            // Instantiate the RequestQueue.
         } catch (JSONException ex) {
             Log.e("exception", ex.toString());
         }
@@ -169,7 +171,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void getRoot() {
 
-//        RequestQueue queue = Volley.newRequestQueue(this);
         try {
             // request body
             JSONObject startAt = new JSONObject();
@@ -206,7 +207,6 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     NetworkResponse respone = error.networkResponse;
-//                    Log.d("the cookie", cookie);
                     if (error instanceof ServerError && respone != null) {
                         try {
                             String res = new String(respone.data, HttpHeaderParser.parseCharset(respone.headers, "utf-8"));
@@ -221,9 +221,11 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     Map<String, String> params = new HashMap<String, String>();
+
+                    // put the cookie in the SharedPreferences
                     Context context = getApplicationContext();
                     SharedPreferences cookie = context.getSharedPreferences("cookie", Context.MODE_PRIVATE);
-                    String content = cookie.getString("cookie", "defValue");
+                    String content = cookie.getString("cookie", "I got no cookie");
                     params.put("cookie", content);
                     Log.d("cookie", content);
                     return params;
@@ -231,7 +233,6 @@ public class MainActivity extends AppCompatActivity {
             };
             // By adding the request to the RequestQueue, make the request.
             requestQueue.add(jsonRequest);
-            // Instantiate the RequestQueue.
         } catch (JSONException ex) {
             Log.e("exception", ex.toString());
         }
