@@ -82,22 +82,14 @@ public class MainActivity extends AppCompatActivity {
         arrive_nextst = findViewById(R.id.arrive_nextst);
 
         try{
-            SharedPreferences shared_et_search = getSharedPreferences("et_search", MODE_PRIVATE);    // test 이름의 기본모드 설정, 만약 test key값이 있다면 해당 값을 불러옴.
-            String str_et_search = shared_et_search.getString("et_search","");
+            SharedPreferences sharedpreferences = getSharedPreferences("save_main", MODE_PRIVATE);
+            String str_et_search = sharedpreferences.getString("et_search","");
             Et_Search.setText(str_et_search);
-
-            SharedPreferences shared_start_nextst = getSharedPreferences("start_nextst", MODE_PRIVATE);    // test 이름의 기본모드 설정, 만약 test key값이 있다면 해당 값을 불러옴.
-            String str_start_nextst = shared_start_nextst.getString("start_nextst","");
+            String str_start_nextst = sharedpreferences.getString("start_nextst","");
             start_nextst.setText(str_start_nextst);
+            search_result = sharedpreferences.getBoolean("search_result", false);
 
-            SharedPreferences shared_arrive_nextst = getSharedPreferences("arrive_nextst", MODE_PRIVATE);    // test 이름의 기본모드 설정, 만약 test key값이 있다면 해당 값을 불러옴.
-            String str_arrive_nextst= shared_arrive_nextst.getString("arrive_nextst","");
-            arrive_nextst.setText(str_arrive_nextst);
-
-            lines= getStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON);
-
-            SharedPreferences shared_search_result = getSharedPreferences("search_result", MODE_PRIVATE);    // test 이름의 기본모드 설정, 만약 test key값이 있다면 해당 값을 불러옴.
-            search_result = shared_search_result.getBoolean("search_result", false);
+            lines = StringArray.getStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON);
         }
         catch(Exception e){
 
@@ -137,61 +129,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        SharedPreferences shared_et_search= getSharedPreferences("et_search", MODE_PRIVATE);    // test 이름의 기본모드 설정
-        SharedPreferences.Editor editor_et_search= shared_et_search.edit(); //sharedPreferences를 제어할 editor를 선언
-        editor_et_search.putString("et_search",Et_Search.getText().toString()); // key,value 형식으로 저장
-        editor_et_search.commit();
+        SharedPreferences sharedpreferences= getSharedPreferences("save_main", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedpreferences.edit(); //sharedPreferences를 제어할 editor를 선언
+        editor.putString("et_search",Et_Search.getText().toString()); // key,value 형식으로 저장
+        editor.putString("start_nextst",start_nextst.getText().toString());
+        editor.putString("arrive_nextst",arrive_nextst.getText().toString());
+        editor.putBoolean("search_result",search_result);
+        editor.commit();
 
-        SharedPreferences shared_start_nextst= getSharedPreferences("start_nextst", MODE_PRIVATE);    // test 이름의 기본모드 설정
-        SharedPreferences.Editor editor_start_nextst = shared_start_nextst.edit(); //sharedPreferences를 제어할 editor를 선언
-        editor_start_nextst.putString("start_nextst",start_nextst.getText().toString()); // key,value 형식으로 저장
-        editor_start_nextst.commit();
-
-        SharedPreferences shared_arrive_nextst= getSharedPreferences("arrive_nextst", MODE_PRIVATE);    // test 이름의 기본모드 설정
-        SharedPreferences.Editor editor_arrive_nextst = shared_arrive_nextst.edit(); //sharedPreferences를 제어할 editor를 선언
-        editor_start_nextst.putString("arrive_nextst",arrive_nextst.getText().toString()); // key,value 형식으로 저장
-        editor_arrive_nextst.commit();
-
-        setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
-
-        SharedPreferences shared_search_result= getSharedPreferences("search_result", MODE_PRIVATE);    // test 이름의 기본모드 설정
-        SharedPreferences.Editor editor_search_result = shared_search_result.edit(); //sharedPreferences를 제어할 editor를 선언
-        editor_search_result.putBoolean("search_result",search_result); // key,value 형식으로 저장
-        editor_search_result.commit();
+        StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
     }
 
-    private void setStringArrayPref(Context context, String key, ArrayList<String> values) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        SharedPreferences.Editor editor = prefs.edit();
-        JSONArray a = new JSONArray();
-        for (int i = 0; i < values.size(); i++) {
-            a.put(values.get(i));
-        }
-        if (!values.isEmpty()) {
-            editor.putString(key, a.toString());
-        } else {
-            editor.putString(key, null);
-        }
-        editor.apply();
-    }
-
-    private ArrayList<String> getStringArrayPref(Context context, String key) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        String json = prefs.getString(key, null);
-        ArrayList<String> urls = new ArrayList<String>();
-        if (json != null) {
-            try {
-                JSONArray a = new JSONArray(json);
-                for (int i = 0; i < a.length(); i++) {
-                    String url = a.optString(i);
-                    urls.add(url);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-        return urls;
-    }
 
     public void getStationList() {
         try {
