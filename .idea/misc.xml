@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
@@ -52,6 +53,10 @@
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/activity_register.xml" value="0.2" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/item_list.xml" value="0.1" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/item_list_elevator.xml" value="0.22395833333333334" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/item_list_getoff.xml" value="0.22395833333333334" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/item_list_pass.xml" value="0.22395833333333334" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/item_list_walk.xml" value="0.21296296296296297" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/selector_radio_button.xml" value="0.15625" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/spinner_inner.xml" value="0.22291666666666668" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/spinner_item.xml" value="0.1" />
