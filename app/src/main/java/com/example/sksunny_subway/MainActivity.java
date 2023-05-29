@@ -169,6 +169,8 @@ public class MainActivity extends AppCompatActivity {
                     NetworkResponse respone = error.networkResponse;
                     if (error instanceof ServerError && respone != null) {
                         Toast.makeText(getApplicationContext(), "정확한 역 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                        startActivity(intent);
                         try {
                             String res = new String(respone.data, HttpHeaderParser.parseCharset(respone.headers, "utf-8"));
                             Log.e("volley error", res);
@@ -178,6 +180,8 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if (error instanceof NoConnectionError) {
                         Toast.makeText(getApplicationContext(), "인터넷 상태가 좋지 않습니다", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                        startActivity(intent);
                     }
                     Log.e("e", Log.getStackTraceString(error));
                 }
@@ -230,6 +234,8 @@ public class MainActivity extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     NetworkResponse respone = error.networkResponse;
                     Toast.makeText(getApplicationContext(), "다음역 이름이 정확하지 않습니다", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                    startActivity(intent);
                     if (error instanceof ServerError && respone != null) {
                         try {
                             String res = new String(respone.data, HttpHeaderParser.parseCharset(respone.headers, "utf-8"));
