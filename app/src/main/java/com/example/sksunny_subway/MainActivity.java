@@ -72,8 +72,6 @@ public class MainActivity extends AppCompatActivity {
         startLine_spinner = findViewById(R.id.spinner_stline);
         endLine_spinner = findViewById(R.id.spinner_arline);
 
-        lines.add("호선 입력");
-
         Button register_btn = findViewById(R.id.register_btn);
         ImageView Image_Search = findViewById(R.id.Image_Search);
         Et_Search = findViewById(R.id.Et_Search);
@@ -103,10 +101,10 @@ public class MainActivity extends AppCompatActivity {
         adapterlines = new AdapterSpinner(this, lines); //그 값을 넣어줌
         startLine_spinner.setAdapter(adapterlines);
         endLine_spinner.setAdapter(adapterlines);
+        lines.add("호선 입력");
+        adapterlines.notifyDataSetChanged();
 
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-
-        SharedPreferences cookie = getSharedPreferences("cookie", Context.MODE_PRIVATE);
 
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(getApplicationContext());

@@ -191,7 +191,7 @@ public class RegisterActivity extends AppCompatActivity {
             String stfloor = spinner_stfloors.getSelectedItem().toString();
             from.put("floor", stfloor.substring(0, stfloor.length() - 1));
             from.put("line", spinner_stlines.getSelectedItem().toString());
-            from.put("location", spinner_stfloors.getSelectedItem().toString());
+            from.put("location", spinner_stlocations.getSelectedItem().toString());
             jsonParams.put("from", from);
 
             JSONObject to = new JSONObject();
