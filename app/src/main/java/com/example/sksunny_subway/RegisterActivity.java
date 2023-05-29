@@ -46,11 +46,17 @@ import android.widget.Spinner;
 public class RegisterActivity extends AppCompatActivity {
 
     final String API_KEY = BuildConfig.API_KEY;
+
+    private static final String SETTINGS_PLAYER_JSON = "settings_item_json";
+
     ArrayList<String> floors = new ArrayList<>(Arrays.asList("B5층", "B4층", "B3층", "B2층", "B1층", "1층", "2층", "3층", "4층", "5층"));
     ArrayList<String> locations = new ArrayList<>(Arrays.asList("승강장", "대합실", "외부"));
     ArrayList<String> directions = new ArrayList<>(Arrays.asList("왼쪽", "오른쪽", "직진", "후진"));
     AdapterSpinner adapterfloors;
     AdapterSpinner adapterlocations;
+
+    //arrayList
+    ArrayList<ListItem> list = new ArrayList<>();
 
     static RequestQueue requestQueue;
 
@@ -61,19 +67,20 @@ public class RegisterActivity extends AppCompatActivity {
     Spinner spinner_stlocations;
     Spinner spinner_arlocations;
 
+    String arfloors;
+    String arlines;
+    String arlocations;
+
+    ArrayList<String> lines = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
         Intent intent = getIntent();
-        ArrayList<String> lines = intent.getStringArrayListExtra("lines");
-        AdapterSpinner adapterlines;
-
-        ArrayList<String> floors = new ArrayList<>(Arrays.asList("B5층", "B4층", "B3층", "B2층", "B1층", "1층", "2층", "3층", "4층", "5층"));
-        ArrayList<String> locations = new ArrayList<>(Arrays.asList("승강장", "대합실", "외부"));
-        AdapterSpinner adapterfloors;
-        AdapterSpinner adapterlocations;
+        lines = intent.getStringArrayListExtra("lines");
+        StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
 
         LinearLayout btn_next = findViewById(R.id.layout_next);
         LinearLayout btn_finish = findViewById(R.id.layout_finish);
@@ -86,6 +93,19 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getBlock();
+                SharedPreferences shared_save_nextpath = getSharedPreferences("save_nextpath", MODE_PRIVATE);
+                SharedPreferences.Editor editor_save_nextpath = shared_save_nextpath.edit();
+                if(!spinner_arfloors.getSelectedItem().toString().isEmpty()){
+                    editor_save_nextpath.putString("arfloors", spinner_arfloors.getSelectedItem().toString());
+                }
+                if(!spinner_arlines.getSelectedItem().toString().isEmpty()){
+                    editor_save_nextpath.putString("arlines",spinner_arlines.getSelectedItem().toString());
+                }
+                if(!spinner_arlocations.getSelectedItem().toString().isEmpty()){
+                    editor_save_nextpath.putString("arlocations",spinner_arlocations.getSelectedItem().toString());
+                }
+                editor_save_nextpath.apply();
+
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
                 startActivity(intent);
             }
@@ -113,15 +133,13 @@ public class RegisterActivity extends AppCompatActivity {
         spinner_stlines.setAdapter(adapterlocations);
         spinner_arlines.setAdapter(adapterlocations);
 
+
         // 장소 선택 Dropdown
         spinner_stlocations = findViewById(R.id.spinner_stlocations);
         spinner_arlocations = findViewById(R.id.spinner_arlocations);
         adapterlocations = new AdapterSpinner(this, locations); //그 값을 넣어줌
         spinner_stlocations.setAdapter(adapterlocations);
         spinner_arlocations.setAdapter(adapterlocations);
-
-        //arrayList
-        ArrayList<ListItem> list = new ArrayList<>();
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         RecyclerView upperScroll = findViewById(R.id.scroll);
@@ -180,6 +198,43 @@ public class RegisterActivity extends AppCompatActivity {
                 upperAdapter.notifyItemInserted(list.size());
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //사용자가 다음 상세 경로를 입력할 때 전에 정보가 유지되도록함
+        SharedPreferences shared_save_nextpath = getSharedPreferences("save_nextpath", MODE_PRIVATE);
+        arfloors = shared_save_nextpath.getString("arfloors","");
+        arlines = shared_save_nextpath.getString("arlines","");
+        arlocations = shared_save_nextpath.getString("arlocations","");
+
+        lines = StringArray.getStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON);
+
+        spinner_stlines = findViewById(R.id.spinner_stlines);
+        spinner_arlines = findViewById(R.id.spinner_arlines);
+        adapterlocations = new AdapterSpinner(this, lines); //그 값을 넣어줌
+        spinner_stlines.setAdapter(adapterlocations);
+        spinner_arlines.setAdapter(adapterlocations);
+
+        if (!arfloors.isEmpty()){
+            spinner_stfloors.setSelection(floors.indexOf(arfloors));
+        }
+
+        if (!arlines.isEmpty()){
+            spinner_stlines.setSelection(lines.indexOf(arlines));
+        }
+
+        if(!arlocations.isEmpty()){
+            spinner_stlocations.setSelection(locations.indexOf(arlocations));
+        }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
     }
 
     public void getBlock() {
