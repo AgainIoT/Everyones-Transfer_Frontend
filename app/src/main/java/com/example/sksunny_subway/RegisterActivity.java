@@ -28,8 +28,8 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
 
-        LinearLayout btn_next = findViewById(R.id.linearRoweleven);
-        LinearLayout btn_finish = findViewById(R.id.linearComplete);
+        LinearLayout btn_next = findViewById(R.id.layout_next);
+        LinearLayout btn_finish = findViewById(R.id.layout_finish);
 
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,18 +48,18 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         // 층 선택 Dropdown
-        Spinner spinnerThree = findViewById(R.id.spinnerThree);
-        Spinner spinnerThirteen = findViewById(R.id.spinnerThirteen);
+        Spinner spinner_stfloors= findViewById(R.id.spinner_stfloors);
+        Spinner spinner_arfloors = findViewById(R.id.spinner_arfloors);
         adapterfloors = new AdapterSpinner(this, floors); //그 값을 넣어줌
-        spinnerThree.setAdapter(adapterfloors);
-        spinnerThirteen.setAdapter(adapterfloors);
+        spinner_stfloors.setAdapter(adapterfloors);
+        spinner_arfloors.setAdapter(adapterfloors);
 
         // 장소 선택 Dropdown
-        Spinner spinnerFive = findViewById(R.id.spinnerFive);
-        Spinner spinnerFifteen = findViewById(R.id.spinnerFifteen);
+        Spinner spinner_stlocations = findViewById(R.id.spinner_stlocations);
+        Spinner spinner_arlocations = findViewById(R.id.spinner_arlocations);
         adapterlocations= new AdapterSpinner(this, locations); //그 값을 넣어줌
-        spinnerFive.setAdapter(adapterlocations);
-        spinnerFifteen.setAdapter(adapterlocations);
+        spinner_stlocations.setAdapter(adapterlocations);
+        spinner_arlocations.setAdapter(adapterlocations);
 
         //arrayList
         ArrayList<String> list = new ArrayList<>();
