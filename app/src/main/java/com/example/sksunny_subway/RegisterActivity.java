@@ -40,12 +40,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import android.widget.Spinner;
 
 public class RegisterActivity extends AppCompatActivity {
 
     final String API_KEY = BuildConfig.API_KEY;
     ArrayList<String> floors = new ArrayList<>(Arrays.asList("B5층", "B4층", "B3층", "B2층", "B1층", "1층", "2층", "3층", "4층", "5층"));
     ArrayList<String> locations = new ArrayList<>(Arrays.asList("승강장", "대합실", "외부"));
+    ArrayList<String> directions = new ArrayList<>(Arrays.asList("왼쪽", "오른쪽", "직진", "후진"));
     AdapterSpinner adapterfloors;
     AdapterSpinner adapterlocations;
 
@@ -132,6 +134,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        //얘는 확정! 더 손 안 대도 됨!
         pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
