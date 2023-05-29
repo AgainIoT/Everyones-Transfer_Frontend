@@ -41,11 +41,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
 import android.widget.Spinner;
 
 public class RegisterActivity extends AppCompatActivity {
-
-    final String API_KEY = BuildConfig.API_KEY;
 
     private static final String SETTINGS_PLAYER_JSON = "settings_item_json";
 
@@ -54,6 +53,8 @@ public class RegisterActivity extends AppCompatActivity {
     ArrayList<String> directions = new ArrayList<>(Arrays.asList("왼쪽", "오른쪽", "직진", "후진"));
     AdapterSpinner adapterfloors;
     AdapterSpinner adapterlocations;
+
+    ArrayList<String> originContent = new ArrayList<>();
 
     //arrayList
     ArrayList<ListItem> list = new ArrayList<>();
@@ -80,7 +81,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         lines = intent.getStringArrayListExtra("lines");
-        StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
+        StringArray.setStringArrayPref(getApplicationContext(), 
+                                       , lines);
 
         LinearLayout btn_next = findViewById(R.id.layout_next);
         LinearLayout btn_finish = findViewById(R.id.layout_finish);
@@ -116,6 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
                 startActivity(intent);
+                getBlock();
             }
         });
 
@@ -162,10 +165,12 @@ public class RegisterActivity extends AppCompatActivity {
         RadioButton pass = (RadioButton) findViewById(R.id.pass);
         RadioButton getOff = (RadioButton) findViewById(R.id.getOff);
 
+        originContent = StringArray.getStringArrayPref(getApplicationContext(), "originContent");
+
         elevator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("elevator",0);
+                ListItem item = new ListItem("elevator", 0);
                 list.add(item);
                 upperAdapter.notifyItemInserted(list.size());
             }
@@ -174,7 +179,7 @@ public class RegisterActivity extends AppCompatActivity {
         walk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("walk",0);
+                ListItem item = new ListItem("walk", 0);
                 list.add(item);
                 upperAdapter.notifyItemInserted(list.size());
             }
@@ -184,7 +189,7 @@ public class RegisterActivity extends AppCompatActivity {
         pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("pass",0);
+                ListItem item = new ListItem("pass", 0);
                 list.add(item);
                 upperAdapter.notifyItemInserted(list.size());
             }
@@ -193,7 +198,7 @@ public class RegisterActivity extends AppCompatActivity {
         getOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("getOff",0);
+                ListItem item = new ListItem("getOff", 0);
                 list.add(item);
                 upperAdapter.notifyItemInserted(list.size());
             }
@@ -246,7 +251,7 @@ public class RegisterActivity extends AppCompatActivity {
             String stfloor = spinner_stfloors.getSelectedItem().toString();
             from.put("floor", stfloor.substring(0, stfloor.length() - 1));
             from.put("line", spinner_stlines.getSelectedItem().toString());
-            from.put("location", spinner_stfloors.getSelectedItem().toString());
+            from.put("location", spinner_stlocations.getSelectedItem().toString());
             jsonParams.put("from", from);
 
             JSONObject to = new JSONObject();
@@ -270,10 +275,16 @@ public class RegisterActivity extends AppCompatActivity {
                                 // get data and headers from the received response
                                 JSONObject data = response.getJSONObject("data");
                                 JSONObject headers = response.getJSONObject("headers");
-
                                 // Logs for debugging
                                 Log.i("data", String.valueOf(data));
                                 Log.i("headers", String.valueOf(headers));
+
+                                JSONArray jsonarr = data.getJSONArray("originContent");
+                                for (int i = 0; i < jsonarr.length(); i++) {
+                                    originContent.add(jsonarr.getString(i));
+                                }
+                                Log.i("originContent", originContent.toString());
+
                             } catch (JSONException e) {
                                 Log.e("error", Log.getStackTraceString(e));
                             }

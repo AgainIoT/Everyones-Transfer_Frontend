@@ -12,6 +12,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.text.InputType;
@@ -77,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
         startLine_spinner = findViewById(R.id.spinner_stline);
         endLine_spinner = findViewById(R.id.spinner_arline);
 
-        lines.add("호선 입력");
-
         Button register_btn = findViewById(R.id.register_btn);
         ImageView Image_Search = findViewById(R.id.Image_Search);
         Et_Search = findViewById(R.id.Et_Search);
@@ -103,7 +103,14 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        if(!search_result){
+        Et_Search.setFilters(new InputFilter[]{
+                (source, start, end, dest, dstart, dend) -> {
+                    // 공백을 제거하여 반환
+                    return source.toString().replaceAll("\\s+", "");
+                }
+        });
+
+        if (!search_result) {
             start_nextst.setInputType(InputType.TYPE_NULL);
             arrive_nextst.setInputType(InputType.TYPE_NULL);
         }
@@ -111,6 +118,10 @@ public class MainActivity extends AppCompatActivity {
         adapterlines = new AdapterSpinner(this, lines); //그 값을 넣어줌
         startLine_spinner.setAdapter(adapterlines);
         endLine_spinner.setAdapter(adapterlines);
+
+        lines.add("호선 입력");
+        adapterlines.notifyDataSetChanged();
+
         if (!startLine.isEmpty()) {
             startLine_spinner.setSelection(lines.indexOf(startLine));
         }
@@ -118,8 +129,6 @@ public class MainActivity extends AppCompatActivity {
             endLine_spinner.setSelection(lines.indexOf(endLine));
         }
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-
-        SharedPreferences cookie = getSharedPreferences("cookie", Context.MODE_PRIVATE);
 
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -133,8 +142,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         register_btn.setOnClickListener(view -> {
-            String start_next = start_nextst.getText().toString();
-            String arrive_next = arrive_nextst.getText().toString();
             getRoot();
         });
     }
@@ -393,6 +400,5 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException ex) {
             Log.e("exception", ex.toString());
         }
-
     }
 }
