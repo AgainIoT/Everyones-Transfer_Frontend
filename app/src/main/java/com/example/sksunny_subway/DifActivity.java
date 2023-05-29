@@ -77,6 +77,9 @@ public class DifActivity extends AppCompatActivity {
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         TextView upperScroll = findViewById(R.id.upperScroll);
+        ArrayList<String> originContent = StringArray.getStringArrayPref(getApplicationContext(), "originContent");
+        upperScroll.setText(originContent.toString());
+        Log.i("sadfsadfasdf", originContent.toString());
         RecyclerView lowerScroll = findViewById(R.id.lowerScroll);
         lowerScroll.setLayoutManager(new LinearLayoutManager((this)));
 
@@ -103,11 +106,12 @@ public class DifActivity extends AppCompatActivity {
 
         // request body
         JSONObject jsonParams = new JSONObject();
-        ArrayList<String> testArr = new ArrayList<>();
-        testArr.add("1");
-        testArr.add("2");
-        testArr.add("3");
-        JSONArray jsonArray = new JSONArray(testArr);
+        ArrayList<String> arr = new ArrayList<>();
+        for (int i = 0; i < items.size(); i++){
+            arr.add(items.get(i).getName());
+        }
+
+        JSONArray jsonArray = new JSONArray(arr);
         try{
             jsonParams.put("jsonArray", jsonArray);
         } catch (JSONException e){
