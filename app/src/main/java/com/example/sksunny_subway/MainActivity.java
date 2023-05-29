@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> lines = new ArrayList<>();    // train lines passing through the station
     private ArrayAdapter<String> adapter;
 
+    EditText Et_Search;
     EditText start_nextst;
     EditText arrive_nextst;
     Spinner startLine_spinner;
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 
         Button register_btn = findViewById(R.id.register_btn);
         ImageView Image_Search = findViewById(R.id.Image_Search);
-        EditText Et_Search = findViewById(R.id.Et_Search);
+        Et_Search = findViewById(R.id.Et_Search);
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
         start_nextst = findViewById(R.id.start_nextst);
@@ -93,10 +94,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Image_Search.setOnClickListener(view -> {
-            String station = Et_Search.getText().toString();
             Et_Search.clearFocus();
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-            getStationList(station);
+            getStationList();
         });
 
 
@@ -107,11 +107,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void getStationList(String stationName) {
+    public void getStationList() {
         try {
             // request body
             JSONObject jsonParams = new JSONObject();
-            jsonParams.put("stationName", stationName);
+            jsonParams.put("stationName", Et_Search.getText().toString());
             jsonParams.put("APP_KEY", API_KEY);
             Log.i("request body", jsonParams.toString());
 
