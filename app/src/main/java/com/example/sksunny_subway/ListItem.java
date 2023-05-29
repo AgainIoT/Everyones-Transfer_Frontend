@@ -17,6 +17,10 @@ public class ListItem {
         this.name = name;
     }
 
+    public void setNumber(int resourceId) {
+        this.resourceId = resourceId;
+    }
+
     public int getResourceId(){
         return this.resourceId;
     }
