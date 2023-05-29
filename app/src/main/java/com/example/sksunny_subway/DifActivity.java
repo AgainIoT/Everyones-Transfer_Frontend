@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,18 +57,60 @@ public class DifActivity extends AppCompatActivity {
         RecyclerAdapter lowerAdapter = new RecyclerAdapter();
         lowerScroll.setAdapter(lowerAdapter);
 
-
         ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(lowerAdapter));
         mItemTouchHelper.attachToRecyclerView(lowerScroll);
 
-        ArrayList<ListItem> items = new ArrayList<>();
-        ListItem item1 = new ListItem("박진우",0);
-        ListItem item2 = new ListItem("윤민우",0);
-        ListItem item3 = new ListItem("이채영",0);
-        items.add(item1);
-        items.add(item2);
-        items.add(item3);
+        ArrayList<ListItem> list = new ArrayList<>();
+        lowerAdapter.setItems(list);
 
-        lowerAdapter.setItems(items);
+        //radiogroup 추가
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.navbar);
+
+        RadioButton elevator = (RadioButton) findViewById(R.id.elevator);
+        RadioButton walk = (RadioButton) findViewById(R.id.walk);
+        RadioButton pass = (RadioButton) findViewById(R.id.pass);
+        RadioButton getOff = (RadioButton) findViewById(R.id.getOff);
+
+        elevator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListItem item = new ListItem("elevator",0);
+                list.add(item);
+                lowerAdapter.notifyItemInserted(list.size());
+            }
+        });
+
+        walk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListItem item = new ListItem("walk",0);
+                list.add(item);
+                lowerAdapter.notifyItemInserted(list.size());
+            }
+        });
+
+        //얘는 확정! 더 손 안 대도 됨!
+        pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListItem item = new ListItem("pass",0);
+                list.add(item);
+                lowerAdapter.notifyItemInserted(list.size());
+            }
+        });
+
+        getOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListItem item = new ListItem("getOff",0);
+                list.add(item);
+                lowerAdapter.notifyItemInserted(list.size());
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
     }
 }
