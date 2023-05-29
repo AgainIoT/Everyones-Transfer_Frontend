@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.text.InputType;
@@ -79,21 +81,27 @@ public class MainActivity extends AppCompatActivity {
         start_nextst = findViewById(R.id.start_nextst);
         arrive_nextst = findViewById(R.id.arrive_nextst);
 
-        try{
+        try {
             SharedPreferences sharedpreferences = getSharedPreferences("save_main", MODE_PRIVATE);
-            String str_et_search = sharedpreferences.getString("et_search","");
+            String str_et_search = sharedpreferences.getString("et_search", "");
             Et_Search.setText(str_et_search);
-            String str_start_nextst = sharedpreferences.getString("start_nextst","");
+            String str_start_nextst = sharedpreferences.getString("start_nextst", "");
             start_nextst.setText(str_start_nextst);
             search_result = sharedpreferences.getBoolean("search_result", false);
 
             lines = StringArray.getStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON);
-        }
-        catch(Exception e){
+        } catch (Exception e) {
 
         }
 
-        if(!search_result){
+        Et_Search.setFilters(new InputFilter[]{
+                (source, start, end, dest, dstart, dend) -> {
+                    // 공백을 제거하여 반환
+                    return source.toString().replaceAll("\\s+", "");
+                }
+        });
+
+        if (!search_result) {
             start_nextst.setInputType(InputType.TYPE_NULL);
             arrive_nextst.setInputType(InputType.TYPE_NULL);
         }
@@ -125,12 +133,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        SharedPreferences sharedpreferences= getSharedPreferences("save_main", MODE_PRIVATE);
+        SharedPreferences sharedpreferences = getSharedPreferences("save_main", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedpreferences.edit(); //sharedPreferences를 제어할 editor를 선언
-        editor.putString("et_search",Et_Search.getText().toString()); // key,value 형식으로 저장
-        editor.putString("start_nextst",start_nextst.getText().toString());
-        editor.putString("arrive_nextst",arrive_nextst.getText().toString());
-        editor.putBoolean("search_result",search_result);
+        editor.putString("et_search", Et_Search.getText().toString()); // key,value 형식으로 저장
+        editor.putString("start_nextst", start_nextst.getText().toString());
+        editor.putString("arrive_nextst", arrive_nextst.getText().toString());
+        editor.putBoolean("search_result", search_result);
         editor.commit();
 
         StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
@@ -297,6 +305,5 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException ex) {
             Log.e("exception", ex.toString());
         }
-
     }
 }
