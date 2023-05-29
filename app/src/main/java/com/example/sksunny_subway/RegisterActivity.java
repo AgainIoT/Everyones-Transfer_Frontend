@@ -10,6 +10,8 @@ import android.widget.LinearLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import java.util.ArrayList;
@@ -63,7 +65,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         //arrayList
         ArrayList<String> list = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 6; i++) {
             list.add(String.format("TEXT %d", i));
         }
 
@@ -74,5 +76,45 @@ public class RegisterActivity extends AppCompatActivity {
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
         RecyclerAdapter upperAdapter = new RecyclerAdapter(list);
         upperScroll.setAdapter(upperAdapter);
+
+        //radiogroup 추가
+        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.navbar);
+
+        RadioButton elevator = (RadioButton)findViewById(R.id.elevator);
+        RadioButton walk = (RadioButton)findViewById(R.id.walk);
+        RadioButton pass = (RadioButton)findViewById(R.id.pass);
+        RadioButton getOff = (RadioButton)findViewById(R.id.getOff);
+
+        elevator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.add("elevator");
+                upperAdapter.notifyItemInserted(list.size());
+            }
+        });
+
+        walk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.add("walk");
+                upperAdapter.notifyItemInserted(list.size());
+            }
+        });
+
+        pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.add("pass");
+                upperAdapter.notifyItemInserted(list.size());
+            }
+        });
+
+        getOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                list.add("getOff");
+                upperAdapter.notifyItemInserted(list.size());
+            }
+        });
     }
 }
