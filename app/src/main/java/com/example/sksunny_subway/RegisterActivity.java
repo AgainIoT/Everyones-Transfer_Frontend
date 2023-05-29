@@ -1,6 +1,8 @@
 package com.example.sksunny_subway;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -59,5 +61,18 @@ public class RegisterActivity extends AppCompatActivity {
         spinnerFive.setAdapter(adapterlocations);
         spinnerFifteen.setAdapter(adapterlocations);
 
+        //arrayList
+        ArrayList<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add(String.format("TEXT %d", i));
+        }
+
+        // 리사이클러뷰에 LinearLayoutManager 객체 지정.
+        RecyclerView upperScroll = findViewById(R.id.upperScroll);
+        upperScroll.setLayoutManager(new LinearLayoutManager((this)));
+
+        // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
+        RecyclerAdapter upperAdapter = new RecyclerAdapter(list);
+        upperScroll.setAdapter(upperAdapter);
     }
 }
