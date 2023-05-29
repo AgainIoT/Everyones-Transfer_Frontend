@@ -154,38 +154,26 @@
             style="@style/groupStylecornerRadius"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="10dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout11"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
+            android:orientation="vertical"
+            android:layout_weight="1">
 
-            <Spinner
-                android:id="@+id/spinner_arfloors"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="0.33"
-                android:background="@drawable/layer_list_bg_gray_200_radius_10" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/upperScroll"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="30dp"
+                android:scrollbars="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/oldOne" />
 
-            <Spinner
-                android:id="@+id/spinner_arlines"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="@dimen/_21pxh"
-                android:layout_weight="0.33"
-                android:background="@drawable/layer_list_bg_gray_200_radius_10" />
+    </LinearLayout>
 
-            <Spinner
-                android:id="@+id/spinner_arlocations"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="@dimen/_22pxh"
-                android:layout_weight="0.33"
-                android:background="@drawable/layer_list_bg_gray_200_radius_10" />
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout11"
