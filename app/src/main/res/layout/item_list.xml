@@ -16,12 +16,12 @@
         android:layout_marginStart="10dp"
         android:src="@drawable/img_menu14"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/text1"
+        app:layout_constraintEnd_toStartOf="@+id/pathname"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text1"
+        android:id="@+id/pathname"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
