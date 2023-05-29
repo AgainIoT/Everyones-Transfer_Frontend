@@ -54,10 +54,10 @@ public class RegisterActivity extends AppCompatActivity {
     AdapterSpinner adapterfloors;
     AdapterSpinner adapterlocations;
 
-    ArrayList<String> originContent = new ArrayList<>();
-
     //arrayList
-    ArrayList<ListItem> list = new ArrayList<>();
+    ArrayList<ListItem> list = new ArrayList<>();   // 사용자한테 입력 받은 상세 경로
+    ArrayList<String> lines = new ArrayList<>();    // 해당 역을 지나는 노선들로
+    ArrayList<String> originContent = new ArrayList<>();    // 해당 블럭의 기존 상세 경 정보
 
     static RequestQueue requestQueue;
 
@@ -72,7 +72,6 @@ public class RegisterActivity extends AppCompatActivity {
     String arlines;
     String arlocations;
 
-    ArrayList<String> lines = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         lines = intent.getStringArrayListExtra("lines");
-        StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
+//        StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
 
         LinearLayout btn_next = findViewById(R.id.layout_next);
         LinearLayout btn_finish = findViewById(R.id.layout_finish);
@@ -96,17 +95,21 @@ public class RegisterActivity extends AppCompatActivity {
                 getBlock();
                 SharedPreferences shared_save_nextpath = getSharedPreferences("save_nextpath", MODE_PRIVATE);
                 SharedPreferences.Editor editor_save_nextpath = shared_save_nextpath.edit();
-                if(!spinner_arfloors.getSelectedItem().toString().isEmpty()){
+                if (!spinner_arfloors.getSelectedItem().toString().isEmpty()) {
                     editor_save_nextpath.putString("arfloors", spinner_arfloors.getSelectedItem().toString());
                 }
-                if(!spinner_arlines.getSelectedItem().toString().isEmpty()){
-                    editor_save_nextpath.putString("arlines",spinner_arlines.getSelectedItem().toString());
+                if (!spinner_arlines.getSelectedItem().toString().isEmpty()) {
+                    editor_save_nextpath.putString("arlines", spinner_arlines.getSelectedItem().toString());
                 }
-                if(!spinner_arlocations.getSelectedItem().toString().isEmpty()){
-                    editor_save_nextpath.putString("arlocations",spinner_arlocations.getSelectedItem().toString());
+                if (!spinner_arlocations.getSelectedItem().toString().isEmpty()) {
+                    editor_save_nextpath.putString("arlocations", spinner_arlocations.getSelectedItem().toString());
                 }
                 editor_save_nextpath.apply();
 
+                SharedPreferences done = getSharedPreferences("done", MODE_PRIVATE);
+                SharedPreferences.Editor done_editor = done.edit();
+                done_editor.putBoolean("done", false);
+                done_editor.apply();
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
                 startActivity(intent);
             }
@@ -115,6 +118,10 @@ public class RegisterActivity extends AppCompatActivity {
         btn_finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences done = getSharedPreferences("done", MODE_PRIVATE);
+                SharedPreferences.Editor done_editor = done.edit();
+                done_editor.putBoolean("done", true);
+                done_editor.apply();
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
                 startActivity(intent);
                 getBlock();
@@ -210,9 +217,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         //사용자가 다음 상세 경로를 입력할 때 전에 정보가 유지되도록함
         SharedPreferences shared_save_nextpath = getSharedPreferences("save_nextpath", MODE_PRIVATE);
-        arfloors = shared_save_nextpath.getString("arfloors","");
-        arlines = shared_save_nextpath.getString("arlines","");
-        arlocations = shared_save_nextpath.getString("arlocations","");
+        arfloors = shared_save_nextpath.getString("arfloors", "");
+        arlines = shared_save_nextpath.getString("arlines", "");
+        arlocations = shared_save_nextpath.getString("arlocations", "");
 
         lines = StringArray.getStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON);
 
@@ -222,15 +229,15 @@ public class RegisterActivity extends AppCompatActivity {
         spinner_stlines.setAdapter(adapterlocations);
         spinner_arlines.setAdapter(adapterlocations);
 
-        if (!arfloors.isEmpty()){
+        if (!arfloors.isEmpty()) {
             spinner_stfloors.setSelection(floors.indexOf(arfloors));
         }
 
-        if (!arlines.isEmpty()){
+        if (!arlines.isEmpty()) {
             spinner_stlines.setSelection(lines.indexOf(arlines));
         }
 
-        if(!arlocations.isEmpty()){
+        if (!arlocations.isEmpty()) {
             spinner_stlocations.setSelection(locations.indexOf(arlocations));
         }
 
