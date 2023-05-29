@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     final String API_KEY = BuildConfig.API_KEY;
 
     ArrayList<String> lines = new ArrayList<>();    // train lines passing through the station
-    private ArrayAdapter<String> adapter;
+    AdapterSpinner adapterlines;
 
     EditText Et_Search;
     EditText start_nextst;
@@ -66,14 +66,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        AdapterSpinner adapterlines;
-
         startLine_spinner = findViewById(R.id.spinner_stline);
         endLine_spinner = findViewById(R.id.spinner_arline);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, lines);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        startLine_spinner.setAdapter(adapter);
-        endLine_spinner.setAdapter(adapter);
+        adapterlines = new AdapterSpinner(this, lines); //그 값을 넣어줌
+        startLine_spinner.setAdapter(adapterlines);
+        endLine_spinner.setAdapter(adapterlines);
 
         lines.add("호선 입력");
 
@@ -136,8 +133,8 @@ public class MainActivity extends AppCompatActivity {
                                 }
                                 lines.clear();
                                 lines.addAll(lineArr);
-                                if (adapter != null) {
-                                    adapter.notifyDataSetChanged();
+                                if (adapterlines != null) {
+                                    adapterlines.notifyDataSetChanged();
                                 }
 
                                 start_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
@@ -222,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
                                 Log.e("client error", Log.getStackTraceString(e));
                             }
                             Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                            intent.putExtra("lines", lines);
                             startActivity(intent);
                         }
                     }, new Response.ErrorListener() {

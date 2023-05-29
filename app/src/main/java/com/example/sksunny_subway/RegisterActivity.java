@@ -39,10 +39,6 @@ import java.util.Map;
 public class RegisterActivity extends AppCompatActivity {
 
     final String API_KEY = BuildConfig.API_KEY;
-    ArrayList<String> floors = new ArrayList<>(Arrays.asList("B5층", "B4층", "B3층", "B2층", "B1층", "1층", "2층", "3층", "4층", "5층"));
-    ArrayList<String> locations = new ArrayList<>(Arrays.asList("승강장", "대합실", "외부"));
-    AdapterSpinner adapterfloors;
-    AdapterSpinner adapterlocations;
 
     static RequestQueue requestQueue;
 
@@ -50,6 +46,15 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        Intent intent = getIntent();
+        ArrayList<String> lines = intent.getStringArrayListExtra("lines");
+        AdapterSpinner adapterlines;
+
+        ArrayList<String> floors = new ArrayList<>(Arrays.asList("B5층", "B4층", "B3층", "B2층", "B1층", "1층", "2층", "3층", "4층", "5층"));
+        ArrayList<String> locations = new ArrayList<>(Arrays.asList("승강장", "대합실", "외부"));
+        AdapterSpinner adapterfloors;
+        AdapterSpinner adapterlocations;
 
 
         LinearLayout btn_next = findViewById(R.id.layout_next);
@@ -77,6 +82,13 @@ public class RegisterActivity extends AppCompatActivity {
         adapterfloors = new AdapterSpinner(this, floors); //그 값을 넣어줌
         spinner_stfloors.setAdapter(adapterfloors);
         spinner_arfloors.setAdapter(adapterfloors);
+
+        //호선 선택 Dropdown
+        Spinner spinner_stlines = findViewById(R.id.spinner_stlines);
+        Spinner spinner_arlines = findViewById(R.id.spinner_arlines);
+        adapterlocations = new AdapterSpinner(this, lines); //그 값을 넣어줌
+        spinner_stlines.setAdapter(adapterlocations);
+        spinner_arlines.setAdapter(adapterlocations);
 
         // 장소 선택 Dropdown
         Spinner spinner_stlocations = findViewById(R.id.spinner_stlocations);
