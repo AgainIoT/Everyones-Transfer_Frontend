@@ -30,6 +30,7 @@ import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,18 +54,38 @@ public class RegisterActivity extends AppCompatActivity {
 
     static RequestQueue requestQueue;
 
+    Spinner spinner_stfloors;
+    Spinner spinner_arfloors;
+    Spinner spinner_stlines;
+    Spinner spinner_arlines;
+    Spinner spinner_stlocations;
+    Spinner spinner_arlocations;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        Intent intent = getIntent();
+        ArrayList<String> lines = intent.getStringArrayListExtra("lines");
+        AdapterSpinner adapterlines;
+
+        ArrayList<String> floors = new ArrayList<>(Arrays.asList("B5층", "B4층", "B3층", "B2층", "B1층", "1층", "2층", "3층", "4층", "5층"));
+        ArrayList<String> locations = new ArrayList<>(Arrays.asList("승강장", "대합실", "외부"));
+        AdapterSpinner adapterfloors;
+        AdapterSpinner adapterlocations;
 
         LinearLayout btn_next = findViewById(R.id.layout_next);
         LinearLayout btn_finish = findViewById(R.id.layout_finish);
 
+        if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(getApplicationContext());
+        }
+
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getBlock();
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
                 startActivity(intent);
             }
@@ -79,15 +100,22 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         // 층 선택 Dropdown
-        Spinner spinner_stfloors = findViewById(R.id.spinner_stfloors);
-        Spinner spinner_arfloors = findViewById(R.id.spinner_arfloors);
+        spinner_stfloors = findViewById(R.id.spinner_stfloors);
+        spinner_arfloors = findViewById(R.id.spinner_arfloors);
         adapterfloors = new AdapterSpinner(this, floors); //그 값을 넣어줌
         spinner_stfloors.setAdapter(adapterfloors);
         spinner_arfloors.setAdapter(adapterfloors);
 
+        //호선 선택 Dropdown
+        spinner_stlines = findViewById(R.id.spinner_stlines);
+        spinner_arlines = findViewById(R.id.spinner_arlines);
+        adapterlocations = new AdapterSpinner(this, lines); //그 값을 넣어줌
+        spinner_stlines.setAdapter(adapterlocations);
+        spinner_arlines.setAdapter(adapterlocations);
+
         // 장소 선택 Dropdown
-        Spinner spinner_stlocations = findViewById(R.id.spinner_stlocations);
-        Spinner spinner_arlocations = findViewById(R.id.spinner_arlocations);
+        spinner_stlocations = findViewById(R.id.spinner_stlocations);
+        spinner_arlocations = findViewById(R.id.spinner_arlocations);
         adapterlocations = new AdapterSpinner(this, locations); //그 값을 넣어줌
         spinner_stlocations.setAdapter(adapterlocations);
         spinner_arlocations.setAdapter(adapterlocations);
@@ -96,7 +124,7 @@ public class RegisterActivity extends AppCompatActivity {
         ArrayList<ListItem> list = new ArrayList<>();
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
-        RecyclerView upperScroll = findViewById(R.id.upperScroll);
+        RecyclerView upperScroll = findViewById(R.id.scroll);
         upperScroll.setLayoutManager(new LinearLayoutManager((this)));
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
@@ -111,10 +139,10 @@ public class RegisterActivity extends AppCompatActivity {
         //radiogroup 추가
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.navbar);
 
-        RadioButton elevator = (RadioButton)findViewById(R.id.elevator);
-        RadioButton walk = (RadioButton)findViewById(R.id.walk);
-        RadioButton pass = (RadioButton)findViewById(R.id.pass);
-        RadioButton getOff = (RadioButton)findViewById(R.id.getOff);
+        RadioButton elevator = (RadioButton) findViewById(R.id.elevator);
+        RadioButton walk = (RadioButton) findViewById(R.id.walk);
+        RadioButton pass = (RadioButton) findViewById(R.id.pass);
+        RadioButton getOff = (RadioButton) findViewById(R.id.getOff);
 
         elevator.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,21 +182,23 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    public void getStationList(String stationName) {
+    public void getBlock() {
         try {
             // request body
             JSONObject jsonParams = new JSONObject();
 
             JSONObject from = new JSONObject();
-            from.put("floor", "floor");
-            from.put("line", "line");
-            from.put("location", "location");
+            String stfloor = spinner_stfloors.getSelectedItem().toString();
+            from.put("floor", stfloor.substring(0, stfloor.length() - 1));
+            from.put("line", spinner_stlines.getSelectedItem().toString());
+            from.put("location", spinner_stfloors.getSelectedItem().toString());
             jsonParams.put("from", from);
 
             JSONObject to = new JSONObject();
-            to.put("floor", "floor");
-            to.put("line", "line");
-            to.put("location", "location");
+            String arfloor = spinner_arfloors.getSelectedItem().toString();
+            to.put("floor", arfloor.substring(0, arfloor.length() - 1));
+            to.put("line", spinner_arlines.getSelectedItem().toString());
+            to.put("location", spinner_arlocations.getSelectedItem().toString());
             jsonParams.put("to", to);
 
             Log.i("request body", jsonParams.toString());
@@ -199,7 +229,7 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     NetworkResponse respone = error.networkResponse;
                     if (error instanceof ServerError && respone != null) {
-                        Toast.makeText(getApplicationContext(), "정확한 역 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "정확한 경로 정보를 입력하세요", Toast.LENGTH_SHORT).show();
                         try {
                             String res = new String(respone.data, HttpHeaderParser.parseCharset(respone.headers, "utf-8"));
                             Log.e("volley error", res);
