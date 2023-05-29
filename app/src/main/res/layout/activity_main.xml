@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/blue_rectangle"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
-        style="@style/blue_rectangle"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center_horizontal"
+        android:layout_weight="4"
         android:orientation="vertical">
 
         <TextView
@@ -16,45 +19,48 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="@dimen/_22pxh"
-            android:layout_marginTop="@dimen/_30pxv"
-            android:layout_marginEnd="@dimen/_22pxh"
+            android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:singleLine="true"
             android:text="모두의 환승"
             android:textColor="#ffffff"
             android:textSize="@dimen/_30pxh"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="모두의 환승" />
 
         <LinearLayout
+            android:id="@+id/linearLayout8"
             style="@style/groupStylewhite_A700cornerRadius"
             android:layout_width="@dimen/_346pxh"
             android:layout_height="@dimen/_53pxv"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="@dimen/_22pxh"
-            android:layout_marginTop="@dimen/_21pxv"
-            android:layout_marginEnd="@dimen/_22pxh">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appTitle">
 
 
             <EditText
                 android:id="@+id/Et_Search"
-                android:layout_weight = "1.5"
                 android:layout_width="0dp"
                 android:layout_height="100px"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_18pxh"
+                android:layout_weight="1.5"
                 android:hint="정확한 역명을 입력해주세요. (예: 가산디지털단지)"
                 android:textSize="11sp" />
 
             <TextView
                 style="@style/txtInterregular16"
-                android:layout_weight = "0.1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="7dp"
+                android:layout_weight="0.1"
                 android:text="역"
-                android:textSize = "12sp"
+                android:textSize="12sp"
                 tools:text="@string/lbl6" />
 
             <ImageView
@@ -64,40 +70,47 @@
                 android:layout_marginTop="17dp"
                 android:layout_marginEnd="@dimen/_18pxh"
                 android:layout_marginBottom="@dimen/_16pxv"
+                android:layout_weight="0.1"
                 android:scaleType="fitXY"
-                android:src="@drawable/manifier"
-                android:layout_weight="0.1" />
+                android:src="@drawable/manifier" />
 
         </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_weight="1"
             style="@style/white_lefttop_rectangle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/_18pxv"
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/textView18"
+                style="@style/black_subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginStart="@dimen/_30pxh"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="@dimen/_18pxv"
-                android:layout_marginEnd="@dimen/_30pxh"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="출발"
-                style="@style/black_subtitle"
-                 />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
+                android:id="@+id/linearLayout4"
                 style="@style/groupStylegray_200cornerRadius"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_70pxh"
-                android:layout_marginStart="@dimen/_20pxh"
-                android:layout_marginTop="@dimen/_10pxv"
-                android:layout_marginEnd="@dimen/_20pxh"
-                android:orientation="horizontal">
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView18">
 
                 <TextView
                     style="@style/txtInterregular20"
@@ -125,13 +138,18 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout5"
                 style="@style/groupStylegray_200cornerRadius"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_70pxh"
-                android:layout_marginStart="@dimen/_20pxh"
-                android:layout_marginTop="@dimen/_10pxv"
-                android:layout_marginEnd="@dimen/_20pxh"
-                android:orientation="horizontal">
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
                 <TextView
                     style="@style/txtInterregular20"
@@ -151,8 +169,8 @@
                     android:layout_marginStart="@dimen/_52pxh"
                     android:layout_marginTop="22dp"
                     android:layout_marginEnd="@dimen/_23pxh"
-                    android:layout_weight="0.54"
                     android:layout_marginBottom="@dimen/_18pxv"
+                    android:layout_weight="0.54"
                     android:orientation="horizontal">
 
                     <EditText
@@ -176,35 +194,47 @@
             </LinearLayout>
 
             <ImageView
+                android:id="@+id/imageView5"
                 android:layout_width="@dimen/_15pxh"
                 android:layout_height="@dimen/_15pxh"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_20pxh"
                 android:scaleType="fitXY"
                 android:src="@drawable/img_arrowdown"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.41000003"
                 tools:ignore="ContentDescription"
                 tools:src="@drawable/img_arrowdown" />
 
             <TextView
+                android:id="@+id/textView19"
                 style="@style/black_subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginStart="@dimen/_26pxh"
-                android:layout_marginEnd="@dimen/_26pxh"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="10dp"
                 android:ellipsize="end"
                 android:singleLine="true"
                 android:text="도착"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView5"
                 tools:text="@string/lbl7" />
 
             <LinearLayout
+                android:id="@+id/linearLayout6"
                 style="@style/groupStylegray_200cornerRadius"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_70pxh"
-                android:layout_marginStart="@dimen/_20pxh"
-                android:layout_marginTop="@dimen/_10pxv"
-                android:layout_marginEnd="@dimen/_20pxh"
-                android:orientation="horizontal">
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView19">
 
                 <TextView
                     style="@style/txtInterregular20"
@@ -214,7 +244,7 @@
                     android:layout_marginTop="@dimen/_19pxv"
                     android:layout_marginBottom="@dimen/_23pxv"
                     android:layout_weight="0.46"
-                    android:text="도착 호선"/>
+                    android:text="도착 호선" />
 
                 <Spinner
                     android:id="@+id/spinner_arline"
@@ -231,14 +261,19 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/linearLayout7"
                 style="@style/groupStylegray_200cornerRadius"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20pxh"
-                android:layout_marginTop="@dimen/_7pxv"
-                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:gravity="end"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
                 <TextView
                     style="@style/txtInterregular20"
@@ -288,11 +323,13 @@
                 android:layout_width="@dimen/_120pxh"
                 android:layout_height="@dimen/_60pxh"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_30pxh"
+                android:layout_marginBottom="30dp"
                 android:backgroundTint="#36458F"
                 android:text="등 록"
                 android:textColor="#FFFFFF"
-                android:textSize="@dimen/_16pxh" />
-        </LinearLayout>
-    </LinearLayout>
+                android:textSize="@dimen/_16pxh"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
