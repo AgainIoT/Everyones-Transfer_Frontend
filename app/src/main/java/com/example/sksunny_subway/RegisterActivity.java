@@ -81,8 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         lines = intent.getStringArrayListExtra("lines");
-        StringArray.setStringArrayPref(getApplicationContext(), 
-                                       , lines);
+        StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
 
         LinearLayout btn_next = findViewById(R.id.layout_next);
         LinearLayout btn_finish = findViewById(R.id.layout_finish);

@@ -103,12 +103,12 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        Et_Search.setFilters(new InputFilter[]{
-                (source, start, end, dest, dstart, dend) -> {
-                    // 공백을 제거하여 반환
-                    return source.toString().replaceAll("\\s+", "");
-                }
-        });
+//        Et_Search.setFilters(new InputFilter[]{
+//                (source, start, end, dest, dstart, dend) -> {
+//                    // 공백을 제거하여 반환
+//                    return source.toString().replaceAll("\\s+", "");
+//                }
+//        });
 
         if (!search_result) {
             start_nextst.setInputType(InputType.TYPE_NULL);
