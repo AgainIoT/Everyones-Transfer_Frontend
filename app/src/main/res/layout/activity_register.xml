@@ -172,29 +172,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/oldOne" />
 
-            <Spinner
-                android:id="@+id/spinner_arfloors"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_weight="0.33"
-                android:background="@drawable/layer_list_bg_gray_200_radius_10" />
+    </LinearLayout>
 
-            <Spinner
-                android:id="@+id/spinner_arlines"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="@dimen/_21pxh"
-                android:layout_weight="0.33"
-                android:background="@drawable/layer_list_bg_gray_200_radius_10" />
-
-            <Spinner
-                android:id="@+id/spinner_arlocations"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="@dimen/_22pxh"
-                android:layout_weight="0.33"
-                android:background="@drawable/layer_list_bg_gray_200_radius_10" />
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout11"
