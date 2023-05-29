@@ -1,6 +1,7 @@
 package com.example.sksunny_subway;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,10 +41,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import android.widget.Spinner;
 
 public class RegisterActivity extends AppCompatActivity {
 
     final String API_KEY = BuildConfig.API_KEY;
+    ArrayList<String> floors = new ArrayList<>(Arrays.asList("B5층", "B4층", "B3층", "B2층", "B1층", "1층", "2층", "3층", "4층", "5층"));
+    ArrayList<String> locations = new ArrayList<>(Arrays.asList("승강장", "대합실", "외부"));
+    ArrayList<String> directions = new ArrayList<>(Arrays.asList("왼쪽", "오른쪽", "직진", "후진"));
+    AdapterSpinner adapterfloors;
+    AdapterSpinner adapterlocations;
 
     static RequestQueue requestQueue;
 
@@ -114,10 +121,7 @@ public class RegisterActivity extends AppCompatActivity {
         spinner_arlocations.setAdapter(adapterlocations);
 
         //arrayList
-        ArrayList<String> list = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            list.add(String.format("TEXT %d", i));
-        }
+        ArrayList<ListItem> list = new ArrayList<>();
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         RecyclerView upperScroll = findViewById(R.id.scroll);
@@ -126,6 +130,11 @@ public class RegisterActivity extends AppCompatActivity {
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
         RecyclerAdapter upperAdapter = new RecyclerAdapter();
         upperScroll.setAdapter(upperAdapter);
+
+        ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(upperAdapter));
+        mItemTouchHelper.attachToRecyclerView(upperScroll);
+
+        upperAdapter.setItems(list);
 
         //radiogroup 추가
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.navbar);
@@ -138,7 +147,8 @@ public class RegisterActivity extends AppCompatActivity {
         elevator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                list.add("elevator");
+                ListItem item = new ListItem("elevator",0);
+                list.add(item);
                 upperAdapter.notifyItemInserted(list.size());
             }
         });
@@ -146,15 +156,18 @@ public class RegisterActivity extends AppCompatActivity {
         walk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                list.add("walk");
+                ListItem item = new ListItem("walk",0);
+                list.add(item);
                 upperAdapter.notifyItemInserted(list.size());
             }
         });
 
+        //얘는 확정! 더 손 안 대도 됨!
         pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                list.add("pass");
+                ListItem item = new ListItem("pass",0);
+                list.add(item);
                 upperAdapter.notifyItemInserted(list.size());
             }
         });
@@ -162,7 +175,8 @@ public class RegisterActivity extends AppCompatActivity {
         getOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                list.add("getOff");
+                ListItem item = new ListItem("getOff",0);
+                list.add(item);
                 upperAdapter.notifyItemInserted(list.size());
             }
         });
