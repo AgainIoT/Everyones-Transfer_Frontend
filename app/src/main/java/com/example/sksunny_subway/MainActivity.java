@@ -13,6 +13,7 @@ import android.util.ArrayMap;
 import android.util.Log;
 import android.text.InputType;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -52,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<String> lines = new ArrayList<>();    // train lines passing through the station
     private ArrayAdapter<String> adapter;
+
+    EditText start_nextst;
+    EditText arrive_nextst;
+    Spinner startLine_spinner;
+    Spinner endLine_spinner;
     static RequestQueue requestQueue;
 
     @Override
@@ -61,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
         AdapterSpinner adapterlines;
 
-        Spinner startLine_spinner = (Spinner) findViewById(R.id.spinner_stline);
-        Spinner endLine_spinner = (Spinner) findViewById(R.id.spinner_arline);
+        startLine_spinner = findViewById(R.id.spinner_stline);
+        endLine_spinner = findViewById(R.id.spinner_arline);
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, lines);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         startLine_spinner.setAdapter(adapter);
@@ -70,12 +76,13 @@ public class MainActivity extends AppCompatActivity {
 
         lines.add("호선 입력");
 
-        Button register_btn = (Button) findViewById(R.id.register_btn);
+        Button register_btn = findViewById(R.id.register_btn);
         ImageView Image_Search = findViewById(R.id.Image_Search);
-        EditText Et_Search = (EditText) findViewById(R.id.Et_Search);
+        EditText Et_Search = findViewById(R.id.Et_Search);
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
-        EditText start_nextst = (EditText) findViewById(R.id.start_nextst);
-        EditText arrive_nextst = (EditText) findViewById(R.id.arrive_nextst);
+        start_nextst = findViewById(R.id.start_nextst);
+        arrive_nextst = findViewById(R.id.arrive_nextst);
         start_nextst.setInputType(InputType.TYPE_NULL);
         arrive_nextst.setInputType(InputType.TYPE_NULL);
 
@@ -85,22 +92,18 @@ public class MainActivity extends AppCompatActivity {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
 
-        Image_Search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String station = Et_Search.getText().toString();
-                getStationList(station);
-            }
+        Image_Search.setOnClickListener(view -> {
+            String station = Et_Search.getText().toString();
+            Et_Search.clearFocus();
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            getStationList(station);
         });
 
 
-        register_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getRoot();
-                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-                startActivity(intent);
-            }
+        register_btn.setOnClickListener(view -> {
+            String start_next = start_nextst.getText().toString();
+            String arrive_next = arrive_nextst.getText().toString();
+            getRoot();
         });
     }
 
@@ -133,9 +136,12 @@ public class MainActivity extends AppCompatActivity {
                                 }
                                 lines.clear();
                                 lines.addAll(lineArr);
-                                if (adapter != null){
+                                if (adapter != null) {
                                     adapter.notifyDataSetChanged();
                                 }
+
+                                start_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
+                                arrive_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
 
                                 // get cookie from the received headers
                                 String recieved_cookie = headers.getString("Set-Cookie");
@@ -158,6 +164,8 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    start_nextst.setInputType(InputType.TYPE_NULL);
+                    arrive_nextst.setInputType(InputType.TYPE_NULL);
                     NetworkResponse respone = error.networkResponse;
                     if (error instanceof ServerError && respone != null) {
                         Toast.makeText(getApplicationContext(), "정확한 역 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
@@ -168,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-                    if (error instanceof NoConnectionError){
+                    if (error instanceof NoConnectionError) {
                         Toast.makeText(getApplicationContext(), "인터넷 상태가 좋지 않습니다", Toast.LENGTH_SHORT).show();
                     }
                     Log.e("e", Log.getStackTraceString(error));
@@ -186,12 +194,12 @@ public class MainActivity extends AppCompatActivity {
         try {
             // request body
             JSONObject startAt = new JSONObject();
-            startAt.put("line", "경의선");
-            startAt.put("next", "수색");
+            startAt.put("line", startLine_spinner.getSelectedItem());
+            startAt.put("next", start_nextst.getText().toString());
 
             JSONObject endAt = new JSONObject();
-            endAt.put("line", "6호선");
-            endAt.put("next", "월드컵경기장");
+            endAt.put("line", endLine_spinner.getSelectedItem());
+            endAt.put("next", arrive_nextst.getText().toString());
 
             JSONObject jsonParams = new JSONObject();
             jsonParams.put("startAt", startAt);
@@ -213,12 +221,15 @@ public class MainActivity extends AppCompatActivity {
                             } catch (JSONException e) {
                                 Log.e("client error", Log.getStackTraceString(e));
                             }
+                            Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                            startActivity(intent);
                         }
                     }, new Response.ErrorListener() {
 
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     NetworkResponse respone = error.networkResponse;
+                    Toast.makeText(getApplicationContext(), "다음역 이름이 정확하지 않습니다", Toast.LENGTH_LONG).show();
                     if (error instanceof ServerError && respone != null) {
                         try {
                             String res = new String(respone.data, HttpHeaderParser.parseCharset(respone.headers, "utf-8"));
