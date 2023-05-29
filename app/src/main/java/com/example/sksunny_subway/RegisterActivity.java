@@ -41,16 +41,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
 import android.widget.Spinner;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    final String API_KEY = BuildConfig.API_KEY;
     ArrayList<String> floors = new ArrayList<>(Arrays.asList("B5층", "B4층", "B3층", "B2층", "B1층", "1층", "2층", "3층", "4층", "5층"));
     ArrayList<String> locations = new ArrayList<>(Arrays.asList("승강장", "대합실", "외부"));
     ArrayList<String> directions = new ArrayList<>(Arrays.asList("왼쪽", "오른쪽", "직진", "후진"));
     AdapterSpinner adapterfloors;
     AdapterSpinner adapterlocations;
+
+    ArrayList<String> originContent = new ArrayList<>();
 
     static RequestQueue requestQueue;
 
@@ -96,6 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
                 startActivity(intent);
+                getBlock();
             }
         });
 
@@ -144,10 +147,12 @@ public class RegisterActivity extends AppCompatActivity {
         RadioButton pass = (RadioButton) findViewById(R.id.pass);
         RadioButton getOff = (RadioButton) findViewById(R.id.getOff);
 
+        originContent = StringArray.getStringArrayPref(getApplicationContext(), "originContent");
+
         elevator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("elevator",0);
+                ListItem item = new ListItem("elevator", 0);
                 list.add(item);
                 upperAdapter.notifyItemInserted(list.size());
             }
@@ -156,7 +161,7 @@ public class RegisterActivity extends AppCompatActivity {
         walk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("walk",0);
+                ListItem item = new ListItem("walk", 0);
                 list.add(item);
                 upperAdapter.notifyItemInserted(list.size());
             }
@@ -166,7 +171,7 @@ public class RegisterActivity extends AppCompatActivity {
         pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("pass",0);
+                ListItem item = new ListItem("pass", 0);
                 list.add(item);
                 upperAdapter.notifyItemInserted(list.size());
             }
@@ -175,7 +180,7 @@ public class RegisterActivity extends AppCompatActivity {
         getOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("getOff",0);
+                ListItem item = new ListItem("getOff", 0);
                 list.add(item);
                 upperAdapter.notifyItemInserted(list.size());
             }
@@ -215,10 +220,16 @@ public class RegisterActivity extends AppCompatActivity {
                                 // get data and headers from the received response
                                 JSONObject data = response.getJSONObject("data");
                                 JSONObject headers = response.getJSONObject("headers");
-
                                 // Logs for debugging
                                 Log.i("data", String.valueOf(data));
                                 Log.i("headers", String.valueOf(headers));
+
+                                JSONArray jsonarr = data.getJSONArray("originContent");
+                                for (int i = 0; i < jsonarr.length(); i++) {
+                                    originContent.add(jsonarr.getString(i));
+                                }
+                                Log.i("originContent", originContent.toString());
+
                             } catch (JSONException e) {
                                 Log.e("error", Log.getStackTraceString(e));
                             }

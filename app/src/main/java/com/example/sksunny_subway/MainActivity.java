@@ -118,8 +118,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         register_btn.setOnClickListener(view -> {
-            String start_next = start_nextst.getText().toString();
-            String arrive_next = arrive_nextst.getText().toString();
             getRoot();
         });
     }
