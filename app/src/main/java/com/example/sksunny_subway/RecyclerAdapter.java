@@ -1,6 +1,5 @@
 package com.example.sksunny_subway;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,17 +50,51 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         }
     }
 
+    @Override
+    public int getItemViewType(int position){
+        ListItem listItem = items.get(position);
+        if(listItem.getName().equals("elevator")){
+            return 1;
+        }else if(listItem.getName().equals("walk")){
+            return 2;
+        }else if(listItem.getName().equals("pass")){
+            return 3;
+        }else {
+            return 4;
+        }
+    }
+
     // onCreateViewHolder() - 아이템 뷰를 위한 뷰홀더 객체 생성하여 리턴.
     @Override
     public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        View view = inflater.inflate(R.layout.item_list, parent, false);
-        RecyclerAdapter.ViewHolder vh = new RecyclerAdapter.ViewHolder(view);
-
-        return vh;
+        View view;
+        switch (viewType){
+            case 1:
+                view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.item_list_elevator, parent, false);
+                RecyclerAdapter.ViewHolder vh1 = new RecyclerAdapter.ViewHolder(view);
+                return vh1;
+            case 2:
+                view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.item_list_walk, parent, false);
+                RecyclerAdapter.ViewHolder vh2 = new RecyclerAdapter.ViewHolder(view);
+                return vh2;
+            case 3:
+                view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.item_list_pass, parent, false);
+                RecyclerAdapter.ViewHolder vh3 = new RecyclerAdapter.ViewHolder(view);
+                return vh3;
+            default:
+                view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.item_list_getoff, parent, false);
+                RecyclerAdapter.ViewHolder vh4 = new RecyclerAdapter.ViewHolder(view);
+                return vh4;
+        }
     }
+
+
+
+
 
     // onBindViewHolder() - position에 해당하는 데이터를 뷰홀더의 아이템뷰에 표시.
     @Override
