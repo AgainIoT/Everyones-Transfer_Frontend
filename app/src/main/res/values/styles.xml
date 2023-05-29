@@ -60,6 +60,9 @@
     <style name="blue_rightbottom_rectangle">
         <item name="android:background">@drawable/blue_rightbottom_rectangle</item>
     </style>
+    <style name="blue_leftbottom_rectangle">
+        <item name="android:background">@drawable/blue_leftbottom_rectangle</item>
+    </style>
     <style name="groupStylewhite_A700cornerRadius">
         <item name="android:background">@drawable/rectangle_bg_white_a700_radius_26_5</item>
     </style>
