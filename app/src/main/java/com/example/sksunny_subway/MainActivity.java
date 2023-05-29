@@ -86,11 +86,11 @@ public class MainActivity extends AppCompatActivity {
         start_nextst = findViewById(R.id.start_nextst);
         arrive_nextst = findViewById(R.id.arrive_nextst);
 
-        try{
+        try {
             SharedPreferences shared_save_main = getSharedPreferences("save_main", MODE_PRIVATE);
-            String str_et_search = shared_save_main.getString("et_search","");
+            String str_et_search = shared_save_main.getString("et_search", "");
             Et_Search.setText(str_et_search);
-            String str_start_nextst = shared_save_main.getString("start_nextst","");
+            String str_start_nextst = shared_save_main.getString("start_nextst", "");
             start_nextst.setText(str_start_nextst);
             search_result = shared_save_main.getBoolean("search_result", false);
 
@@ -98,17 +98,9 @@ public class MainActivity extends AppCompatActivity {
 
             startLine = shared_save_main.getString("startLine", "");
             endLine = shared_save_main.getString("endLine", "");
-        }
-        catch(Exception e){
+        } catch (Exception e) {
 
         }
-
-//        Et_Search.setFilters(new InputFilter[]{
-//                (source, start, end, dest, dstart, dend) -> {
-//                    // 공백을 제거하여 반환
-//                    return source.toString().replaceAll("\\s+", "");
-//                }
-//        });
 
         if (!search_result) {
             start_nextst.setInputType(InputType.TYPE_NULL);
@@ -119,15 +111,18 @@ public class MainActivity extends AppCompatActivity {
         startLine_spinner.setAdapter(adapterlines);
         endLine_spinner.setAdapter(adapterlines);
 
+        // spinner 초기값
+        lines.clear();
         lines.add("호선 입력");
         adapterlines.notifyDataSetChanged();
 
-        if (!startLine.isEmpty()) {
-            startLine_spinner.setSelection(lines.indexOf(startLine));
-        }
-        if (!endLine.isEmpty()) {
-            endLine_spinner.setSelection(lines.indexOf(endLine));
-        }
+
+//        if (!startLine.isEmpty()) {
+//            startLine_spinner.setSelection(lines.indexOf(startLine));
+//        }
+//        if (!endLine.isEmpty()) {
+//            endLine_spinner.setSelection(lines.indexOf(endLine));
+//        }
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
         if (requestQueue == null) {
@@ -151,24 +146,25 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         SharedPreferences shared_save_main = getSharedPreferences("save_main", MODE_PRIVATE);
         SharedPreferences.Editor editor_save_main = shared_save_main.edit(); //sharedPreferences를 제어할 editor를 선언
-        editor_save_main.putString("et_search",Et_Search.getText().toString()); // key,value 형식으로 저장
-        editor_save_main.putString("start_nextst",start_nextst.getText().toString());
-        editor_save_main.putString("arrive_nextst",arrive_nextst.getText().toString());
-        if(!start_nextst.getText().toString().isEmpty()) {
+        editor_save_main.putString("et_search", Et_Search.getText().toString()); // key,value 형식으로 저장
+        editor_save_main.putString("start_nextst", start_nextst.getText().toString());
+        editor_save_main.putString("arrive_nextst", arrive_nextst.getText().toString());
+        if (!start_nextst.getText().toString().isEmpty()) {
             editor_save_main.putString("start_nextst", start_nextst.getText().toString());
         }
-        if(!arrive_nextst.getText().toString().isEmpty()) {
-            editor_save_main.putString("arrive_nextst",arrive_nextst.getText().toString());
+        if (!arrive_nextst.getText().toString().isEmpty()) {
+            editor_save_main.putString("arrive_nextst", arrive_nextst.getText().toString());
         }
-        editor_save_main.putBoolean("search_result",search_result);
+        editor_save_main.putBoolean("search_result", search_result);
         editor_save_main.apply();
 
         StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
     }
 
     private long backpressedTime = 0;
-    public boolean onKeyDown(int keyCode, KeyEvent event){
-        switch(keyCode){
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
                 String alertTitle = "앱을 종료합니다.";
                 String buttonMessage = "저장하고 어플을 종료하시겠습니까?";
@@ -189,16 +185,16 @@ public class MainActivity extends AppCompatActivity {
                                     // TODO Auto-generated method stub
                                     SharedPreferences shared_save_main = getSharedPreferences("save_main", MODE_PRIVATE);
                                     SharedPreferences.Editor editor_save_main = shared_save_main.edit(); //sharedPreferences를 제어할 editor를 선언
-                                    editor_save_main.putString("et_search",Et_Search.getText().toString()); // key,value 형식으로 저장
-                                    editor_save_main.putString("start_nextst",start_nextst.getText().toString());
-                                    editor_save_main.putString("arrive_nextst",arrive_nextst.getText().toString());
-                                    if(!start_nextst.getText().toString().isEmpty()) {
+                                    editor_save_main.putString("et_search", Et_Search.getText().toString()); // key,value 형식으로 저장
+                                    editor_save_main.putString("start_nextst", start_nextst.getText().toString());
+                                    editor_save_main.putString("arrive_nextst", arrive_nextst.getText().toString());
+                                    if (!start_nextst.getText().toString().isEmpty()) {
                                         editor_save_main.putString("start_nextst", start_nextst.getText().toString());
                                     }
-                                    if(!arrive_nextst.getText().toString().isEmpty()) {
-                                        editor_save_main.putString("arrive_nextst",arrive_nextst.getText().toString());
+                                    if (!arrive_nextst.getText().toString().isEmpty()) {
+                                        editor_save_main.putString("arrive_nextst", arrive_nextst.getText().toString());
                                     }
-                                    editor_save_main.putBoolean("search_result",search_result);
+                                    editor_save_main.putBoolean("search_result", search_result);
                                     editor_save_main.apply();
 
                                     StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
@@ -206,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
                                     finish();
                                 }
                             })
-                            .setPositiveButton(buttonNo, new DialogInterface.OnClickListener(){
+                            .setPositiveButton(buttonNo, new DialogInterface.OnClickListener() {
 
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -218,24 +214,24 @@ public class MainActivity extends AppCompatActivity {
 
                                     SharedPreferences shared_save_main = getSharedPreferences("save_main", MODE_PRIVATE);
                                     SharedPreferences.Editor editor_save_main = shared_save_main.edit(); //sharedPreferences를 제어할 editor를 선언
-                                    editor_save_main.putString("et_search",Et_Search.getText().toString()); // key,value 형식으로 저장
-                                    editor_save_main.putString("start_nextst",start_nextst.getText().toString());
-                                    editor_save_main.putString("arrive_nextst",arrive_nextst.getText().toString());
-                                    editor_save_main.putBoolean("search_result",search_result);
-                                    if(!start_nextst.getText().toString().isEmpty()) {
+                                    editor_save_main.putString("et_search", Et_Search.getText().toString()); // key,value 형식으로 저장
+                                    editor_save_main.putString("start_nextst", start_nextst.getText().toString());
+                                    editor_save_main.putString("arrive_nextst", arrive_nextst.getText().toString());
+                                    editor_save_main.putBoolean("search_result", search_result);
+                                    if (!start_nextst.getText().toString().isEmpty()) {
                                         editor_save_main.putString("start_nextst", start_nextst.getText().toString());
                                     }
-                                    if(!arrive_nextst.getText().toString().isEmpty()) {
-                                        editor_save_main.putString("arrive_nextst",arrive_nextst.getText().toString());
+                                    if (!arrive_nextst.getText().toString().isEmpty()) {
+                                        editor_save_main.putString("arrive_nextst", arrive_nextst.getText().toString());
                                     }
                                     editor_save_main.apply();
 
                                     finish();
                                 }
-                            } )
+                            })
                             .show();
                 }
-                }
+        }
         return true;
     }
 

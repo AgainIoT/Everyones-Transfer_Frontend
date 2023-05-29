@@ -60,19 +60,31 @@ public class DifActivity extends AppCompatActivity {
         maintainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "기존 내용을 유지합니다.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-                startActivity(intent);
+                Context context = getApplicationContext();
+                Toast.makeText(context, "기존 내용을 유지합니다.", Toast.LENGTH_SHORT).show();
+                if (context.getSharedPreferences("done", context.MODE_PRIVATE).getBoolean("done", false)){
+                    Intent intent  = new Intent(context, MainActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(context, RegisterActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
         completeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Context context = getApplicationContext();
                 patchBlock();
-                Toast.makeText(getApplicationContext(), "수정된 내용이 저장되었습니다.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-                startActivity(intent);
+                Toast.makeText(context, "수정된 내용이 저장되었습니다.", Toast.LENGTH_SHORT).show();
+                if (context.getSharedPreferences("done", context.MODE_PRIVATE).getBoolean("done", false)){
+                    Intent intent = new Intent(context, MainActivity.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(context, RegisterActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -80,7 +92,7 @@ public class DifActivity extends AppCompatActivity {
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         TextView upperScroll = findViewById(R.id.upperScroll);
         ArrayList<String> originContent = StringArray.getStringArrayPref(getApplicationContext(), "originContent");
-        upperScroll.setText(originContent.toString());
+        upperScroll.setText(originContent.get(0));
         Log.i("sadfsadfasdf", originContent.toString());
         RecyclerView lowerScroll = findViewById(R.id.lowerScroll);
         lowerScroll.setLayoutManager(new LinearLayoutManager((this)));
