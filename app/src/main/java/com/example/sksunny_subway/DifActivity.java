@@ -92,7 +92,7 @@ public class DifActivity extends AppCompatActivity {
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         TextView upperScroll = findViewById(R.id.upperScroll);
         ArrayList<String> originContent = StringArray.getStringArrayPref(getApplicationContext(), "originContent");
-        upperScroll.setText(originContent.toString());
+        upperScroll.setText(originContent.get(0));
         Log.i("sadfsadfasdf", originContent.toString());
         RecyclerView lowerScroll = findViewById(R.id.lowerScroll);
         lowerScroll.setLayoutManager(new LinearLayoutManager((this)));

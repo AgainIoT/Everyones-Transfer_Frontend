@@ -80,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         lines = intent.getStringArrayListExtra("lines");
-//        StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
+        StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
 
         LinearLayout btn_next = findViewById(R.id.layout_next);
         LinearLayout btn_finish = findViewById(R.id.layout_finish);
@@ -286,9 +286,12 @@ public class RegisterActivity extends AppCompatActivity {
                                 Log.i("headers", String.valueOf(headers));
 
                                 JSONArray jsonarr = data.getJSONArray("originContent");
+                                ArrayList<String> arr = new ArrayList<>();
                                 for (int i = 0; i < jsonarr.length(); i++) {
-                                    originContent.add(jsonarr.getString(i));
+                                    arr.add(jsonarr.getString(i));
                                 }
+                                arr.add("a");
+                                StringArray.setStringArrayPref(getApplicationContext(), "originContent", arr);
                                 Log.i("originContent", originContent.toString());
 
                             } catch (JSONException e) {
