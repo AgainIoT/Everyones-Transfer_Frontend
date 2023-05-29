@@ -163,9 +163,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/buttonArea"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/navbar">
-
-            </androidx.recyclerview.widget.RecyclerView>
+                app:layout_constraintTop_toBottomOf="@+id/navbar"/>
 
             <LinearLayout
                 android:id="@+id/buttonArea"
