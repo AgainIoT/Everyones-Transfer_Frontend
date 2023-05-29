@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/blue_rectangle"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
-        style="@style/blue_rectangle"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="4"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -16,45 +19,48 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="@dimen/_22pxh"
-            android:layout_marginTop="@dimen/_30pxv"
-            android:layout_marginEnd="@dimen/_22pxh"
+            android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:singleLine="true"
             android:text="모두의 환승"
             android:textColor="#ffffff"
             android:textSize="@dimen/_30pxh"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="모두의 환승" />
 
         <LinearLayout
+            android:id="@+id/linearLayout8"
             style="@style/groupStylewhite_A700cornerRadius"
             android:layout_width="@dimen/_346pxh"
             android:layout_height="@dimen/_53pxv"
             android:layout_gravity="center_horizontal"
-            android:layout_marginStart="@dimen/_22pxh"
-            android:layout_marginTop="@dimen/_21pxv"
-            android:layout_marginEnd="@dimen/_22pxh">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appTitle">
 
 
             <EditText
                 android:id="@+id/Et_Search"
-                android:layout_weight = "1.5"
                 android:layout_width="0dp"
                 android:layout_height="100px"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_18pxh"
+                android:layout_weight="1.5"
                 android:hint="정확한 역명을 입력해주세요. (예: 가산디지털단지)"
                 android:textSize="11sp" />
 
             <TextView
                 style="@style/txtInterregular16"
-                android:layout_weight = "0.1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="7dp"
+                android:layout_weight="0.1"
                 android:text="역"
-                android:textSize = "12sp"
+                android:textSize="12sp"
                 tools:text="@string/lbl6" />
 
             <ImageView
@@ -64,235 +70,255 @@
                 android:layout_marginTop="17dp"
                 android:layout_marginEnd="@dimen/_18pxh"
                 android:layout_marginBottom="@dimen/_16pxv"
+                android:layout_weight="0.1"
                 android:scaleType="fitXY"
-                android:src="@drawable/manifier"
-                android:layout_weight="0.1" />
+                android:src="@drawable/manifier" />
 
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/white_lefttop_rectangle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView18"
+            style="@style/black_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="@dimen/_18pxv"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="출발"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            style="@style/groupStylegray_200cornerRadius"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_70pxh"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView18">
+
+            <TextView
+                style="@style/txtInterregular20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_30pxh"
+                android:layout_weight="3"
+                android:text="출발 호선" />
+
+            <Spinner
+                android:id="@+id/spinner_stline"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_32pxv"
+                android:layout_marginEnd="@dimen/_24pxh"
+                android:layout_weight="1"
+                android:background="@drawable/layer_list_bg_white_a700_radius_10"
+                android:minHeight="48dp"
+                tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
 
         <LinearLayout
-            style="@style/white_lefttop_rectangle"
+            android:id="@+id/linearLayout5"
+            style="@style/groupStylegray_200cornerRadius"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/_18pxv"
-            android:orientation="vertical">
+            android:layout_height="@dimen/_70pxh"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
             <TextView
-                android:layout_width="wrap_content"
+                style="@style/txtInterregular20"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
                 android:layout_marginStart="@dimen/_30pxh"
-                android:layout_marginTop="@dimen/_18pxv"
-                android:layout_marginEnd="@dimen/_30pxh"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="출발"
-                style="@style/black_subtitle"
-                 />
+                android:layout_weight="0.46"
+                android:gravity="center_horizontal"
+                android:text="방향 (다음역)"
+                tools:text="@string/lbl5" />
 
             <LinearLayout
-                style="@style/groupStylegray_200cornerRadius"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_70pxh"
-                android:layout_marginStart="@dimen/_20pxh"
-                android:layout_marginTop="@dimen/_10pxv"
-                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_52pxh"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="@dimen/_23pxh"
+                android:layout_marginBottom="@dimen/_18pxv"
+                android:layout_weight="0.54"
                 android:orientation="horizontal">
 
+                <EditText
+                    android:id="@+id/start_nextst"
+                    android:layout_width="120dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/rectangle_bg_gray_100_border_gray_900"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:textColor="@color/black" />
+
                 <TextView
-                    style="@style/txtInterregular20"
+                    style="@style/txtInterregular16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_30pxh"
-                    android:layout_marginTop="@dimen/_19pxv"
-                    android:layout_marginBottom="@dimen/_23pxv"
-                    android:layout_weight="0.46"
-                    android:text="출발 호선"
-                    tools:text="출발 호선" />
-
-                <Spinner
-                    android:id="@+id/spinner_stline"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_150pxh"
-                    android:layout_marginTop="@dimen/_20pxv"
-                    android:layout_marginEnd="@dimen/_24pxh"
-                    android:layout_marginBottom="@dimen/_20pxv"
-                    android:layout_weight="0.64"
-                    android:background="@drawable/layer_list_bg_white_a700_radius_10"
-                    android:minHeight="48dp"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_9pxh"
+                    android:text="역"
+                    tools:text="@string/lbl6" />
             </LinearLayout>
+        </LinearLayout>
 
-            <LinearLayout
-                style="@style/groupStylegray_200cornerRadius"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_70pxh"
-                android:layout_marginStart="@dimen/_20pxh"
-                android:layout_marginTop="@dimen/_10pxv"
-                android:layout_marginEnd="@dimen/_20pxh"
-                android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="@dimen/_15pxh"
+            android:layout_height="@dimen/_15pxh"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_arrowdown"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.41000003"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/img_arrowdown" />
 
-                <TextView
-                    style="@style/txtInterregular20"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_30pxh"
-                    android:layout_marginTop="@dimen/_19pxv"
-                    android:layout_marginBottom="@dimen/_23pxv"
-                    android:layout_weight="0.46"
-                    android:gravity="center_horizontal"
-                    android:text="방향 (다음역)"
-                    tools:text="@string/lbl5" />
+        <TextView
+            android:id="@+id/textView19"
+            style="@style/black_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="도착"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5"
+            tools:text="@string/lbl7" />
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_52pxh"
-                    android:layout_marginTop="22dp"
-                    android:layout_marginEnd="@dimen/_23pxh"
-                    android:layout_weight="0.54"
-                    android:layout_marginBottom="@dimen/_18pxv"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/start_nextst"
-                        android:layout_width="120dp"
-                        android:layout_height="25dp"
-                        android:background="@drawable/rectangle_bg_gray_100_border_gray_900"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        style="@style/txtInterregular16"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_9pxh"
-                        android:text="역"
-                        tools:text="@string/lbl6" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <ImageView
-                android:layout_width="@dimen/_15pxh"
-                android:layout_height="@dimen/_15pxh"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_20pxh"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_arrowdown"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_arrowdown" />
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            style="@style/groupStylegray_200cornerRadius"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_70pxh"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView19">
 
             <TextView
-                style="@style/black_subtitle"
+                style="@style/txtInterregular20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="start"
-                android:layout_marginStart="@dimen/_26pxh"
-                android:layout_marginEnd="@dimen/_26pxh"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="도착"
-                tools:text="@string/lbl7" />
+                android:layout_marginStart="@dimen/_30pxh"
+                android:layout_weight="3"
+                android:text="도착 호선"
+                tools:text="도착 호선" />
+
+            <Spinner
+                android:id="@+id/spinner_arline"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_32pxv"
+                android:layout_marginEnd="@dimen/_24pxh"
+                android:layout_weight="1"
+                android:background="@drawable/layer_list_bg_white_a700_radius_10"
+                android:minHeight="48dp"
+                tools:ignore="TouchTargetSizeCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout7"
+            style="@style/groupStylegray_200cornerRadius"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_70pxv"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+            <TextView
+                style="@style/txtInterregular20"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_30pxh"
+                android:layout_weight="0.46"
+                android:gravity="center_horizontal"
+                android:text="방향 (다음역)"
+                tools:text="@string/lbl5" />
 
             <LinearLayout
-                style="@style/groupStylegray_200cornerRadius"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_70pxh"
-                android:layout_marginStart="@dimen/_20pxh"
-                android:layout_marginTop="@dimen/_10pxv"
-                android:layout_marginEnd="@dimen/_20pxh"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_52pxh"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="@dimen/_23pxh"
+                android:layout_marginBottom="@dimen/_18pxv"
+                android:layout_weight="0.54"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal">
 
+                <EditText
+                    android:id="@+id/arrive_nextst"
+                    android:layout_width="120dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/rectangle_bg_gray_100_border_gray_900"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:textColor="@color/black" />
+
                 <TextView
-                    style="@style/txtInterregular20"
+                    style="@style/txtInterregular16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_30pxh"
-                    android:layout_marginTop="@dimen/_19pxv"
-                    android:layout_marginBottom="@dimen/_23pxv"
-                    android:layout_weight="0.46"
-                    android:text="도착 호선"/>
-
-                <Spinner
-                    android:id="@+id/spinner_arline"
-                    android:layout_width="0dp"
-                    android:layout_height="27dp"
-                    android:layout_marginStart="@dimen/_150pxh"
-                    android:layout_marginTop="@dimen/_20pxv"
-                    android:layout_marginEnd="@dimen/_24pxh"
-                    android:layout_marginBottom="@dimen/_20pxv"
-                    android:layout_weight="0.64"
-                    android:background="@drawable/layer_list_bg_white_a700_radius_10"
-                    android:minHeight="48dp"
-                    tools:ignore="TouchTargetSizeCheck" />
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_9pxh"
+                    android:text="역"
+                    tools:text="@string/lbl6" />
             </LinearLayout>
-
-            <LinearLayout
-                style="@style/groupStylegray_200cornerRadius"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_20pxh"
-                android:layout_marginTop="@dimen/_7pxv"
-                android:layout_marginEnd="@dimen/_20pxh"
-                android:gravity="end"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/txtInterregular20"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_30pxh"
-                    android:layout_marginTop="@dimen/_19pxv"
-                    android:layout_marginBottom="@dimen/_23pxv"
-                    android:layout_weight="0.46"
-                    android:gravity="center_horizontal"
-                    android:text="방향 (다음역)"
-                    tools:text="@string/lbl5" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_52pxh"
-                    android:layout_marginTop="22dp"
-                    android:layout_marginEnd="@dimen/_23pxh"
-                    android:layout_marginBottom="@dimen/_18pxv"
-                    android:layout_weight="0.54"
-                    android:gravity="center_horizontal"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/arrive_nextst"
-                        android:layout_width="120dp"
-                        android:layout_height="25dp"
-                        android:background="@drawable/rectangle_bg_gray_100_border_gray_900"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:textColor="@color/black" />
-
-                    <TextView
-                        style="@style/txtInterregular16"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_9pxh"
-                        android:text="역"
-                        tools:text="@string/lbl6" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/register_btn"
-                android:layout_width="@dimen/_120pxh"
-                android:layout_height="@dimen/_60pxh"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/_30pxh"
-                android:backgroundTint="#36458F"
-                android:text="등 록"
-                android:textColor="#FFFFFF"
-                android:textSize="@dimen/_16pxh" />
         </LinearLayout>
-    </LinearLayout>
+
+        <Button
+            android:id="@+id/register_btn"
+            android:layout_width="@dimen/_120pxh"
+            android:layout_height="@dimen/_60pxh"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="#36458F"
+            android:text="등 록"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/_16pxh"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
