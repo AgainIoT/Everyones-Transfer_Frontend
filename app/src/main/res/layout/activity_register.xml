@@ -3,80 +3,76 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <LinearLayout
-        style="@style/groupStylewhite_A700"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/blue_leftbottom_rectangle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_weight="3.5"
         android:gravity="start"
         android:orientation="vertical">
 
         <LinearLayout
-            style="@style/groupStyleindigo_701"
+            android:id="@+id/linearLayout12"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_25pxh"
-                android:layout_marginTop="@dimen/_40pxv"
-                android:layout_marginEnd="@dimen/_22pxh"
-                android:gravity="center_horizontal"
-                app:contentInsetStart="0dp">
+            <Spinner
+                android:id="@+id/spinner_stfloors"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="0.33"
+                android:background="@drawable/layer_list_bg_gray_200_radius_10" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+            <Spinner
+                android:id="@+id/spinner_stlines"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/_21pxh"
+                android:layout_weight="0.33"
+                android:background="@drawable/layer_list_bg_gray_200_radius_10" />
 
-                    <Spinner
-                        android:id="@+id/spinner_stfloors"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="0.33"
-                        android:background="@drawable/layer_list_bg_gray_200_radius_10" />
-
-                    <Spinner
-                        android:id="@+id/spinner_stlines"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="@dimen/_21pxh"
-                        android:layout_weight="0.33"
-                        android:background="@drawable/layer_list_bg_gray_200_radius_10" />
-
-                    <Spinner
-                        android:id="@+id/spinner_stlocations"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="@dimen/_22pxh"
-                        android:layout_weight="0.33"
-                        android:background="@drawable/layer_list_bg_gray_200_radius_10" />
-                </LinearLayout>
-            </androidx.appcompat.widget.Toolbar>
-
-            <ImageView
-                android:layout_width="@dimen/_15pxh"
-                android:layout_height="@dimen/_15pxh"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="@dimen/_25pxh"
-                android:layout_marginTop="@dimen/_20pxv"
-                android:layout_marginEnd="@dimen/_25pxh"
-                android:layout_marginBottom="@dimen/_18pxv"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_arrowdown_white"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/img_arrowdown_white" />
+            <Spinner
+                android:id="@+id/spinner_stlocations"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/_22pxh"
+                android:layout_weight="0.33"
+                android:background="@drawable/layer_list_bg_gray_200_radius_10" />
         </LinearLayout>
 
+
+        <ImageView
+            android:layout_width="@dimen/_15pxh"
+            android:layout_height="@dimen/_15pxh"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_arrowdown_white"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout13"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout12"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/img_arrowdown_white" />
+
         <LinearLayout
+            android:id="@+id/linearLayout13"
             style="@style/groupStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <RadioGroup
                 android:id="@+id/navbar"
@@ -132,165 +128,157 @@
 
             </RadioGroup>
         </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/reg_img_arrowdown_black_900"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="ContentDescription"
+            tools:src="@drawable/reg_img_arrowdown_black_900" />
 
         <LinearLayout
+            android:id="@+id/linearLayout10"
+            style="@style/groupStylecornerRadius"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="3">
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout11"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent">
 
-    </LinearLayout>
+            <Spinner
+                android:id="@+id/spinner_arfloors"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="0.33"
+                android:background="@drawable/layer_list_bg_gray_200_radius_10" />
+
+            <Spinner
+                android:id="@+id/spinner_arlocations"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/_22pxh"
+                android:layout_weight="0.33"
+                android:background="@drawable/layer_list_bg_gray_200_radius_10" />
+
+            <Spinner
+                android:id="@+id/spinner_arlines"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="@dimen/_21pxh"
+                android:layout_weight="0.33"
+                android:background="@drawable/layer_list_bg_gray_200_radius_10" />
+        </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout11"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_141pxv"
-            android:layout_gravity="center"
-            android:layout_weight="0.2"
-            android:layout_marginEnd="@dimen/_1pxh"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="13dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="@dimen/_10pxh"
-                android:layout_marginEnd="@dimen/_10pxh"
-                android:scaleType="fitXY"
-                android:src="@drawable/reg_img_arrowdown_black_900"
-                tools:ignore="ContentDescription"
-                tools:src="@drawable/reg_img_arrowdown_black_900" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:background="#36458F"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <LinearLayout
-                style="@style/groupStylewhite_A700cornerRadius40"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top|start"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    style="@style/groupStylecornerRadius"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/_24pxh"
-                    android:layout_marginTop="@dimen/_15pxv"
-                    android:layout_marginEnd="@dimen/_22pxh"
-                    android:layout_marginBottom="@dimen/_17pxv"
-                    android:orientation="horizontal">
-
-                    <Spinner
-                        android:id="@+id/spinner_arfloors"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="0.33"
-                        android:background="@drawable/layer_list_bg_gray_200_radius_10" />
-
-                    <Spinner
-                        android:id="@+id/spinner_arlines"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="@dimen/_21pxh"
-                        android:layout_weight="0.33"
-                        android:background="@drawable/layer_list_bg_gray_200_radius_10" />
-
-                    <Spinner
-                        android:id="@+id/spinner_arlocations"
-                        android:layout_width="0dp"
-                        android:layout_height="40dp"
-                        android:layout_marginStart="@dimen/_22pxh"
-                        android:layout_weight="0.33"
-                        android:background="@drawable/layer_list_bg_gray_200_radius_10" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center"
-                android:layout_marginStart="1dp"
-                android:background="#36458F"
+                android:layout_weight="0.45"
                 android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.45"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:id="@+id/layout_next"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginTop="2dp"
-                        android:paddingRight="20dp"
-                        android:layout_marginStart="30dp">
-
-                        <TextView
-                            style="@style/txtInterregular24white"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_19pxv"
-                            android:layout_marginBottom="@dimen/_22pxv"
-                            android:layout_marginStart="35dp"
-                            android:gravity="center"
-                            android:paddingStart="12dp"
-                            android:textSize="20dp"
-                            android:text="@string/lbl16"
-                            tools:text="@string/lbl16" />
-
-                        <ImageView
-                            android:layout_width="@dimen/_16pxh"
-                            android:layout_height="@dimen/_16pxh"
-                            android:layout_marginStart="@dimen/_8pxh"
-                            android:layout_marginTop="@dimen/_27pxv"
-                            android:layout_marginBottom="@dimen/_26pxv"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/img_vector"
-                            tools:ignore="ContentDescription"
-                            tools:src="@drawable/img_vector" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <ImageView
+                    android:id="@+id/layout_next"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.05"
-                    android:src="@drawable/line22"/>
-
-                <LinearLayout
-                    android:id="@+id/layout_finish"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_66pxh"
-                    android:layout_marginTop="@dimen/_17pxv"
-                    android:layout_marginBottom="@dimen/_23pxv"
-                    android:layout_weight="0.3"
-                    android:orientation="horizontal">
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal"
+                    android:paddingRight="20dp">
 
                     <TextView
                         style="@style/txtInterregular24white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginTop="@dimen/_19pxv"
+                        android:layout_marginBottom="@dimen/_22pxv"
                         android:gravity="center"
-                        android:layout_marginTop="@dimen/_5pxh"
+                        android:paddingStart="12dp"
+                        android:text="@string/lbl16"
                         android:textSize="20dp"
-                        android:text="@string/lbl17"
-                        tools:text="@string/lbl17" />
+                        tools:text="@string/lbl16" />
 
                     <ImageView
-                        android:layout_width="@dimen/_15pxh"
-                        android:layout_height="@dimen/_15pxh"
-                        android:layout_marginStart="@dimen/_6pxh"
-                        android:layout_marginTop="@dimen/_7pxv"
-                        android:layout_marginBottom="@dimen/_5pxv"
+                        android:layout_width="@dimen/_16pxh"
+                        android:layout_height="@dimen/_16pxh"
+                        android:layout_marginStart="@dimen/_8pxh"
+                        android:layout_marginTop="@dimen/_27pxv"
+                        android:layout_marginBottom="@dimen/_26pxv"
                         android:scaleType="fitXY"
-                        android:layout_gravity="center"
-                        android:src="@drawable/img_dashboard"
+                        android:src="@drawable/img_vector"
                         tools:ignore="ContentDescription"
-                        tools:src="@drawable/img_dashboard" />
+                        tools:src="@drawable/img_vector" />
                 </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.05"
+                android:src="@drawable/line22" />
+
+            <LinearLayout
+                android:id="@+id/layout_finish"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_66pxh"
+                android:layout_marginTop="@dimen/_17pxv"
+                android:layout_marginBottom="@dimen/_23pxv"
+                android:layout_weight="0.3"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/txtInterregular24white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5pxh"
+                    android:gravity="center"
+                    android:text="@string/lbl17"
+                    android:textSize="20dp"
+                    tools:text="@string/lbl17" />
+
+                <ImageView
+                    android:layout_width="@dimen/_15pxh"
+                    android:layout_height="@dimen/_15pxh"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_6pxh"
+                    android:layout_marginTop="@dimen/_7pxv"
+                    android:layout_marginBottom="@dimen/_5pxv"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_dashboard"
+                    tools:ignore="ContentDescription"
+                    tools:src="@drawable/img_dashboard" />
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>
