@@ -119,7 +119,7 @@ public class DifActivity extends AppCompatActivity {
         data.add(new Elevator("B1", "B2"));
         data.add(new Walk("우측", 100));
         data.add(new Pass());
-        data.add(new Getoff("4-1"));
+        data.add(new Getoff(4,1));
         CustomAdapter lowerAdapter = new CustomAdapter(getApplicationContext(), data);
         lowerScroll.setAdapter(lowerAdapter);
 

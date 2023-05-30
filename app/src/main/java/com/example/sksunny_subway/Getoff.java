@@ -6,14 +6,17 @@ import androidx.annotation.NonNull;
 
 public class Getoff extends ItemTest{
 
-    private String chamber;
+    private int carNo;
+    private int doorNo;
 
-    public Getoff(String chamber) {
-        this.chamber = chamber;
+    public Getoff(int carNo, int doorNo) {
+        this.carNo = carNo;
+        this.doorNo = doorNo;
     }
 
     protected Getoff(Parcel resource){
-        chamber = resource.readString();
+        carNo = resource.readInt();
+        carNo = resource.readInt();
     }
 
     @Override
@@ -23,6 +26,7 @@ public class Getoff extends ItemTest{
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeString(chamber);
+        dest.writeInt(carNo);
+        dest.writeInt(doorNo);
     }
 }

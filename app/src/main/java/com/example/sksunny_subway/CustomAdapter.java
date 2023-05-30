@@ -4,11 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -50,13 +48,29 @@ public class CustomAdapter<T> extends RecyclerView.Adapter<CustomAdapter.ViewHol
         data = dataset;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        T listItem = data.get(position);
+        if (listItem instanceof Pass) {
+            return 1;
+        }
+        return 2;
+    }
+
     // Create new views (invoked by the layout manager)
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         // Create a new view, which defines the UI of the list item
-        View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.text_row_item, viewGroup, false);
-
+        View view;
+        switch (viewType) {
+            case 1:
+                view = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.editable_item4pass, viewGroup, false);
+                break;
+            default:
+                view = LayoutInflater.from(viewGroup.getContext())
+                        .inflate(R.layout.editable_item, viewGroup, false);
+        }
         return new ViewHolder(view);
     }
 
@@ -66,6 +80,7 @@ public class CustomAdapter<T> extends RecyclerView.Adapter<CustomAdapter.ViewHol
 
         final ArrayList<String> stairs = new ArrayList<>(Arrays.asList("1층", "2층", "3층"));
         final ArrayList<String> directions = new ArrayList<>(Arrays.asList("전방", "좌측", "우측"));
+        final ArrayList<String> nums = new ArrayList<>(Arrays.asList("1","2","3","4","5","6","7","8","9","10","11"));
 
         AdapterSpinner adapterSpinner1;
         AdapterSpinner adapterSpinner2;
@@ -88,14 +103,17 @@ public class CustomAdapter<T> extends RecyclerView.Adapter<CustomAdapter.ViewHol
 
             viewHolder.textview1.setText("으로");
             viewHolder.textview2.setText("m 이동");
-        } else if (data.get(position) instanceof Pass){
+        } else if (data.get(position) instanceof Pass) {
             viewHolder.textview1.setText("개찰구 통과");
         } else {
-            adapterSpinner1 = new AdapterSpinner(this.context, directions);
+            adapterSpinner1 = new AdapterSpinner(this.context, nums);
             viewHolder.spinner1.setAdapter(adapterSpinner1);
-            viewHolder.textview2.setText("하차");
+            adapterSpinner2 = new AdapterSpinner(this.context, nums);
+            viewHolder.spinner2.setAdapter(adapterSpinner2);
+            viewHolder.textview1.setText("-");
+            viewHolder.textview2.setText("에서 하차");
         }
-}
+    }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
