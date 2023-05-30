@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         startLine_spinner = findViewById(R.id.spinner_stline);
         endLine_spinner = findViewById(R.id.spinner_arline);
 
