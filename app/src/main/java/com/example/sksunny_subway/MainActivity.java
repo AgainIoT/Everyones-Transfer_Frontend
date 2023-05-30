@@ -91,7 +91,10 @@ public class MainActivity extends AppCompatActivity {
             String str_et_search = shared_save_main.getString("et_search", "");
             Et_Search.setText(str_et_search);
             String str_start_nextst = shared_save_main.getString("start_nextst", "");
+            String str_arrive_nextst = shared_save_main.getString("arrive_nextst", "");
+
             start_nextst.setText(str_start_nextst);
+            arrive_nextst.setText(str_arrive_nextst);
             search_result = shared_save_main.getBoolean("search_result", false);
 
             lines = StringArray.getStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON);
@@ -112,17 +115,22 @@ public class MainActivity extends AppCompatActivity {
         endLine_spinner.setAdapter(adapterlines);
 
         // spinner 초기값
-        lines.clear();
-        lines.add("호선 입력");
-        adapterlines.notifyDataSetChanged();
+        //lines.clear();
+        //lines.add("호선 입력");
+        //adapterlines.notifyDataSetChanged();
+
+        if (lines.size() == 0){
+            lines.add("호선 입력");
+            adapterlines.notifyDataSetChanged();
+        }
 
 
-//        if (!startLine.isEmpty()) {
-//            startLine_spinner.setSelection(lines.indexOf(startLine));
-//        }
-//        if (!endLine.isEmpty()) {
-//            endLine_spinner.setSelection(lines.indexOf(endLine));
-//        }
+        if (!startLine.isEmpty()) {
+            startLine_spinner.setSelection(lines.indexOf(startLine));
+        }
+        if (!endLine.isEmpty()) {
+            endLine_spinner.setSelection(lines.indexOf(endLine));
+        }
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
         if (requestQueue == null) {
@@ -211,6 +219,8 @@ public class MainActivity extends AppCompatActivity {
                                     arrive_nextst.setText("");
                                     search_result = false;
                                     lines.clear();
+                                    lines.add("호선 입력");
+                                    adapterlines.notifyDataSetChanged();
 
                                     SharedPreferences shared_save_main = getSharedPreferences("save_main", MODE_PRIVATE);
                                     SharedPreferences.Editor editor_save_main = shared_save_main.edit(); //sharedPreferences를 제어할 editor를 선언
@@ -225,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
                                         editor_save_main.putString("arrive_nextst", arrive_nextst.getText().toString());
                                     }
                                     editor_save_main.apply();
-
+                                    StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
                                     finish();
                                 }
                             })
@@ -355,6 +365,7 @@ public class MainActivity extends AppCompatActivity {
                             } catch (JSONException e) {
                                 Log.e("client error", Log.getStackTraceString(e));
                             }
+
                             Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
                             intent.putExtra("lines", lines);
                             startActivity(intent);
