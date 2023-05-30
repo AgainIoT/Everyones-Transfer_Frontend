@@ -13,10 +13,29 @@ public class Getoff extends ItemTest{
         this.carNo = carNo;
         this.doorNo = doorNo;
     }
+    public Getoff(){
+        this(0,0);
+    }
 
     protected Getoff(Parcel resource){
         carNo = resource.readInt();
         carNo = resource.readInt();
+    }
+
+    public int getCarNo() {
+        return carNo;
+    }
+
+    public int getDoorNo() {
+        return doorNo;
+    }
+
+    public void setCarNo(int carNo) {
+        this.carNo = carNo;
+    }
+
+    public void setDoorNo(int doorNo) {
+        this.doorNo = doorNo;
     }
 
     @Override

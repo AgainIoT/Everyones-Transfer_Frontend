@@ -13,6 +13,10 @@ public class Elevator extends ItemTest{
         this.startFloor = startFloor;
         this.endFloor = endFloor;
     }
+    Elevator(){
+        this("출발층", "도착층");
+    }
+
 
     protected Elevator(Parcel resource) {
         startFloor = resource.readString();

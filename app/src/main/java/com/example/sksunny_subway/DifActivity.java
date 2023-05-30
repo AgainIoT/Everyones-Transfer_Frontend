@@ -46,6 +46,8 @@ public class DifActivity extends AppCompatActivity {
     ArrayList<String> lines;
 
     ArrayList<ListItem> list;
+    RecyclerView lowerScroll;
+    ArrayList<ItemTest> data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,19 +60,26 @@ public class DifActivity extends AppCompatActivity {
         Intent intent =  getIntent();
         lines =  intent.getStringArrayListExtra("lines");
         list = intent.getParcelableArrayListExtra("list");
-        ArrayList<String> names = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++){
-            names.add(list.get(i).getName());
-        }
-        Log.i("names", list.toString());
 
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
 
+        data = new ArrayList<>();
+        data.add(new Elevator("B1", "B2"));
+        data.add(new Walk("우측", 100));
+        data.add(new Pass());
+        data.add(new Getoff(4,1));
+
         maintainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("data startFloor", ((Elevator) data.get(0)).getStartFloor());
+                Log.i("data endFloor", ((Elevator) data.get(0)).getEndFloor());
+                Log.i("data direction", ((Walk) data.get(1)).getDirection());
+                Log.i("data distance", String.valueOf(((Walk) data.get(1)).getDistance()));
+                Log.i("data carNo", String.valueOf(((Getoff) data.get(3)).getCarNo()));
+                Log.i("data doorNo", String.valueOf(((Getoff) data.get(3)).getDoorNo()));
                 Context context = getApplicationContext();
                 Toast.makeText(context, "기존 내용을 유지합니다.", Toast.LENGTH_SHORT).show();
                 if (context.getSharedPreferences("done", context.MODE_PRIVATE).getBoolean("done", false)){
@@ -106,7 +115,7 @@ public class DifActivity extends AppCompatActivity {
         RecyclerView upperScroll = findViewById(R.id.upperScroll);
         ArrayList<String> originContent = StringArray.getStringArrayPref(getApplicationContext(), "originContent");
         upperScroll.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerView lowerScroll = findViewById(R.id.lowerScroll);
+        lowerScroll = findViewById(R.id.lowerScroll);
         lowerScroll.setLayoutManager(new LinearLayoutManager((this)));
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
@@ -115,11 +124,6 @@ public class DifActivity extends AppCompatActivity {
 
 //        RecyclerAdapter lowerAdapter = new RecyclerAdapter();
 //        lowerScroll.setAdapter(lowerAdapter);
-        ArrayList<ItemTest> data = new ArrayList<>();
-        data.add(new Elevator("B1", "B2"));
-        data.add(new Walk("우측", 100));
-        data.add(new Pass());
-        data.add(new Getoff(4,1));
         CustomAdapter lowerAdapter = new CustomAdapter(getApplicationContext(), data);
         lowerScroll.setAdapter(lowerAdapter);
         ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(lowerAdapter));

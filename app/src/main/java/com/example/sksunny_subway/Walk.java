@@ -12,6 +12,9 @@ public class Walk extends ItemTest{
         this.direction = direction;
         this.distance = distance;
     }
+    public Walk(){
+        this("방향", 0);
+    }
 
     protected Walk(Parcel resouce){
         direction = resouce.readString();
