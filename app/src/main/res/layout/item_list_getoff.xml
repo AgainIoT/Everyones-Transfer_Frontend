@@ -26,7 +26,6 @@
         android:id="@+id/et_getoff"
         android:layout_width="@dimen/_130pxh"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
         android:background="@drawable/rectangle_bg_gray_100_border_gray_900"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
