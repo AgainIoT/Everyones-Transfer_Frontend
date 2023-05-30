@@ -105,14 +105,6 @@ public class DifActivity extends AppCompatActivity {
         mItemTouchHelper.attachToRecyclerView(lowerScroll);
 
 
-        items = new ArrayList<>();
-        ListItem item1 = new ListItem("박진우", 0);
-        ListItem item2 = new ListItem("윤민우", 0);
-        ListItem item3 = new ListItem("이채영", 0);
-        items.add(item1);
-        items.add(item2);
-        items.add(item3);
-
         ArrayList<ListItem> list = new ArrayList<>();
         lowerAdapter.setItems(list);
 
