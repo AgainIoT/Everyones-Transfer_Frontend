@@ -49,6 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
     ArrayList<String> locations = new ArrayList<>(Arrays.asList("승강장", "대합실", "외부"));
     ArrayList<String> directions = new ArrayList<>(Arrays.asList("왼쪽", "오른쪽", "직진", "후진"));
     AdapterSpinner adapterfloors;
+    AdapterSpinner adapterlines;
     AdapterSpinner adapterlocations;
 
     //arrayList
@@ -117,24 +118,27 @@ public class RegisterActivity extends AppCompatActivity {
         btn_finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                getBlock();
+
                 SharedPreferences done = getSharedPreferences("done", MODE_PRIVATE);
                 SharedPreferences.Editor done_editor = done.edit();
                 done_editor.putBoolean("done", true);
                 done_editor.apply();
 
-                spinner_stfloors.setSelection(0);
-                spinner_stlines.setSelection(0);
-                spinner_stlocations.setSelection(0);
+                SharedPreferences shared_save_nextpath = getSharedPreferences("save_nextpath", MODE_PRIVATE);
+                SharedPreferences.Editor editor_save_nextpath = shared_save_nextpath.edit();
+                editor_save_nextpath.putString("arfloors", "B5층");
+                editor_save_nextpath.putString("arlocations", "승강장");
+                editor_save_nextpath.apply();
 
                 lines.clear();
                 lines.add("호선 입력");
-                StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
+                StringArray.setStringArrayPref(getApplicationContext(), "lines" , lines);
 
 
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
                 intent.putExtra("list", list);
                 startActivity(intent);
-                getBlock();
             }
         });
 
@@ -148,9 +152,9 @@ public class RegisterActivity extends AppCompatActivity {
         //호선 선택 Dropdown
         spinner_stlines = findViewById(R.id.spinner_stlines);
         spinner_arlines = findViewById(R.id.spinner_arlines);
-        adapterlocations = new AdapterSpinner(this, lines); //그 값을 넣어줌
-        spinner_stlines.setAdapter(adapterlocations);
-        spinner_arlines.setAdapter(adapterlocations);
+        adapterlines = new AdapterSpinner(this, lines); //그 값을 넣어줌
+        spinner_stlines.setAdapter(adapterlines);
+        spinner_arlines.setAdapter(adapterlines);
 
 
         // 장소 선택 Dropdown

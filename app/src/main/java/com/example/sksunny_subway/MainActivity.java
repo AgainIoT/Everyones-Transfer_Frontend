@@ -125,11 +125,6 @@ public class MainActivity extends AppCompatActivity {
         startLine_spinner.setAdapter(adapterlines);
         endLine_spinner.setAdapter(adapterlines);
 
-        // spinner 초기값
-        //lines.clear();
-        //lines.add("호선 입력");
-        //adapterlines.notifyDataSetChanged();
-
         if (lines.size() == 0){
             lines.add("호선 입력");
             adapterlines.notifyDataSetChanged();
@@ -246,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
                                         editor_save_main.putString("arrive_nextst", arrive_nextst.getText().toString());
                                     }
                                     editor_save_main.apply();
-                                    StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
+                                    StringArray.setStringArrayPref(getApplicationContext(), "lines", lines);
                                     finish();
                                 }
                             })
