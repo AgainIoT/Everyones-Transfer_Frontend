@@ -36,12 +36,13 @@
         android:id="@+id/spinner_whatfloor1"
         android:layout_width="0dp"
         android:layout_height="40dp"
+        android:layout_marginStart="20dp"
         android:layout_weight="0.33"
-        android:layout_marginStart="41dp"
+        android:background="@drawable/layer_list_bg_gray_200_radius_10"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv2"
         app:layout_constraintStart_toEndOf="@id/imageView"
-        android:background="@drawable/layer_list_bg_gray_200_radius_10" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv2"
@@ -50,6 +51,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
+        app:layout_constraintEnd_toStartOf="@+id/spinner_whatfloor2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/spinner_whatfloor1"
         app:layout_constraintTop_toTopOf="parent" />
@@ -60,6 +62,7 @@
         android:layout_height="40dp"
         android:layout_weight="0.33"
         android:layout_marginStart="15dp"
+        app:layout_constraintEnd_toStartOf="@+id/tv3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/tv2"
@@ -67,24 +70,15 @@
 
     <TextView
         android:id="@+id/tv3"
-        android:text="으로 이동"
-        android:textSize="15dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/spinner_whatfloor2"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="@dimen/_15pxv"
-        android:layout_height="@dimen/_15pxv"
-        android:layout_marginEnd="10dp"
-        android:src="@drawable/img_close"
+        android:layout_marginEnd="20dp"
+        android:text="으로 이동"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spinner_whatfloor2"
         app:layout_constraintTop_toTopOf="parent" />
 
 
