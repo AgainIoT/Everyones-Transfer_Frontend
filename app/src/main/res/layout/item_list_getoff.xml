@@ -30,8 +30,10 @@
         android:background="@drawable/rectangle_bg_gray_100_border_gray_900"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="15dp"
         android:layout_marginStart="60dp"
         android:singleLine="true"
+        android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/imageView"/>
 
@@ -40,7 +42,8 @@
         android:layout_width="0dp"
         android:text="에서 하차"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="6dp"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/et_getoff"
         app:layout_constraintTop_toTopOf="parent" />

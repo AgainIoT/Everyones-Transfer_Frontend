@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -58,7 +59,6 @@ public class MainActivity extends AppCompatActivity {
     final String API_KEY = BuildConfig.API_KEY;
 
     ArrayList<String> lines = new ArrayList<>(); // train lines passing through the station
-    private static final String SETTINGS_PLAYER_JSON = "settings_item_json";
     AdapterSpinner adapterlines;
 
     EditText Et_Search;
@@ -81,7 +81,18 @@ public class MainActivity extends AppCompatActivity {
 
         Button register_btn = findViewById(R.id.register_btn);
         ImageView Image_Search = findViewById(R.id.Image_Search);
+        // 검색창에서 키보드 엔터 치면 검색
         Et_Search = findViewById(R.id.Et_Search);
+        Et_Search.setOnKeyListener((v, keyCode, event) -> {
+
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(Et_Search.getWindowToken(), 0);    //hide keyboard
+                searchStation();
+                return true;
+            }
+            return false;
+        });
 
         start_nextst = findViewById(R.id.start_nextst);
         arrive_nextst = findViewById(R.id.arrive_nextst);
@@ -97,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             arrive_nextst.setText(str_arrive_nextst);
             search_result = shared_save_main.getBoolean("search_result", false);
 
-            lines = StringArray.getStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON);
+            lines = StringArray.getStringArrayPref(getApplicationContext(), "lines");
 
             startLine = shared_save_main.getString("startLine", "");
             endLine = shared_save_main.getString("endLine", "");
@@ -140,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         Image_Search.setOnClickListener(view -> {
             Et_Search.clearFocus();
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-            getStationList();
+            searchStation();
         });
 
 
@@ -166,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
         editor_save_main.putBoolean("search_result", search_result);
         editor_save_main.apply();
 
-        StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
+        StringArray.setStringArrayPref(getApplicationContext(), "lines", lines);
     }
 
     private long backpressedTime = 0;
@@ -205,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
                                     editor_save_main.putBoolean("search_result", search_result);
                                     editor_save_main.apply();
 
-                                    StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
+                                    StringArray.setStringArrayPref(getApplicationContext(), "lines", lines);
                                     moveTaskToBack(true);
                                     finish();
                                 }
@@ -245,6 +256,13 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    public void searchStation(){
+        search_result = true;
+        start_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
+        arrive_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
+        getStationList();
+    }
+
 
     public void getStationList() {
         try {
@@ -278,9 +296,9 @@ public class MainActivity extends AppCompatActivity {
                                 if (adapterlines != null) {
                                     adapterlines.notifyDataSetChanged();
                                 }
-                                search_result = true;
-                                start_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
-                                arrive_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
+//                                search_result = true;
+//                                start_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
+//                                arrive_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
 
                                 // get cookie from the received headers
                                 String recieved_cookie = headers.getString("Set-Cookie");
