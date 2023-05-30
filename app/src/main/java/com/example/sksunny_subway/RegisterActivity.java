@@ -45,9 +45,6 @@ import java.util.Map;
 import android.widget.Spinner;
 
 public class RegisterActivity extends AppCompatActivity {
-
-    private static final String SETTINGS_PLAYER_JSON = "settings_item_json";
-
     ArrayList<String> floors = new ArrayList<>(Arrays.asList("B5층", "B4층", "B3층", "B2층", "B1층", "1층", "2층", "3층", "4층", "5층"));
     ArrayList<String> locations = new ArrayList<>(Arrays.asList("승강장", "대합실", "외부"));
     ArrayList<String> directions = new ArrayList<>(Arrays.asList("왼쪽", "오른쪽", "직진", "후진"));
@@ -80,7 +77,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         lines = intent.getStringArrayListExtra("lines");
-        StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
+        StringArray.setStringArrayPref(getApplicationContext(), "lines", lines);
 
         LinearLayout btn_next = findViewById(R.id.layout_next);
         LinearLayout btn_finish = findViewById(R.id.layout_finish);
@@ -224,7 +221,7 @@ public class RegisterActivity extends AppCompatActivity {
         arlines = shared_save_nextpath.getString("arlines", "");
         arlocations = shared_save_nextpath.getString("arlocations", "");
 
-        lines = StringArray.getStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON);
+        lines = StringArray.getStringArrayPref(getApplicationContext(), "lines");
 
         spinner_stlines = findViewById(R.id.spinner_stlines);
         spinner_arlines = findViewById(R.id.spinner_arlines);
