@@ -303,7 +303,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 for (int i = 0; i < jsonarr.length(); i++) {
                                     arr.add(jsonarr.getString(i));
                                 }
-                                arr.add("a");
+                                arr.add("B1층에서 B2층으로 이동");
+                                arr.add("우측으로 100m 이동");
                                 StringArray.setStringArrayPref(getApplicationContext(), "originContent", arr);
                                 Log.i("originContent", originContent.toString());
 

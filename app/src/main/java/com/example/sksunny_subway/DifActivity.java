@@ -112,6 +112,7 @@ public class DifActivity extends AppCompatActivity {
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
         StringRecyclerViewAdapter upperAdapter = new StringRecyclerViewAdapter(getApplicationContext(), originContent);
         upperScroll.setAdapter(upperAdapter);
+
         RecyclerAdapter lowerAdapter = new RecyclerAdapter();
         lowerScroll.setAdapter(lowerAdapter);
 
