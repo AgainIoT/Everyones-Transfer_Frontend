@@ -46,6 +46,8 @@ public class DifActivity extends AppCompatActivity {
     ArrayList<ListItem> items;
     ArrayList<String> lines;
 
+    ArrayList<ListItem> list;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +58,12 @@ public class DifActivity extends AppCompatActivity {
 
         Intent intent =  getIntent();
         lines =  intent.getStringArrayListExtra("lines");
+        list = intent.getParcelableArrayListExtra("list");
+        ArrayList<String> names = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++){
+            names.add(list.get(i).getName());
+        }
+        Log.i("names", list.toString());
 
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -109,8 +117,6 @@ public class DifActivity extends AppCompatActivity {
         ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(lowerAdapter));
         mItemTouchHelper.attachToRecyclerView(lowerScroll);
 
-
-        ArrayList<ListItem> list = new ArrayList<>();
         lowerAdapter.setItems(list);
 
         //radiogroup 추가

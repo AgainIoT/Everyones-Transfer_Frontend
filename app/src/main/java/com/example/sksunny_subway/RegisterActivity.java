@@ -111,6 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
                 done_editor.putBoolean("done", false);
                 done_editor.apply();
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
+                intent.putParcelableArrayListExtra("list", list);
                 intent.putExtra("lines", lines);
                 startActivity(intent);
             }
@@ -124,6 +125,7 @@ public class RegisterActivity extends AppCompatActivity {
                 done_editor.putBoolean("done", true);
                 done_editor.apply();
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
+                intent.putExtra("list", list);
                 startActivity(intent);
                 getBlock();
             }
