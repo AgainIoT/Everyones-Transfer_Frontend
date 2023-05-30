@@ -257,6 +257,29 @@ public class MainActivity extends AppCompatActivity {
         start_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
         arrive_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
         getStationList();
+
+//        JSONObject jsonParams = new JSONObject();
+//        try{
+//            jsonParams.put("stationName", Et_Search.getText().toString());
+//            JSONObject response =  new Request2API().getStationList(getApplicationContext(), requestQueue, jsonParams);
+//            Log.i("response", response.toString());
+//            // insert every lines into the 'lines' array
+//            ArrayList<String> lineArr = new ArrayList<>();
+//            JSONArray jsonarr = response.getJSONArray("Line");
+//            for (int i = 0; i < jsonarr.length(); i++) {
+//                lineArr.add(jsonarr.getString(i));
+//            }
+//            start_nextst.setInputType(InputType.TYPE_NULL);
+//            arrive_nextst.setInputType(InputType.TYPE_NULL);
+//            search_result = false;
+//            lines.clear();
+//            lines.addAll(lineArr);
+//            if (adapterlines != null) {
+//                adapterlines.notifyDataSetChanged();
+//            }
+//        } catch (JSONException e){
+//            Log.e("JSONException", e.toString());
+//        }
     }
 
     public void register() {
@@ -300,9 +323,6 @@ public class MainActivity extends AppCompatActivity {
                                 if (adapterlines != null) {
                                     adapterlines.notifyDataSetChanged();
                                 }
-//                                search_result = true;
-//                                start_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
-//                                arrive_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
 
                                 // get cookie from the received headers
                                 String recieved_cookie = headers.getString("Set-Cookie");
