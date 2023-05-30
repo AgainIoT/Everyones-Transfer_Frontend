@@ -33,13 +33,13 @@
     <Spinner
         android:id="@+id/spinner_direction"
         android:layout_width="0dp"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:layout_weight="0.33"
         android:layout_marginStart="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/imageView"
-        android:background="@drawable/layer_list_bg_gray_200_radius_10" />
+        android:background="@drawable/layer_list_bg_white_200_rectangle" />
 
     <TextView
         android:id="@+id/tv2"

@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.view.View;
 import android.widget.AdapterView;
@@ -68,11 +69,15 @@ public class RegisterActivity extends AppCompatActivity {
     Spinner spinner_stlocations;
     Spinner spinner_arlocations;
 
+    Spinner spinner_whatfloor1;
+
+    Spinner spinner_whatfloor2;
+
     String arfloors;
     String arlines;
     String arlocations;
-
-
+    TextView textView;
+    String[] items = {"B5층", "B4층", "B3층"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,6 +157,29 @@ public class RegisterActivity extends AppCompatActivity {
         adapterlocations = new AdapterSpinner(this, locations); //그 값을 넣어줌
         spinner_stlocations.setAdapter(adapterlocations);
         spinner_arlocations.setAdapter(adapterlocations);
+
+
+        // item_list_elevator 층 선택 Dropdown
+        LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.item_list_elevator, null);
+        spinner_whatfloor1 = view.findViewById(R.id.spinner_whatfloor1);
+        spinner_whatfloor2 = view.findViewById(R.id.spinner_whatfloor2);
+        adapterfloors = new AdapterSpinner(this, floors);
+        spinner_whatfloor1.setAdapter(adapterfloors);
+        spinner_whatfloor2.setAdapter(adapterfloors);
+
+        spinner_whatfloor1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                textView.setText(items[position]);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                textView.setText("");
+            }
+        });
+
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         RecyclerView upperScroll = findViewById(R.id.scroll);
