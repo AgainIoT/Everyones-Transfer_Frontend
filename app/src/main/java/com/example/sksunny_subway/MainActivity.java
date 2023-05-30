@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.text.InputType;
@@ -128,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         startLine_spinner.setAdapter(adapterlines);
         endLine_spinner.setAdapter(adapterlines);
 
-        if (lines.size() == 0){
+        if (lines.size() == 0) {
             lines.add("호선 입력");
             adapterlines.notifyDataSetChanged();
         }
@@ -154,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         register_btn.setOnClickListener(view -> {
-            getRoot();
+            register();
         });
     }
 
@@ -254,11 +255,42 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void searchStation(){
+    public void searchStation() {
         search_result = true;
         start_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
         arrive_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
         getStationList();
+
+//        JSONObject jsonParams = new JSONObject();
+//        try{
+//            jsonParams.put("stationName", Et_Search.getText().toString());
+//            JSONObject response =  new Request2API().getStationList(getApplicationContext(), requestQueue, jsonParams);
+//            Log.i("response", response.toString());
+//            // insert every lines into the 'lines' array
+//            ArrayList<String> lineArr = new ArrayList<>();
+//            JSONArray jsonarr = response.getJSONArray("Line");
+//            for (int i = 0; i < jsonarr.length(); i++) {
+//                lineArr.add(jsonarr.getString(i));
+//            }
+//            start_nextst.setInputType(InputType.TYPE_NULL);
+//            arrive_nextst.setInputType(InputType.TYPE_NULL);
+//            search_result = false;
+//            lines.clear();
+//            lines.addAll(lineArr);
+//            if (adapterlines != null) {
+//                adapterlines.notifyDataSetChanged();
+//            }
+//        } catch (JSONException e){
+//            Log.e("JSONException", e.toString());
+//        }
+    }
+
+    public void register() {
+        if (TextUtils.isEmpty(start_nextst.getText().toString()) && TextUtils.isEmpty(start_nextst.getText().toString())) {
+            Toast.makeText(getApplicationContext(), "승하차 한 역의 다음 역을 입력해주세요", Toast.LENGTH_LONG).show();
+        } else {
+            getRoot();
+        }
     }
 
 
@@ -294,9 +326,6 @@ public class MainActivity extends AppCompatActivity {
                                 if (adapterlines != null) {
                                     adapterlines.notifyDataSetChanged();
                                 }
-//                                search_result = true;
-//                                start_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
-//                                arrive_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
 
                                 // get cookie from the received headers
                                 String recieved_cookie = headers.getString("Set-Cookie");
