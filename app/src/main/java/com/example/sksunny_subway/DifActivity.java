@@ -44,6 +44,7 @@ import java.util.Map;
 public class DifActivity extends AppCompatActivity {
     static RequestQueue requestQueue;
     ArrayList<ListItem> items;
+    ArrayList<String> lines;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,9 @@ public class DifActivity extends AppCompatActivity {
 
         AppCompatButton maintainBtn = findViewById(R.id.maintainBtn);
         AppCompatButton completeBtn = findViewById(R.id.completeBtn);
+
+        Intent intent =  getIntent();
+        lines =  intent.getStringArrayListExtra("lines");
 
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -67,6 +71,7 @@ public class DifActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(context, RegisterActivity.class);
+                    intent.putExtra("lines", lines);
                     startActivity(intent);
                 }
             }
@@ -83,6 +88,7 @@ public class DifActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(context, RegisterActivity.class);
+                    intent.putExtra("lines", lines);
                     startActivity(intent);
                 }
             }
@@ -92,8 +98,7 @@ public class DifActivity extends AppCompatActivity {
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         TextView upperScroll = findViewById(R.id.upperScroll);
         ArrayList<String> originContent = StringArray.getStringArrayPref(getApplicationContext(), "originContent");
-        upperScroll.setText(originContent.get(0));
-        Log.i("sadfsadfasdf", originContent.toString());
+        upperScroll.setText(originContent.toString());
         RecyclerView lowerScroll = findViewById(R.id.lowerScroll);
         lowerScroll.setLayoutManager(new LinearLayoutManager((this)));
 
