@@ -5,19 +5,16 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -34,7 +31,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -44,8 +40,7 @@ import java.util.Map;
 public class DifActivity extends AppCompatActivity {
     static RequestQueue requestQueue;
     ArrayList<String> lines;
-
-    ArrayList<ListItem> list;
+    ArrayList<ItemTest> list;
     RecyclerView lowerScroll;
     ArrayList<ItemTest> data;
 
@@ -57,33 +52,29 @@ public class DifActivity extends AppCompatActivity {
         AppCompatButton maintainBtn = findViewById(R.id.maintainBtn);
         AppCompatButton completeBtn = findViewById(R.id.completeBtn);
 
-        Intent intent =  getIntent();
-        lines =  intent.getStringArrayListExtra("lines");
-        list = intent.getParcelableArrayListExtra("list");
+        Intent intent = getIntent();
+        ArrayList<ItemTest> myList = intent.getParcelableArrayListExtra("myList");
+        Log.i("myList1", String.valueOf(((Elevator) myList.get(0)).getStartFloor()));;
+        Log.i("myList2", ((Walk) myList.get(1)).getDirection());
+        Log.i("myList3", String.valueOf(((Getoff) myList.get(3)).getCarNo()));;
 
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
 
-        data = new ArrayList<>();
-        data.add(new Elevator("B1", "B2"));
-        data.add(new Walk("우측", 100));
-        data.add(new Pass());
-        data.add(new Getoff(4,1));
-
         maintainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("data startFloor", ((Elevator) data.get(0)).getStartFloor());
-                Log.i("data endFloor", ((Elevator) data.get(0)).getEndFloor());
-                Log.i("data direction", ((Walk) data.get(1)).getDirection());
-                Log.i("data distance", String.valueOf(((Walk) data.get(1)).getDistance()));
-                Log.i("data carNo", String.valueOf(((Getoff) data.get(3)).getCarNo()));
-                Log.i("data doorNo", String.valueOf(((Getoff) data.get(3)).getDoorNo()));
+//                Log.i("data startFloor", ((Elevator) list.get(0)).getStartFloor());
+//                Log.i("data endFloor", ((Elevator) list.get(0)).getEndFloor());
+                Log.i("data direction", ((Walk) list.get(1)).getDirection());
+                Log.i("data distance", String.valueOf(((Walk) list.get(1)).getDistance()));
+                Log.i("data carNo", String.valueOf(((Getoff) list.get(3)).getCarNo()));
+                Log.i("data doorNo", String.valueOf(((Getoff) list.get(3)).getDoorNo()));
                 Context context = getApplicationContext();
                 Toast.makeText(context, "기존 내용을 유지합니다.", Toast.LENGTH_SHORT).show();
-                if (context.getSharedPreferences("done", context.MODE_PRIVATE).getBoolean("done", false)){
-                    Intent intent  = new Intent(context, MainActivity.class);
+                if (context.getSharedPreferences("done", context.MODE_PRIVATE).getBoolean("done", false)) {
+                    Intent intent = new Intent(context, MainActivity.class);
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(context, RegisterActivity.class);
@@ -99,7 +90,7 @@ public class DifActivity extends AppCompatActivity {
                 Context context = getApplicationContext();
                 patchBlock();
                 Toast.makeText(context, "수정된 내용이 저장되었습니다.", Toast.LENGTH_SHORT).show();
-                if (context.getSharedPreferences("done", context.MODE_PRIVATE).getBoolean("done", false)){
+                if (context.getSharedPreferences("done", context.MODE_PRIVATE).getBoolean("done", false)) {
                     Intent intent = new Intent(context, MainActivity.class);
                     startActivity(intent);
                 } else {
@@ -142,7 +133,7 @@ public class DifActivity extends AppCompatActivity {
         elevator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("elevator",0);
+                ItemTest item = new Elevator();
                 list.add(item);
                 lowerAdapter.notifyItemInserted(list.size());
             }
@@ -151,7 +142,7 @@ public class DifActivity extends AppCompatActivity {
         walk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("walk",0);
+                ItemTest item = new Walk();
                 list.add(item);
                 lowerAdapter.notifyItemInserted(list.size());
             }
@@ -162,7 +153,7 @@ public class DifActivity extends AppCompatActivity {
         pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("pass",0);
+                ItemTest item = new Pass();
                 list.add(item);
                 lowerAdapter.notifyItemInserted(list.size());
             }
@@ -171,7 +162,7 @@ public class DifActivity extends AppCompatActivity {
         getOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("getOff",0);
+                ItemTest item = new Getoff();
                 list.add(item);
                 lowerAdapter.notifyItemInserted(list.size());
             }
@@ -188,14 +179,24 @@ public class DifActivity extends AppCompatActivity {
         // request body
         JSONObject jsonParams = new JSONObject();
         ArrayList<String> arr = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++){
-            arr.add(list.get(i).getName());
+
+        for (int i = 0; i < list.size(); i++) {
+            ItemTest one = list.get(i);
+            if (one instanceof Elevator) {
+                arr.add(((Elevator) one).getStartFloor() + "층 에서" + ((Elevator) one).getEndFloor() + "층으로 이동");
+            } else if (one instanceof Walk) {
+                arr.add(((Walk) one).getDirection() + "으로" + String.valueOf(((Walk) one).getDistance()) + "m 이동");
+            } else if (one instanceof Pass) {
+                arr.add("개찰구로 통과");
+            } else if (one instanceof Getoff) {
+                arr.add(String.valueOf(((Getoff) one).getCarNo()) + " - " + String.valueOf((((Getoff) one).getDoorNo())) + "에서 하차");
+            }
         }
 
         JSONArray jsonArray = new JSONArray(arr);
-        try{
+        try {
             jsonParams.put("jsonArray", jsonArray);
-        } catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         Log.i("request body", jsonParams.toString());

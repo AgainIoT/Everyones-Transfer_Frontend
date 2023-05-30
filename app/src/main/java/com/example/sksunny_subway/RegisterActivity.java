@@ -107,10 +107,15 @@ public class RegisterActivity extends AppCompatActivity {
                 SharedPreferences.Editor done_editor = done.edit();
                 done_editor.putBoolean("done", false);
                 done_editor.apply();
-                Intent intent = new Intent(getApplicationContext(), DifActivity.class);
-                intent.putParcelableArrayListExtra("list", list);
-                intent.putExtra("lines", lines);
-                startActivity(intent);
+                Intent intent2 = new Intent(getApplicationContext(), DifActivity.class);
+//                ParcelableArrayList parcelableArrayList = new ParcelableArrayList(list);
+                ArrayList<ItemTest> myList = new ArrayList<>();
+                myList.add(new Elevator());
+                myList.add(new Walk());
+                myList.add(new Pass());
+                myList.add(new Getoff());
+                intent2.putParcelableArrayListExtra("myList", myList);
+                startActivity(intent2);
             }
         });
 
@@ -134,9 +139,9 @@ public class RegisterActivity extends AppCompatActivity {
                 lines.add("호선 입력");
                 StringArray.setStringArrayPref(getApplicationContext(), "lines" , lines);
 
-
+                ParcelableArrayList parcelableArrayList = new ParcelableArrayList(list);
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
-                intent.putExtra("list", list);
+                intent.putExtra("list", parcelableArrayList);
                 startActivity(intent);
             }
         });

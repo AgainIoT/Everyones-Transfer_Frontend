@@ -1,24 +1,26 @@
 package com.example.sksunny_subway;
 
 import android.os.Parcel;
+import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
 public class Elevator extends ItemTest{
-
     private String startFloor;
     private String endFloor;
 
-    Elevator(String startFloor, String endFloor){
+    Elevator(String abstractClassMemberString, String startFloor, String endFloor){
+        super(abstractClassMemberString);
         this.startFloor = startFloor;
         this.endFloor = endFloor;
     }
     Elevator(){
-        this("출발층", "도착층");
+        this("1","출발층", "도착층");
     }
 
 
     protected Elevator(Parcel resource) {
+        super(resource);
         startFloor = resource.readString();
         endFloor = resource.readString();
     }
@@ -46,7 +48,21 @@ public class Elevator extends ItemTest{
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeInt(CLASS_TYPE_ONE);
+        super.writeToParcel(dest, flags);
         dest.writeString(startFloor);
         dest.writeString(endFloor);
     }
+
+//    public static final Parcelable.Creator<Elevator> CREATOR = new Parcelable.Creator<Elevator>() {
+//        @Override
+//        public Elevator createFromParcel(Parcel in) {
+//            return new Elevator(in);
+//        }
+//
+//        @Override
+//        public Elevator[] newArray(int size) {
+//            return new Elevator[size];
+//        }
+//    };
 }
