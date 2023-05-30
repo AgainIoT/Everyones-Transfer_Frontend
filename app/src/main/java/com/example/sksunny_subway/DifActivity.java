@@ -113,13 +113,20 @@ public class DifActivity extends AppCompatActivity {
         StringRecyclerViewAdapter upperAdapter = new StringRecyclerViewAdapter(getApplicationContext(), originContent);
         upperScroll.setAdapter(upperAdapter);
 
-        RecyclerAdapter lowerAdapter = new RecyclerAdapter();
+//        RecyclerAdapter lowerAdapter = new RecyclerAdapter();
+//        lowerScroll.setAdapter(lowerAdapter);
+        ArrayList<ItemTest> data = new ArrayList<>();
+        data.add(new Elevator("B1", "B2"));
+        data.add(new Walk("우측", 100));
+        data.add(new Pass());
+        data.add(new Getoff("4-1"));
+        CustomAdapter lowerAdapter = new CustomAdapter(getApplicationContext(), data);
         lowerScroll.setAdapter(lowerAdapter);
 
-        ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(lowerAdapter));
-        mItemTouchHelper.attachToRecyclerView(lowerScroll);
-
-        lowerAdapter.setItems(list);
+//        ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(lowerAdapter));
+//        mItemTouchHelper.attachToRecyclerView(lowerScroll);
+//
+//        lowerAdapter.setItems(list);
 
         //radiogroup 추가
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.navbar);
