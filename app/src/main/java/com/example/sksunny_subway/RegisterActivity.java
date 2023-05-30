@@ -121,6 +121,16 @@ public class RegisterActivity extends AppCompatActivity {
                 SharedPreferences.Editor done_editor = done.edit();
                 done_editor.putBoolean("done", true);
                 done_editor.apply();
+
+                spinner_stfloors.setSelection(0);
+                spinner_stlines.setSelection(0);
+                spinner_stlocations.setSelection(0);
+
+                lines.clear();
+                lines.add("호선 입력");
+                StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
+
+
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
                 intent.putExtra("list", list);
                 startActivity(intent);
