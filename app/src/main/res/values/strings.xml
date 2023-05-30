@@ -23,12 +23,5 @@
     <string name="lbl13">이동</string>
     <string name="lbl14">개찰구</string>
     <string name="lbl15">하차</string>
-    <string-array name="stations">
-        <item>대충 아무 역 1</item>
-        <item>대충 아무 역 2</item>
-        <item>대충 아무 역 3</item>
-        <item>대충 아무 역 4</item>
-        <item>대충 아무 역 5</item>
-        <item>대충 아무 역 6</item>
-    </string-array>
+
 </resources>

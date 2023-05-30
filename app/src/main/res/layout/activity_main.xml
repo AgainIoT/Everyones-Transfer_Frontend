@@ -69,11 +69,11 @@
             <ImageView
                 android:id="@+id/Image_Search"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/_17pxh"
-                android:layout_marginTop="17dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="13dp"
                 android:layout_marginEnd="@dimen/_18pxh"
                 android:layout_marginBottom="@dimen/_16pxv"
-                android:layout_weight="0.1"
+                android:layout_weight="0.15"
                 android:scaleType="fitXY"
                 android:src="@drawable/manifier" />
 

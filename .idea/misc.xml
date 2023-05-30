@@ -18,6 +18,11 @@
         <entry key="..\:/Users/kimji/AndroidStudioProjects/sksunny_subway/app/src/main/res/font/noto_sans_kr.xml" value="0.1" />
         <entry key="..\:/Users/kimji/AndroidStudioProjects/sksunny_subway/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/kimji/AndroidStudioProjects/sksunny_subway/app/src/main/res/layout/spinner_item.xml" value="0.1" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2345" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/blue_leftbottom_rectangle.xml" value="0.2345" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/blue_rectangle.xml" value="0.2345" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/blue_rightbottom_rectangle.xml" value="0.2345" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2345" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/img_arrowdown.xml" value="0.161" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/img_arrowdown_black_900.xml" value="0.161" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/img_arrowdown_black_900_5x8.xml" value="0.1" />
@@ -30,6 +35,7 @@
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/layer_list_bg_white_a700_radius_10.xml" value="0.1" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/layer_list_bg_white_a700_radius_10_5x8.xml" value="0.1" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/rectangle_bg_gray_100_border_gray_500.xml" value="0.203" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/rectangle_bg_gray_100_border_gray_900.xml" value="0.2345" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/rectangle_bg_gray_200_radius_10.xml" value="0.1" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/rectangle_bg_indigo_700.xml" value="0.1" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/rectangle_bg_indigo_700_4c_radius_10.xml" value="0.1" />
@@ -44,16 +50,21 @@
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/rectangle_dhi_0.xml" value="0.1" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/rectangle_radius_10.xml" value="0.1" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/reg_img_arrowdown_black_900.xml" value="0.1" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/selector_prim_button.xml" value="0.2345" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/selector_radio_button.xml" value="0.1215" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/selector_radio_text.xml" value="0.185" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/selector_rect_button.xml" value="0.2345" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/white_leftbottom_rectangle.xml" value="0.2345" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/white_lefttop_rectangle.xml" value="0.186" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/drawable/white_rectangle.xml" value="0.2345" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/font/inter.xml" value="0.1" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/font/noto_sans_kr.xml" value="0.21197916666666666" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/activity_dif.xml" value="0.2" />
-        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/activity_main.xml" value="0.536" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/activity_loading.xml" value="0.2203125" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/activity_main.xml" value="0.38193018480492813" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/activity_register.xml" value="0.2" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/item_list.xml" value="0.1" />
-        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/item_list_elevator.xml" value="0.22395833333333334" />
+        <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/item_list_elevator.xml" value="0.1" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/item_list_getoff.xml" value="0.22395833333333334" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/item_list_pass.xml" value="0.22395833333333334" />
         <entry key="..\:/Users/kimji/OneDrive/GitHub/Sk-Sunny/app/src/main/res/layout/item_list_walk.xml" value="0.21296296296296297" />
