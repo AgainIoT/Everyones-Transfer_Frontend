@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.text.InputType;
@@ -125,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         startLine_spinner.setAdapter(adapterlines);
         endLine_spinner.setAdapter(adapterlines);
 
-        if (lines.size() == 0){
+        if (lines.size() == 0) {
             lines.add("호선 입력");
             adapterlines.notifyDataSetChanged();
         }
@@ -151,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         register_btn.setOnClickListener(view -> {
-            getRoot();
+            register();
         });
     }
 
@@ -251,11 +252,19 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    public void searchStation(){
+    public void searchStation() {
         search_result = true;
         start_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
         arrive_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
         getStationList();
+    }
+
+    public void register() {
+        if (TextUtils.isEmpty(start_nextst.getText().toString()) && TextUtils.isEmpty(start_nextst.getText().toString())) {
+            Toast.makeText(getApplicationContext(), "승하차 한 역의 다음 역을 입력해주세요", Toast.LENGTH_LONG).show();
+        } else {
+            getRoot();
+        }
     }
 
 
