@@ -43,7 +43,6 @@ import java.util.Map;
 
 public class DifActivity extends AppCompatActivity {
     static RequestQueue requestQueue;
-    ArrayList<ListItem> items;
     ArrayList<String> lines;
 
     ArrayList<ListItem> list;
@@ -104,13 +103,15 @@ public class DifActivity extends AppCompatActivity {
 
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
-        TextView upperScroll = findViewById(R.id.upperScroll);
+        RecyclerView upperScroll = findViewById(R.id.upperScroll);
         ArrayList<String> originContent = StringArray.getStringArrayPref(getApplicationContext(), "originContent");
-        upperScroll.setText(originContent.toString());
+        upperScroll.setLayoutManager(new LinearLayoutManager(this));
         RecyclerView lowerScroll = findViewById(R.id.lowerScroll);
         lowerScroll.setLayoutManager(new LinearLayoutManager((this)));
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
+        StringRecyclerViewAdapter upperAdapter = new StringRecyclerViewAdapter(getApplicationContext(), originContent);
+        upperScroll.setAdapter(upperAdapter);
         RecyclerAdapter lowerAdapter = new RecyclerAdapter();
         lowerScroll.setAdapter(lowerAdapter);
 

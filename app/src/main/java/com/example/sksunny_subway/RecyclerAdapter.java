@@ -3,6 +3,7 @@ package com.example.sksunny_subway;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,9 +36,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView pathname;
-
         ViewHolder(View itemView) {
             super(itemView);
 
@@ -48,6 +48,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             pathname.setText(item.getName());
             item.setNumber(position);
         }
+
+//        public TextView getTextview(){
+//            return textView;
+//        }
     }
 
     @Override
@@ -96,6 +100,19 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull RecyclerAdapter.ViewHolder holder, int position) {
         holder.onBind(items.get(position),position);
+//        switch (getItemViewType(position)){
+//            case 1:
+//                holder.getTextview().setText("elevator");
+//                break;
+//            case 2:
+//                holder.getTextview().setText("walk");
+//                break;
+//            case 3:
+//                holder.getTextview().setText("pass");
+//                break;
+//            case 4:
+//                break;
+//        }
     }
 
     // getItemCount() - 전체 데이터 갯수 리턴.
