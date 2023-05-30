@@ -111,6 +111,7 @@ public class RegisterActivity extends AppCompatActivity {
                 done_editor.putBoolean("done", false);
                 done_editor.apply();
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
+                intent.putExtra("lines", lines);
                 startActivity(intent);
             }
         });
