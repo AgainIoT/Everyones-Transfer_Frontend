@@ -70,7 +70,6 @@ public class RegisterActivity extends AppCompatActivity {
     String arlines;
     String arlocations;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -24,4 +24,18 @@
     <string name="lbl14">개찰구</string>
     <string name="lbl15">하차</string>
 
+    <string name="floor">Floor</string>
+    <string-array name="spinner_array">
+        <item>B5층</item>
+        <item>B4층</item>
+        <item>B3층</item>
+        <item>B2층</item>
+        <item>B1층</item>
+        <item>1층</item>
+        <item>2층</item>
+        <item>3층</item>
+        <item>4층</item>
+        <item>5층</item>
+    </string-array>
+
 </resources>
