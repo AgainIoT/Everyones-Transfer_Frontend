@@ -176,8 +176,8 @@ public class DifActivity extends AppCompatActivity {
         // request body
         JSONObject jsonParams = new JSONObject();
         ArrayList<String> arr = new ArrayList<>();
-        for (int i = 0; i < items.size(); i++){
-            arr.add(items.get(i).getName());
+        for (int i = 0; i < list.size(); i++){
+            arr.add(list.get(i).getName());
         }
 
         JSONArray jsonArray = new JSONArray(arr);
