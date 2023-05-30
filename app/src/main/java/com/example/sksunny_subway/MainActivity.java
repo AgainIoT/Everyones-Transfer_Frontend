@@ -3,15 +3,21 @@ package com.example.sksunny_subway;
 import static androidx.core.content.PackageManagerCompat.LOG_TAG;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.ArrayMap;
 import android.util.Log;
 import android.text.InputType;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -51,7 +57,8 @@ import java.util.Map;
 public class MainActivity extends AppCompatActivity {
     final String API_KEY = BuildConfig.API_KEY;
 
-    ArrayList<String> lines = new ArrayList<>();    // train lines passing through the station
+    ArrayList<String> lines = new ArrayList<>(); // train lines passing through the station
+    private static final String SETTINGS_PLAYER_JSON = "settings_item_json";
     AdapterSpinner adapterlines;
 
     EditText Et_Search;
@@ -60,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
     Spinner startLine_spinner;
     Spinner endLine_spinner;
     static RequestQueue requestQueue;
+    Boolean search_result = false;
+    String startLine;
+    String endLine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,23 +78,52 @@ public class MainActivity extends AppCompatActivity {
 
         startLine_spinner = findViewById(R.id.spinner_stline);
         endLine_spinner = findViewById(R.id.spinner_arline);
-        adapterlines = new AdapterSpinner(this, lines); //그 값을 넣어줌
-        startLine_spinner.setAdapter(adapterlines);
-        endLine_spinner.setAdapter(adapterlines);
-
-        lines.add("호선 입력");
 
         Button register_btn = findViewById(R.id.register_btn);
         ImageView Image_Search = findViewById(R.id.Image_Search);
         Et_Search = findViewById(R.id.Et_Search);
-        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
         start_nextst = findViewById(R.id.start_nextst);
         arrive_nextst = findViewById(R.id.arrive_nextst);
-        start_nextst.setInputType(InputType.TYPE_NULL);
-        arrive_nextst.setInputType(InputType.TYPE_NULL);
 
-        SharedPreferences cookie = getSharedPreferences("cookie", Context.MODE_PRIVATE);
+        try {
+            SharedPreferences shared_save_main = getSharedPreferences("save_main", MODE_PRIVATE);
+            String str_et_search = shared_save_main.getString("et_search", "");
+            Et_Search.setText(str_et_search);
+            String str_start_nextst = shared_save_main.getString("start_nextst", "");
+            start_nextst.setText(str_start_nextst);
+            search_result = shared_save_main.getBoolean("search_result", false);
+
+            lines = StringArray.getStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON);
+
+            startLine = shared_save_main.getString("startLine", "");
+            endLine = shared_save_main.getString("endLine", "");
+        } catch (Exception e) {
+
+        }
+
+        if (!search_result) {
+            start_nextst.setInputType(InputType.TYPE_NULL);
+            arrive_nextst.setInputType(InputType.TYPE_NULL);
+        }
+
+        adapterlines = new AdapterSpinner(this, lines); //그 값을 넣어줌
+        startLine_spinner.setAdapter(adapterlines);
+        endLine_spinner.setAdapter(adapterlines);
+
+        // spinner 초기값
+        lines.clear();
+        lines.add("호선 입력");
+        adapterlines.notifyDataSetChanged();
+
+
+//        if (!startLine.isEmpty()) {
+//            startLine_spinner.setSelection(lines.indexOf(startLine));
+//        }
+//        if (!endLine.isEmpty()) {
+//            endLine_spinner.setSelection(lines.indexOf(endLine));
+//        }
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
 
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -98,11 +137,104 @@ public class MainActivity extends AppCompatActivity {
 
 
         register_btn.setOnClickListener(view -> {
-            String start_next = start_nextst.getText().toString();
-            String arrive_next = arrive_nextst.getText().toString();
             getRoot();
         });
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SharedPreferences shared_save_main = getSharedPreferences("save_main", MODE_PRIVATE);
+        SharedPreferences.Editor editor_save_main = shared_save_main.edit(); //sharedPreferences를 제어할 editor를 선언
+        editor_save_main.putString("et_search", Et_Search.getText().toString()); // key,value 형식으로 저장
+        editor_save_main.putString("start_nextst", start_nextst.getText().toString());
+        editor_save_main.putString("arrive_nextst", arrive_nextst.getText().toString());
+        if (!start_nextst.getText().toString().isEmpty()) {
+            editor_save_main.putString("start_nextst", start_nextst.getText().toString());
+        }
+        if (!arrive_nextst.getText().toString().isEmpty()) {
+            editor_save_main.putString("arrive_nextst", arrive_nextst.getText().toString());
+        }
+        editor_save_main.putBoolean("search_result", search_result);
+        editor_save_main.apply();
+
+        StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
+    }
+
+    private long backpressedTime = 0;
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                String alertTitle = "앱을 종료합니다.";
+                String buttonMessage = "저장하고 어플을 종료하시겠습니까?";
+                String buttonYes = "네";
+                String buttonNo = "아니요";
+
+                if (System.currentTimeMillis() > backpressedTime + 2000) {
+                    backpressedTime = System.currentTimeMillis();
+                    Toast.makeText(this, "\'뒤로\' 버튼을 한번 더 누르시면 종료됩니다.", Toast.LENGTH_SHORT).show();
+                } else if (System.currentTimeMillis() <= backpressedTime + 2000) {
+                    new AlertDialog.Builder(MainActivity.this)
+                            .setTitle(alertTitle)
+                            .setMessage(buttonMessage)
+                            .setNegativeButton(buttonYes, new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // TODO Auto-generated method stub
+                                    SharedPreferences shared_save_main = getSharedPreferences("save_main", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor_save_main = shared_save_main.edit(); //sharedPreferences를 제어할 editor를 선언
+                                    editor_save_main.putString("et_search", Et_Search.getText().toString()); // key,value 형식으로 저장
+                                    editor_save_main.putString("start_nextst", start_nextst.getText().toString());
+                                    editor_save_main.putString("arrive_nextst", arrive_nextst.getText().toString());
+                                    if (!start_nextst.getText().toString().isEmpty()) {
+                                        editor_save_main.putString("start_nextst", start_nextst.getText().toString());
+                                    }
+                                    if (!arrive_nextst.getText().toString().isEmpty()) {
+                                        editor_save_main.putString("arrive_nextst", arrive_nextst.getText().toString());
+                                    }
+                                    editor_save_main.putBoolean("search_result", search_result);
+                                    editor_save_main.apply();
+
+                                    StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
+                                    moveTaskToBack(true);
+                                    finish();
+                                }
+                            })
+                            .setPositiveButton(buttonNo, new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Et_Search.setText("");
+                                    start_nextst.setText("");
+                                    arrive_nextst.setText("");
+                                    search_result = false;
+                                    lines.clear();
+
+                                    SharedPreferences shared_save_main = getSharedPreferences("save_main", MODE_PRIVATE);
+                                    SharedPreferences.Editor editor_save_main = shared_save_main.edit(); //sharedPreferences를 제어할 editor를 선언
+                                    editor_save_main.putString("et_search", Et_Search.getText().toString()); // key,value 형식으로 저장
+                                    editor_save_main.putString("start_nextst", start_nextst.getText().toString());
+                                    editor_save_main.putString("arrive_nextst", arrive_nextst.getText().toString());
+                                    editor_save_main.putBoolean("search_result", search_result);
+                                    if (!start_nextst.getText().toString().isEmpty()) {
+                                        editor_save_main.putString("start_nextst", start_nextst.getText().toString());
+                                    }
+                                    if (!arrive_nextst.getText().toString().isEmpty()) {
+                                        editor_save_main.putString("arrive_nextst", arrive_nextst.getText().toString());
+                                    }
+                                    editor_save_main.apply();
+
+                                    finish();
+                                }
+                            })
+                            .show();
+                }
+        }
+        return true;
+    }
+
 
     public void getStationList() {
         try {
@@ -136,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
                                 if (adapterlines != null) {
                                     adapterlines.notifyDataSetChanged();
                                 }
-
+                                search_result = true;
                                 start_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
                                 arrive_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
 
@@ -163,6 +295,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     start_nextst.setInputType(InputType.TYPE_NULL);
                     arrive_nextst.setInputType(InputType.TYPE_NULL);
+                    search_result = false;
                     NetworkResponse respone = error.networkResponse;
                     if (error instanceof ServerError && respone != null) {
                         Toast.makeText(getApplicationContext(), "정확한 역 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
@@ -263,6 +396,5 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException ex) {
             Log.e("exception", ex.toString());
         }
-
     }
 }

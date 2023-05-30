@@ -41,16 +41,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
 import android.widget.Spinner;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    final String API_KEY = BuildConfig.API_KEY;
+    private static final String SETTINGS_PLAYER_JSON = "settings_item_json";
+
     ArrayList<String> floors = new ArrayList<>(Arrays.asList("B5층", "B4층", "B3층", "B2층", "B1층", "1층", "2층", "3층", "4층", "5층"));
     ArrayList<String> locations = new ArrayList<>(Arrays.asList("승강장", "대합실", "외부"));
     ArrayList<String> directions = new ArrayList<>(Arrays.asList("왼쪽", "오른쪽", "직진", "후진"));
     AdapterSpinner adapterfloors;
     AdapterSpinner adapterlocations;
+
+    //arrayList
+    ArrayList<ListItem> list = new ArrayList<>();   // 사용자한테 입력 받은 상세 경로
+    ArrayList<String> lines = new ArrayList<>();    // 해당 역을 지나는 노선들로
+    ArrayList<String> originContent = new ArrayList<>();    // 해당 블럭의 기존 상세 경 정보
 
     static RequestQueue requestQueue;
 
@@ -61,19 +68,19 @@ public class RegisterActivity extends AppCompatActivity {
     Spinner spinner_stlocations;
     Spinner spinner_arlocations;
 
+    String arfloors;
+    String arlines;
+    String arlocations;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
         Intent intent = getIntent();
-        ArrayList<String> lines = intent.getStringArrayListExtra("lines");
-        AdapterSpinner adapterlines;
-
-        ArrayList<String> floors = new ArrayList<>(Arrays.asList("B5층", "B4층", "B3층", "B2층", "B1층", "1층", "2층", "3층", "4층", "5층"));
-        ArrayList<String> locations = new ArrayList<>(Arrays.asList("승강장", "대합실", "외부"));
-        AdapterSpinner adapterfloors;
-        AdapterSpinner adapterlocations;
+        lines = intent.getStringArrayListExtra("lines");
+        StringArray.setStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON, lines);
 
         LinearLayout btn_next = findViewById(R.id.layout_next);
         LinearLayout btn_finish = findViewById(R.id.layout_finish);
@@ -86,7 +93,26 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getBlock();
+                SharedPreferences shared_save_nextpath = getSharedPreferences("save_nextpath", MODE_PRIVATE);
+                SharedPreferences.Editor editor_save_nextpath = shared_save_nextpath.edit();
+                if (!spinner_arfloors.getSelectedItem().toString().isEmpty()) {
+                    editor_save_nextpath.putString("arfloors", spinner_arfloors.getSelectedItem().toString());
+                }
+                if (!spinner_arlines.getSelectedItem().toString().isEmpty()) {
+                    editor_save_nextpath.putString("arlines", spinner_arlines.getSelectedItem().toString());
+                }
+                if (!spinner_arlocations.getSelectedItem().toString().isEmpty()) {
+                    editor_save_nextpath.putString("arlocations", spinner_arlocations.getSelectedItem().toString());
+                }
+                editor_save_nextpath.apply();
+
+                SharedPreferences done = getSharedPreferences("done", MODE_PRIVATE);
+                SharedPreferences.Editor done_editor = done.edit();
+                done_editor.putBoolean("done", false);
+                done_editor.apply();
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
+                intent.putParcelableArrayListExtra("list", list);
+                intent.putExtra("lines", lines);
                 startActivity(intent);
             }
         });
@@ -94,8 +120,14 @@ public class RegisterActivity extends AppCompatActivity {
         btn_finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences done = getSharedPreferences("done", MODE_PRIVATE);
+                SharedPreferences.Editor done_editor = done.edit();
+                done_editor.putBoolean("done", true);
+                done_editor.apply();
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
+                intent.putExtra("list", list);
                 startActivity(intent);
+                getBlock();
             }
         });
 
@@ -113,15 +145,13 @@ public class RegisterActivity extends AppCompatActivity {
         spinner_stlines.setAdapter(adapterlocations);
         spinner_arlines.setAdapter(adapterlocations);
 
+
         // 장소 선택 Dropdown
         spinner_stlocations = findViewById(R.id.spinner_stlocations);
         spinner_arlocations = findViewById(R.id.spinner_arlocations);
         adapterlocations = new AdapterSpinner(this, locations); //그 값을 넣어줌
         spinner_stlocations.setAdapter(adapterlocations);
         spinner_arlocations.setAdapter(adapterlocations);
-
-        //arrayList
-        ArrayList<ListItem> list = new ArrayList<>();
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         RecyclerView upperScroll = findViewById(R.id.scroll);
@@ -144,10 +174,12 @@ public class RegisterActivity extends AppCompatActivity {
         RadioButton pass = (RadioButton) findViewById(R.id.pass);
         RadioButton getOff = (RadioButton) findViewById(R.id.getOff);
 
+        originContent = StringArray.getStringArrayPref(getApplicationContext(), "originContent");
+
         elevator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("elevator",0);
+                ListItem item = new ListItem("elevator", 0);
                 list.add(item);
                 upperAdapter.notifyItemInserted(list.size());
             }
@@ -156,7 +188,7 @@ public class RegisterActivity extends AppCompatActivity {
         walk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("walk",0);
+                ListItem item = new ListItem("walk", 0);
                 list.add(item);
                 upperAdapter.notifyItemInserted(list.size());
             }
@@ -166,7 +198,7 @@ public class RegisterActivity extends AppCompatActivity {
         pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("pass",0);
+                ListItem item = new ListItem("pass", 0);
                 list.add(item);
                 upperAdapter.notifyItemInserted(list.size());
             }
@@ -175,11 +207,48 @@ public class RegisterActivity extends AppCompatActivity {
         getOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("getOff",0);
+                ListItem item = new ListItem("getOff", 0);
                 list.add(item);
                 upperAdapter.notifyItemInserted(list.size());
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        //사용자가 다음 상세 경로를 입력할 때 전에 정보가 유지되도록함
+        SharedPreferences shared_save_nextpath = getSharedPreferences("save_nextpath", MODE_PRIVATE);
+        arfloors = shared_save_nextpath.getString("arfloors", "");
+        arlines = shared_save_nextpath.getString("arlines", "");
+        arlocations = shared_save_nextpath.getString("arlocations", "");
+
+        lines = StringArray.getStringArrayPref(getApplicationContext(), SETTINGS_PLAYER_JSON);
+
+        spinner_stlines = findViewById(R.id.spinner_stlines);
+        spinner_arlines = findViewById(R.id.spinner_arlines);
+        adapterlocations = new AdapterSpinner(this, lines); //그 값을 넣어줌
+        spinner_stlines.setAdapter(adapterlocations);
+        spinner_arlines.setAdapter(adapterlocations);
+
+        if (!arfloors.isEmpty()) {
+            spinner_stfloors.setSelection(floors.indexOf(arfloors));
+        }
+
+        if (!arlines.isEmpty()) {
+            spinner_stlines.setSelection(lines.indexOf(arlines));
+        }
+
+        if (!arlocations.isEmpty()) {
+            spinner_stlocations.setSelection(locations.indexOf(arlocations));
+        }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
     }
 
     public void getBlock() {
@@ -191,7 +260,7 @@ public class RegisterActivity extends AppCompatActivity {
             String stfloor = spinner_stfloors.getSelectedItem().toString();
             from.put("floor", stfloor.substring(0, stfloor.length() - 1));
             from.put("line", spinner_stlines.getSelectedItem().toString());
-            from.put("location", spinner_stfloors.getSelectedItem().toString());
+            from.put("location", spinner_stlocations.getSelectedItem().toString());
             jsonParams.put("from", from);
 
             JSONObject to = new JSONObject();
@@ -215,10 +284,19 @@ public class RegisterActivity extends AppCompatActivity {
                                 // get data and headers from the received response
                                 JSONObject data = response.getJSONObject("data");
                                 JSONObject headers = response.getJSONObject("headers");
-
                                 // Logs for debugging
                                 Log.i("data", String.valueOf(data));
                                 Log.i("headers", String.valueOf(headers));
+
+                                JSONArray jsonarr = data.getJSONArray("originContent");
+                                ArrayList<String> arr = new ArrayList<>();
+                                for (int i = 0; i < jsonarr.length(); i++) {
+                                    arr.add(jsonarr.getString(i));
+                                }
+                                arr.add("a");
+                                StringArray.setStringArrayPref(getApplicationContext(), "originContent", arr);
+                                Log.i("originContent", originContent.toString());
+
                             } catch (JSONException e) {
                                 Log.e("error", Log.getStackTraceString(e));
                             }
