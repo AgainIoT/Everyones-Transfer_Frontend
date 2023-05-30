@@ -122,9 +122,8 @@ public class DifActivity extends AppCompatActivity {
         data.add(new Getoff(4,1));
         CustomAdapter lowerAdapter = new CustomAdapter(getApplicationContext(), data);
         lowerScroll.setAdapter(lowerAdapter);
-
-//        ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(lowerAdapter));
-//        mItemTouchHelper.attachToRecyclerView(lowerScroll);
+        ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(lowerAdapter));
+        mItemTouchHelper.attachToRecyclerView(lowerScroll);
 //
 //        lowerAdapter.setItems(list);
 

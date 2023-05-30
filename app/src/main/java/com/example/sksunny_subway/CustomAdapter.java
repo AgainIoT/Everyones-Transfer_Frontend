@@ -12,20 +12,36 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class CustomAdapter<T> extends RecyclerView.Adapter<CustomAdapter.ViewHolder> {
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder> implements ItemTouchHelperListener{
 
     Context context;
 
-    private ArrayList<T> data;
+    private ArrayList<ItemTest> data;
 
     /**
      * Provide a reference to the type of views that you are using
      * (custom ViewHolder).
      */
 
-    public CustomAdapter(Context context, ArrayList<T> data) {
+    public CustomAdapter(Context context, ArrayList<ItemTest> data) {
         this.context = context;
         this.data = data;
+    }
+
+    @Override
+    public boolean onItemMove(int form_position, int to_position) {
+        ItemTest item = data.get(form_position);
+        data.remove(form_position);
+        data.add(to_position, item);
+        item.setNumber(to_position);
+        notifyItemMoved(form_position, to_position);
+        return false;
+    }
+
+    @Override
+    public void onItemSwipe(int position) {
+        data.remove(position);
+        notifyItemRemoved(position);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -44,13 +60,13 @@ public class CustomAdapter<T> extends RecyclerView.Adapter<CustomAdapter.ViewHol
         }
     }
 
-    public CustomAdapter(ArrayList<T> dataset) {
+    public CustomAdapter(ArrayList<ItemTest> dataset) {
         data = dataset;
     }
 
     @Override
     public int getItemViewType(int position) {
-        T listItem = data.get(position);
+        ItemTest listItem = data.get(position);
         if (listItem instanceof Pass) {
             return 1;
         }
@@ -80,7 +96,8 @@ public class CustomAdapter<T> extends RecyclerView.Adapter<CustomAdapter.ViewHol
 
         final ArrayList<String> stairs = new ArrayList<>(Arrays.asList("1층", "2층", "3층"));
         final ArrayList<String> directions = new ArrayList<>(Arrays.asList("전방", "좌측", "우측"));
-        final ArrayList<String> nums = new ArrayList<>(Arrays.asList("1","2","3","4","5","6","7","8","9","10","11"));
+        final ArrayList<String> carNo = new ArrayList<>(Arrays.asList("1","2","3","4","5","6","7","8","9","10"));
+        final ArrayList<String> doorNo = new ArrayList<>(Arrays.asList("1","2","3","4"));
 
         AdapterSpinner adapterSpinner1;
         AdapterSpinner adapterSpinner2;
@@ -106,9 +123,9 @@ public class CustomAdapter<T> extends RecyclerView.Adapter<CustomAdapter.ViewHol
         } else if (data.get(position) instanceof Pass) {
             viewHolder.textview1.setText("개찰구 통과");
         } else {
-            adapterSpinner1 = new AdapterSpinner(this.context, nums);
+            adapterSpinner1 = new AdapterSpinner(this.context, carNo);
             viewHolder.spinner1.setAdapter(adapterSpinner1);
-            adapterSpinner2 = new AdapterSpinner(this.context, nums);
+            adapterSpinner2 = new AdapterSpinner(this.context, doorNo);
             viewHolder.spinner2.setAdapter(adapterSpinner2);
             viewHolder.textview1.setText("-");
             viewHolder.textview2.setText("에서 하차");
