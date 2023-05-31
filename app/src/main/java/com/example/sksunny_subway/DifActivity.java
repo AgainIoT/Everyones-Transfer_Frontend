@@ -96,7 +96,10 @@ public class DifActivity extends AppCompatActivity {
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         RecyclerView upperScroll = findViewById(R.id.upperScroll);
-        ArrayList<String> originContent = StringArray.getStringArrayPref(getApplicationContext(), "originContent");
+//         SharedPreferences originContent = getApplicationContext().getSharedPreferences("originContent", Context.MODE_PRIVATE);
+//         String json = originContent.getString("originContent", null);
+//         JSONArray a = new JSONArray(json);
+        originContent = StringArray.getStringArrayPref(getApplicationContext(), "originContent");
         Log.d("originContent2", originContent.toString());
 
         upperScroll.setLayoutManager(new LinearLayoutManager(this));

@@ -103,7 +103,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
-        final ArrayList<String> stairs = new ArrayList<>(Arrays.asList("B5층","B4층","B3층","B2층","B1층", "1층", "2층", "3층"));
+        final ArrayList<String> stairs = new ArrayList<>(Arrays.asList("B5층", "B4층", "B3층", "B2층", "B1층", "1층", "2층", "3층"));
         final ArrayList<String> directions = new ArrayList<>(Arrays.asList("전방", "좌측", "우측"));
         final ArrayList<String> carNo = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10"));
         final ArrayList<String> doorNo = new ArrayList<>(Arrays.asList("1", "2", "3", "4"));
@@ -115,12 +115,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         if (item instanceof Elevator) {
             AdapterSpinner adapterSpinner1 = new AdapterSpinner(this.context, stairs);
             viewHolder.spinner1.setAdapter(adapterSpinner1);
-            viewHolder.spinner1.setSelection(stairs.indexOf(((Elevator) item).getStartFloor()+"층"));
+            viewHolder.spinner1.setSelection(stairs.indexOf(((Elevator) item).getStartFloor() + "층"));
             viewHolder.spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     ((Elevator) item).setStartFloor(parent.getSelectedItem().toString().substring(0, 1));
-                    viewHolder.spinner1.setSelection(stairs.indexOf(((Elevator) item).getStartFloor()+"층"));
+                    viewHolder.spinner1.setSelection(stairs.indexOf(((Elevator) item).getStartFloor() + "층"));
                 }
 
                 @Override
@@ -130,12 +130,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             });
             AdapterSpinner adapterSpinner2 = new AdapterSpinner(this.context, stairs);
             viewHolder.spinner2.setAdapter(adapterSpinner2);
-            viewHolder.spinner2.setSelection(stairs.indexOf(((Elevator) item).getEndFloor()+"층"));
+            viewHolder.spinner2.setSelection(stairs.indexOf(((Elevator) item).getEndFloor() + "층"));
             viewHolder.spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     ((Elevator) item).setEndFloor(parent.getSelectedItem().toString().substring(0, 1));
-                    viewHolder.spinner2.setSelection(stairs.indexOf(((Elevator) item).getEndFloor()+"층"));
+                    viewHolder.spinner2.setSelection(stairs.indexOf(((Elevator) item).getEndFloor() + "층"));
                 }
 
                 @Override
@@ -170,7 +170,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     String text = viewHolder.editText.getText().toString();
-                    if (!text.equals("")){
+                    if (!text.equals("")) {
                         ((Walk) item).setDistance(Integer.parseInt(text));
                     } else {
                         ((Walk) item).setDistance(0);
@@ -181,7 +181,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 public void afterTextChanged(Editable s) {
                 }
             });
-
             viewHolder.textview1.setText("으로");
             viewHolder.textview2.setText("m 이동");
         } else if (item instanceof Pass) {
