@@ -1,7 +1,6 @@
 package com.example.sksunny_subway;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
@@ -53,16 +52,4 @@ public class Elevator extends ItemTest{
         dest.writeString(startFloor);
         dest.writeString(endFloor);
     }
-
-//    public static final Parcelable.Creator<Elevator> CREATOR = new Parcelable.Creator<Elevator>() {
-//        @Override
-//        public Elevator createFromParcel(Parcel in) {
-//            return new Elevator(in);
-//        }
-//
-//        @Override
-//        public Elevator[] newArray(int size) {
-//            return new Elevator[size];
-//        }
-//    };
 }

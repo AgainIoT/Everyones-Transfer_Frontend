@@ -1,7 +1,6 @@
 package com.example.sksunny_subway;
 
 import android.os.Parcel;
-import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
@@ -55,16 +54,3 @@ public class Getoff extends ItemTest {
         dest.writeInt(doorNo);
     }
 }
-
-//    public static final Parcelable.Creator<Getoff> CREATOR = new Parcelable.Creator<Getoff>() {
-//        @Override
-//        public Getoff createFromParcel(Parcel in) {
-//            return new Getoff(in);
-//        }
-//
-//        @Override
-//        public Getoff[] newArray(int size) {
-//            return new Getoff[size];
-//        }
-//    };
-//}

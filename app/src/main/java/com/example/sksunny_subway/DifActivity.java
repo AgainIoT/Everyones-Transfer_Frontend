@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
@@ -134,8 +133,6 @@ public class DifActivity extends AppCompatActivity {
             }
         });
 
-
-        //얘는 확정! 더 손 안 대도 됨!
         pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -15,7 +15,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 {
 
     // 생성자에서 데이터 리스트 객체를 전달받음.
-    // RecyclerAdapter(ArrayList<String> list) {items = list;}
     private ArrayList<ListItem> items = new ArrayList<>();
     public RecyclerAdapter(){}
 
@@ -38,20 +37,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     // 아이템 뷰를 저장하는 뷰홀더 클래스.
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView pathname;
+
         ViewHolder(View itemView) {
             super(itemView);
 
             // 뷰 객체에 대한 참조. (hold strong reference)
             pathname = itemView.findViewById(R.id.pathname);
         }
-        public void onBind(@NonNull ListItem item, int position){
+
+        public void onBind(@NonNull ListItem item, int position) {
             pathname.setText(item.getName());
             item.setNumber(position);
         }
-
-//        public TextView getTextview(){
-//            return textView;
-//        }
     }
 
     @Override
