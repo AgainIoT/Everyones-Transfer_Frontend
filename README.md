@@ -7,7 +7,6 @@
 API 21 : Android 5.0 (Lollipop)
 
 ## api 사용법
----
 
 android에서 http 통신을 목적으로 사용하는 Volley라는 라이브러리가 있습니다.
 
