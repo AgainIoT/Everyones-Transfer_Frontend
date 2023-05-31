@@ -34,13 +34,16 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 public class DifActivity extends AppCompatActivity {
     static RequestQueue requestQueue;
     ArrayList<String> lines;
     RecyclerView lowerScroll;
     ArrayList<ItemTest> data;
+    ArrayList<String> originContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,6 +97,8 @@ public class DifActivity extends AppCompatActivity {
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         RecyclerView upperScroll = findViewById(R.id.upperScroll);
         ArrayList<String> originContent = StringArray.getStringArrayPref(getApplicationContext(), "originContent");
+        Log.d("originContent2", originContent.toString());
+
         upperScroll.setLayoutManager(new LinearLayoutManager(this));
         lowerScroll = findViewById(R.id.lowerScroll);
         lowerScroll.setLayoutManager(new LinearLayoutManager((this)));
@@ -166,7 +171,7 @@ public class DifActivity extends AppCompatActivity {
         for (int i = 0; i < data.size(); i++) {
             ItemTest one = data.get(i);
             if (one instanceof Elevator) {
-                arr.add(((Elevator) one).getStartFloor() + "층 에서" + ((Elevator) one).getEndFloor() + "층으로 이동");
+                arr.add(((Elevator) one).getStartFloor() + "층에서 " + ((Elevator) one).getEndFloor() + "층으로 이동");
             } else if (one instanceof Walk) {
                 arr.add(((Walk) one).getDirection() + "으로" + String.valueOf(((Walk) one).getDistance()) + "m 이동");
             } else if (one instanceof Pass) {
@@ -178,7 +183,7 @@ public class DifActivity extends AppCompatActivity {
 
         JSONArray jsonArray = new JSONArray(arr);
         try {
-            jsonParams.put("jsonArray", jsonArray);
+            jsonParams.put("content", jsonArray);
         } catch (JSONException e) {
             e.printStackTrace();
         }
