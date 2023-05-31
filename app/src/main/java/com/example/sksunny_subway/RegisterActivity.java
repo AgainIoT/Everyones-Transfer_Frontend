@@ -73,6 +73,30 @@ public class RegisterActivity extends AppCompatActivity {
 
         LinearLayout btn_next = findViewById(R.id.layout_next);
         LinearLayout btn_finish = findViewById(R.id.layout_finish);
+        SharedPreferences.OnSharedPreferenceChangeListener sharedPreferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+            @Override
+            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                if (key.equals("originContent")) {
+                    String str = getSharedPreferences("originContent", MODE_PRIVATE).getString("originContent", null);
+                    Log.i("Changed1", str);
+//                    if (str != null) {
+//                        try {
+//                            JSONArray a = new JSONArray(str);
+//                            for (int i = 0; i < a.length(); i++) {
+//                                String url = a.optString(i);
+//                                originContentData.add(url);
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+                }
+            }
+        };
+
+        SharedPreferences sharedPreferences = this.getSharedPreferences("originContent", MODE_PRIVATE);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
+
 
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -280,17 +304,22 @@ public class RegisterActivity extends AppCompatActivity {
                                 JSONObject data = response.getJSONObject("data");
                                 JSONObject headers = response.getJSONObject("headers");
                                 // Logs for debugging
-                                Log.i("data", String.valueOf(data));
+                                Log.i("body", String.valueOf(data));
                                 Log.i("headers", String.valueOf(headers));
 
                                 JSONArray jsonarr = data.getJSONArray("originContent");
-                                Log.d("original", jsonarr.toString());
-                                ArrayList<String> arr = new ArrayList<>();
-                                for (int i = 0; i < jsonarr.length(); i++) {
-                                    arr.add(jsonarr.getString(i));
-                                }
-                                StringArray.setStringArrayPref(getApplicationContext(), "originContent", arr);
-                                Log.i("originContent1", jsonarr.toString());
+//                                Log.d("original", jsonarr.toString());
+//                                ArrayList<String> arr = new ArrayList<>();
+//                                for (int i = 0; i < jsonarr.length(); i++) {
+//                                    arr.add(jsonarr.getString(i));
+//                                }
+                                SharedPreferences originContent = getSharedPreferences("originContent", MODE_PRIVATE);
+                                SharedPreferences.Editor originContent_editor = originContent.edit();
+                                originContent_editor.putString("originContent", jsonarr.toString());
+                                originContent_editor.apply();
+
+//                                StringArray.setStringArrayPref(getApplicationContext(), "originContent", arr);
+                                Log.i("originContent body", jsonarr.toString());
 
                             } catch (JSONException e) {
                                 Log.e("error", Log.getStackTraceString(e));

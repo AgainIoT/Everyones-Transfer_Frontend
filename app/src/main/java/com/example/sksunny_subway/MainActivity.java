@@ -320,7 +320,7 @@ public class MainActivity extends AppCompatActivity {
                                 cookie_editor.apply();
 
                                 // Logs for debugging
-                                Log.i("data", String.valueOf(data));
+                                Log.i("body", String.valueOf(data));
                                 Log.i("headers", String.valueOf(headers));
                                 Log.d("cookie", recieved_cookie);
                             } catch (JSONException e) {
@@ -388,8 +388,8 @@ public class MainActivity extends AppCompatActivity {
                             try {
                                 JSONObject data = response.getJSONObject("data");
                                 JSONObject headers = response.getJSONObject("headers");
-                                Log.i("root data", String.valueOf(data));
-                                Log.i("root headers", String.valueOf(headers));
+                                Log.i("body", String.valueOf(data));
+                                Log.i("headers", String.valueOf(headers));
                             } catch (JSONException e) {
                                 Log.e("client error", Log.getStackTraceString(e));
                             }
