@@ -6,15 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterSpinner extends BaseAdapter {
 
     Context mContext;
-    List<String>  Data;
+    ArrayList<String> Data;
     LayoutInflater Inflater;
 
-    public AdapterSpinner(Context context,  List<String> data){
+    public AdapterSpinner(Context context,  ArrayList<String> data){
         this.mContext = context;
         this.Data = data;
         Inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

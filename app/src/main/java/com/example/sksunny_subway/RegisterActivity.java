@@ -53,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
     AdapterSpinner adapterlocations;
 
     //arrayList
-    ArrayList<ListItem> list = new ArrayList<>();   // 사용자한테 입력 받은 상세 경로
+    ArrayList<ItemTest> data = new ArrayList<>();   // 사용자한테 입력 받은 상세 경로
     ArrayList<String> lines = new ArrayList<>();    // 해당 역을 지나는 노선들로
     ArrayList<String> originContent = new ArrayList<>();    // 해당 블럭의 기존 상세 경 정보
 
@@ -75,9 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        Intent intent = getIntent();
-        lines = intent.getStringArrayListExtra("lines");
-        StringArray.setStringArrayPref(getApplicationContext(), "lines", lines);
+        lines = StringArray.getStringArrayPref(getApplicationContext(), "lines");
 
         LinearLayout btn_next = findViewById(R.id.layout_next);
         LinearLayout btn_finish = findViewById(R.id.layout_finish);
@@ -108,8 +106,7 @@ public class RegisterActivity extends AppCompatActivity {
                 done_editor.putBoolean("done", false);
                 done_editor.apply();
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
-                intent.putParcelableArrayListExtra("list", list);
-                intent.putExtra("lines", lines);
+                intent.putParcelableArrayListExtra("data", data);
                 startActivity(intent);
             }
         });
@@ -134,9 +131,8 @@ public class RegisterActivity extends AppCompatActivity {
                 lines.add("호선 입력");
                 StringArray.setStringArrayPref(getApplicationContext(), "lines" , lines);
 
-
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
-                intent.putExtra("list", list);
+                intent.putParcelableArrayListExtra("data", data);
                 startActivity(intent);
             }
         });
@@ -164,17 +160,14 @@ public class RegisterActivity extends AppCompatActivity {
         spinner_arlocations.setAdapter(adapterlocations);
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
-        RecyclerView upperScroll = findViewById(R.id.scroll);
-        upperScroll.setLayoutManager(new LinearLayoutManager((this)));
+        RecyclerView scroll = findViewById(R.id.scroll);
+        scroll.setLayoutManager(new LinearLayoutManager((this)));
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        RecyclerAdapter upperAdapter = new RecyclerAdapter();
-        upperScroll.setAdapter(upperAdapter);
-
-        ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(upperAdapter));
-        mItemTouchHelper.attachToRecyclerView(upperScroll);
-
-        upperAdapter.setItems(list);
+        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), data);
+        scroll.setAdapter(customAdapter);
+        ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(customAdapter));
+        mItemTouchHelper.attachToRecyclerView(scroll);
 
         //radiogroup 추가
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.navbar);
@@ -189,18 +182,18 @@ public class RegisterActivity extends AppCompatActivity {
         elevator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("elevator", 0);
-                list.add(item);
-                upperAdapter.notifyItemInserted(list.size());
+                ItemTest item = new Elevator();
+                data.add(item);
+                customAdapter.notifyItemInserted(data.size());
             }
         });
 
         walk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("walk", 0);
-                list.add(item);
-                upperAdapter.notifyItemInserted(list.size());
+                ItemTest item = new Walk();
+                data.add(item);
+                customAdapter.notifyItemInserted(data.size());
             }
         });
 
@@ -208,18 +201,18 @@ public class RegisterActivity extends AppCompatActivity {
         pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("pass", 0);
-                list.add(item);
-                upperAdapter.notifyItemInserted(list.size());
+                ItemTest item = new Pass();
+                data.add(item);
+                customAdapter.notifyItemInserted(data.size());
             }
         });
 
         getOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("getOff", 0);
-                list.add(item);
-                upperAdapter.notifyItemInserted(list.size());
+                ItemTest item = new Getoff();
+                data.add(item);
+                customAdapter.notifyItemInserted(data.size());
             }
         });
     }
@@ -303,7 +296,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 for (int i = 0; i < jsonarr.length(); i++) {
                                     arr.add(jsonarr.getString(i));
                                 }
-                                arr.add("a");
+                                arr.add("B1층에서 B2층으로 이동");
+                                arr.add("우측으로 100m 이동");
                                 StringArray.setStringArrayPref(getApplicationContext(), "originContent", arr);
                                 Log.i("originContent", originContent.toString());
 

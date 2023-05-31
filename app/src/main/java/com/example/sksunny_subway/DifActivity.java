@@ -5,19 +5,16 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -34,7 +31,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -43,10 +39,9 @@ import java.util.Map;
 
 public class DifActivity extends AppCompatActivity {
     static RequestQueue requestQueue;
-    ArrayList<ListItem> items;
     ArrayList<String> lines;
-
-    ArrayList<ListItem> list;
+    RecyclerView lowerScroll;
+    ArrayList<ItemTest> data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,14 +51,8 @@ public class DifActivity extends AppCompatActivity {
         AppCompatButton maintainBtn = findViewById(R.id.maintainBtn);
         AppCompatButton completeBtn = findViewById(R.id.completeBtn);
 
-        Intent intent =  getIntent();
-        lines =  intent.getStringArrayListExtra("lines");
-        list = intent.getParcelableArrayListExtra("list");
-        ArrayList<String> names = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++){
-            names.add(list.get(i).getName());
-        }
-        Log.i("names", list.toString());
+        Intent intent = getIntent();
+        data = intent.getParcelableArrayListExtra("data");
 
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -74,8 +63,8 @@ public class DifActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Context context = getApplicationContext();
                 Toast.makeText(context, "기존 내용을 유지합니다.", Toast.LENGTH_SHORT).show();
-                if (context.getSharedPreferences("done", context.MODE_PRIVATE).getBoolean("done", false)){
-                    Intent intent  = new Intent(context, MainActivity.class);
+                if (context.getSharedPreferences("done", context.MODE_PRIVATE).getBoolean("done", false)) {
+                    Intent intent = new Intent(context, MainActivity.class);
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(context, RegisterActivity.class);
@@ -91,7 +80,7 @@ public class DifActivity extends AppCompatActivity {
                 Context context = getApplicationContext();
                 patchBlock();
                 Toast.makeText(context, "수정된 내용이 저장되었습니다.", Toast.LENGTH_SHORT).show();
-                if (context.getSharedPreferences("done", context.MODE_PRIVATE).getBoolean("done", false)){
+                if (context.getSharedPreferences("done", context.MODE_PRIVATE).getBoolean("done", false)) {
                     Intent intent = new Intent(context, MainActivity.class);
                     startActivity(intent);
                 } else {
@@ -104,20 +93,20 @@ public class DifActivity extends AppCompatActivity {
 
 
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
-        TextView upperScroll = findViewById(R.id.upperScroll);
+        RecyclerView upperScroll = findViewById(R.id.upperScroll);
         ArrayList<String> originContent = StringArray.getStringArrayPref(getApplicationContext(), "originContent");
-        upperScroll.setText(originContent.toString());
-        RecyclerView lowerScroll = findViewById(R.id.lowerScroll);
+        upperScroll.setLayoutManager(new LinearLayoutManager(this));
+        lowerScroll = findViewById(R.id.lowerScroll);
         lowerScroll.setLayoutManager(new LinearLayoutManager((this)));
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        RecyclerAdapter lowerAdapter = new RecyclerAdapter();
-        lowerScroll.setAdapter(lowerAdapter);
+        StringRecyclerViewAdapter upperAdapter = new StringRecyclerViewAdapter(getApplicationContext(), originContent);
+        upperScroll.setAdapter(upperAdapter);
 
+        CustomAdapter lowerAdapter = new CustomAdapter(getApplicationContext(), data);
+        lowerScroll.setAdapter(lowerAdapter);
         ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(lowerAdapter));
         mItemTouchHelper.attachToRecyclerView(lowerScroll);
-
-        lowerAdapter.setItems(list);
 
         //radiogroup 추가
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.navbar);
@@ -130,18 +119,18 @@ public class DifActivity extends AppCompatActivity {
         elevator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("elevator",0);
-                list.add(item);
-                lowerAdapter.notifyItemInserted(list.size());
+                ItemTest item = new Elevator();
+                data.add(item);
+                lowerAdapter.notifyItemInserted(data.size());
             }
         });
 
         walk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("walk",0);
-                list.add(item);
-                lowerAdapter.notifyItemInserted(list.size());
+                ItemTest item = new Walk();
+                data.add(item);
+                lowerAdapter.notifyItemInserted(data.size());
             }
         });
 
@@ -150,18 +139,18 @@ public class DifActivity extends AppCompatActivity {
         pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("pass",0);
-                list.add(item);
-                lowerAdapter.notifyItemInserted(list.size());
+                ItemTest item = new Pass();
+                data.add(item);
+                lowerAdapter.notifyItemInserted(data.size());
             }
         });
 
         getOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListItem item = new ListItem("getOff",0);
-                list.add(item);
-                lowerAdapter.notifyItemInserted(list.size());
+                ItemTest item = new Getoff();
+                data.add(item);
+                lowerAdapter.notifyItemInserted(data.size());
             }
         });
     }
@@ -176,14 +165,24 @@ public class DifActivity extends AppCompatActivity {
         // request body
         JSONObject jsonParams = new JSONObject();
         ArrayList<String> arr = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++){
-            arr.add(list.get(i).getName());
+
+        for (int i = 0; i < data.size(); i++) {
+            ItemTest one = data.get(i);
+            if (one instanceof Elevator) {
+                arr.add(((Elevator) one).getStartFloor() + "층 에서" + ((Elevator) one).getEndFloor() + "층으로 이동");
+            } else if (one instanceof Walk) {
+                arr.add(((Walk) one).getDirection() + "으로" + String.valueOf(((Walk) one).getDistance()) + "m 이동");
+            } else if (one instanceof Pass) {
+                arr.add("개찰구로 통과");
+            } else if (one instanceof Getoff) {
+                arr.add(String.valueOf(((Getoff) one).getCarNo()) + " - " + String.valueOf((((Getoff) one).getDoorNo())) + "에서 하차");
+            }
         }
 
         JSONArray jsonArray = new JSONArray(arr);
-        try{
+        try {
             jsonParams.put("jsonArray", jsonArray);
-        } catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         Log.i("request body", jsonParams.toString());
