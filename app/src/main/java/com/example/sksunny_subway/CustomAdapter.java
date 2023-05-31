@@ -108,25 +108,24 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
-        final ArrayList<String> stairs = new ArrayList<>(Arrays.asList("1층", "2층", "3층"));
+        final ArrayList<String> stairs = new ArrayList<>(Arrays.asList("B5층","B4층","B3층","B2층","B1층", "1층", "2층", "3층"));
         final ArrayList<String> directions = new ArrayList<>(Arrays.asList("전방", "좌측", "우측"));
         final ArrayList<String> carNo = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10"));
         final ArrayList<String> doorNo = new ArrayList<>(Arrays.asList("1", "2", "3", "4"));
         int distance;
 
-        AdapterSpinner adapterSpinner1;
-        AdapterSpinner adapterSpinner2;
-
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         ItemTest item = data.get(position);
         if (item instanceof Elevator) {
-            adapterSpinner1 = new AdapterSpinner(this.context, stairs);
+            AdapterSpinner adapterSpinner1 = new AdapterSpinner(this.context, stairs);
             viewHolder.spinner1.setAdapter(adapterSpinner1);
+            viewHolder.spinner1.setSelection(stairs.indexOf(((Elevator) item).getStartFloor()+"층"));
             viewHolder.spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     ((Elevator) item).setStartFloor(parent.getSelectedItem().toString().substring(0, 1));
+                    viewHolder.spinner1.setSelection(stairs.indexOf(((Elevator) item).getStartFloor()+"층"));
                 }
 
                 @Override
@@ -134,12 +133,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
                 }
             });
-            adapterSpinner2 = new AdapterSpinner(this.context, stairs);
+            AdapterSpinner adapterSpinner2 = new AdapterSpinner(this.context, stairs);
             viewHolder.spinner2.setAdapter(adapterSpinner2);
+            viewHolder.spinner2.setSelection(stairs.indexOf(((Elevator) item).getEndFloor()+"층"));
             viewHolder.spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     ((Elevator) item).setEndFloor(parent.getSelectedItem().toString().substring(0, 1));
+                    viewHolder.spinner2.setSelection(stairs.indexOf(((Elevator) item).getEndFloor()+"층"));
                 }
 
                 @Override
@@ -150,8 +151,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             viewHolder.textview1.setText("층에서");
             viewHolder.textview2.setText("으로 이동");
         } else if (item instanceof Walk) {
-            adapterSpinner1 = new AdapterSpinner(this.context, directions);
+            AdapterSpinner adapterSpinner1 = new AdapterSpinner(this.context, directions);
             viewHolder.spinner1.setAdapter(adapterSpinner1);
+            viewHolder.spinner1.setSelection(directions.indexOf(((Walk) item).getDirection()));
             viewHolder.spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -189,12 +191,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         } else if (item instanceof Pass) {
             viewHolder.textview1.setText("개찰구 통과");
         } else {
-            adapterSpinner1 = new AdapterSpinner(this.context, carNo);
+            AdapterSpinner adapterSpinner1 = new AdapterSpinner(this.context, carNo);
             viewHolder.spinner1.setAdapter(adapterSpinner1);
+            viewHolder.spinner1.setSelection(carNo.indexOf(String.valueOf(((Getoff) item).getCarNo())));
             viewHolder.spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     ((Getoff) item).setCarNo(Integer.parseInt(parent.getSelectedItem().toString()));
+                    viewHolder.spinner1.setSelection(carNo.indexOf(String.valueOf(((Getoff) item).getCarNo())));
                 }
 
                 @Override
@@ -202,12 +206,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
                 }
             });
-            adapterSpinner2 = new AdapterSpinner(this.context, doorNo);
+            AdapterSpinner adapterSpinner2 = new AdapterSpinner(this.context, doorNo);
             viewHolder.spinner2.setAdapter(adapterSpinner2);
+            viewHolder.spinner2.setSelection(doorNo.indexOf(String.valueOf(((Getoff) item).getDoorNo())));
             viewHolder.spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     ((Getoff) item).setDoorNo(Integer.parseInt(parent.getSelectedItem().toString()));
+                    viewHolder.spinner2.setSelection(doorNo.indexOf(String.valueOf(((Getoff) item).getDoorNo())));
                 }
 
                 @Override

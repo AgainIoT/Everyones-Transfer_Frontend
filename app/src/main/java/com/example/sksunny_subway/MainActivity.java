@@ -324,6 +324,8 @@ public class MainActivity extends AppCompatActivity {
                                     adapterlines.notifyDataSetChanged();
                                 }
 
+                                StringArray.setStringArrayPref(getApplicationContext(), "lines", lines);
+
                                 // get cookie from the received headers
                                 String recieved_cookie = headers.getString("Set-Cookie");
                                 // set cookie the sharedPreferences as the recieved_cookie
@@ -409,7 +411,6 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
-                            intent.putExtra("lines", lines);
                             startActivity(intent);
                         }
                     }, new Response.ErrorListener() {

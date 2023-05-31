@@ -53,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
     AdapterSpinner adapterlocations;
 
     //arrayList
-    ArrayList<ItemTest> list = new ArrayList<>();   // 사용자한테 입력 받은 상세 경로
+    ArrayList<ItemTest> data = new ArrayList<>();   // 사용자한테 입력 받은 상세 경로
     ArrayList<String> lines = new ArrayList<>();    // 해당 역을 지나는 노선들로
     ArrayList<String> originContent = new ArrayList<>();    // 해당 블럭의 기존 상세 경 정보
 
@@ -75,9 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        Intent intent = getIntent();
-        lines = intent.getStringArrayListExtra("lines");
-        StringArray.setStringArrayPref(getApplicationContext(), "lines", lines);
+        lines = StringArray.getStringArrayPref(getApplicationContext(), "lines");
 
         LinearLayout btn_next = findViewById(R.id.layout_next);
         LinearLayout btn_finish = findViewById(R.id.layout_finish);
@@ -107,15 +105,9 @@ public class RegisterActivity extends AppCompatActivity {
                 SharedPreferences.Editor done_editor = done.edit();
                 done_editor.putBoolean("done", false);
                 done_editor.apply();
-                Intent intent2 = new Intent(getApplicationContext(), DifActivity.class);
-//                ParcelableArrayList parcelableArrayList = new ParcelableArrayList(list);
-                ArrayList<ItemTest> myList = new ArrayList<>();
-                myList.add(new Elevator());
-                myList.add(new Walk());
-                myList.add(new Pass());
-                myList.add(new Getoff());
-                intent2.putParcelableArrayListExtra("myList", myList);
-                startActivity(intent2);
+                Intent intent = new Intent(getApplicationContext(), DifActivity.class);
+                intent.putParcelableArrayListExtra("data", data);
+                startActivity(intent);
             }
         });
 
@@ -139,9 +131,8 @@ public class RegisterActivity extends AppCompatActivity {
                 lines.add("호선 입력");
                 StringArray.setStringArrayPref(getApplicationContext(), "lines" , lines);
 
-                ParcelableArrayList parcelableArrayList = new ParcelableArrayList(list);
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
-                intent.putExtra("list", parcelableArrayList);
+                intent.putParcelableArrayListExtra("data", data);
                 startActivity(intent);
             }
         });
@@ -173,7 +164,7 @@ public class RegisterActivity extends AppCompatActivity {
         scroll.setLayoutManager(new LinearLayoutManager((this)));
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), list);
+        CustomAdapter customAdapter = new CustomAdapter(getApplicationContext(), data);
         scroll.setAdapter(customAdapter);
         ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(customAdapter));
         mItemTouchHelper.attachToRecyclerView(scroll);
@@ -192,8 +183,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ItemTest item = new Elevator();
-                list.add(item);
-                customAdapter.notifyItemInserted(list.size());
+                data.add(item);
+                customAdapter.notifyItemInserted(data.size());
             }
         });
 
@@ -201,8 +192,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ItemTest item = new Walk();
-                list.add(item);
-                customAdapter.notifyItemInserted(list.size());
+                data.add(item);
+                customAdapter.notifyItemInserted(data.size());
             }
         });
 
@@ -211,8 +202,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ItemTest item = new Pass();
-                list.add(item);
-                customAdapter.notifyItemInserted(list.size());
+                data.add(item);
+                customAdapter.notifyItemInserted(data.size());
             }
         });
 
@@ -220,8 +211,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ItemTest item = new Getoff();
-                list.add(item);
-                customAdapter.notifyItemInserted(list.size());
+                data.add(item);
+                customAdapter.notifyItemInserted(data.size());
             }
         });
     }

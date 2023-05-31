@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-public class Getoff extends ItemTest{
+public class Getoff extends ItemTest {
 
     private int carNo;
     private int doorNo;
@@ -15,11 +15,12 @@ public class Getoff extends ItemTest{
         this.carNo = carNo;
         this.doorNo = doorNo;
     }
-    public Getoff(){
-        this("4",0,0);
+
+    public Getoff() {
+        this("4", 0, 0);
     }
 
-    protected Getoff(Parcel resource){
+    protected Getoff(Parcel resource) {
         super(resource);
         carNo = resource.readInt();
         doorNo = resource.readInt();
@@ -41,10 +42,10 @@ public class Getoff extends ItemTest{
         this.doorNo = doorNo;
     }
 
-//    @Override
-//    public int describeContents() {
-//        return 0;
-//    }
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
@@ -53,16 +54,17 @@ public class Getoff extends ItemTest{
         dest.writeInt(carNo);
         dest.writeInt(doorNo);
     }
-
-    public static final Parcelable.Creator<Getoff> CREATOR = new Parcelable.Creator<Getoff>() {
-        @Override
-        public Getoff createFromParcel(Parcel in) {
-            return new Getoff(in);
-        }
-
-        @Override
-        public Getoff[] newArray(int size) {
-            return new Getoff[size];
-        }
-    };
 }
+
+//    public static final Parcelable.Creator<Getoff> CREATOR = new Parcelable.Creator<Getoff>() {
+//        @Override
+//        public Getoff createFromParcel(Parcel in) {
+//            return new Getoff(in);
+//        }
+//
+//        @Override
+//        public Getoff[] newArray(int size) {
+//            return new Getoff[size];
+//        }
+//    };
+//}

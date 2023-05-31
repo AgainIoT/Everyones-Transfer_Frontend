@@ -40,7 +40,6 @@ import java.util.Map;
 public class DifActivity extends AppCompatActivity {
     static RequestQueue requestQueue;
     ArrayList<String> lines;
-    ArrayList<ItemTest> list;
     RecyclerView lowerScroll;
     ArrayList<ItemTest> data;
 
@@ -53,10 +52,7 @@ public class DifActivity extends AppCompatActivity {
         AppCompatButton completeBtn = findViewById(R.id.completeBtn);
 
         Intent intent = getIntent();
-        ArrayList<ItemTest> myList = intent.getParcelableArrayListExtra("myList");
-        Log.i("myList1", String.valueOf(((Elevator) myList.get(0)).getStartFloor()));;
-        Log.i("myList2", ((Walk) myList.get(1)).getDirection());
-        Log.i("myList3", String.valueOf(((Getoff) myList.get(3)).getCarNo()));;
+        data = intent.getParcelableArrayListExtra("data");
 
         if (requestQueue == null) {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -65,12 +61,6 @@ public class DifActivity extends AppCompatActivity {
         maintainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Log.i("data startFloor", ((Elevator) list.get(0)).getStartFloor());
-//                Log.i("data endFloor", ((Elevator) list.get(0)).getEndFloor());
-                Log.i("data direction", ((Walk) list.get(1)).getDirection());
-                Log.i("data distance", String.valueOf(((Walk) list.get(1)).getDistance()));
-                Log.i("data carNo", String.valueOf(((Getoff) list.get(3)).getCarNo()));
-                Log.i("data doorNo", String.valueOf(((Getoff) list.get(3)).getDoorNo()));
                 Context context = getApplicationContext();
                 Toast.makeText(context, "기존 내용을 유지합니다.", Toast.LENGTH_SHORT).show();
                 if (context.getSharedPreferences("done", context.MODE_PRIVATE).getBoolean("done", false)) {
@@ -113,14 +103,10 @@ public class DifActivity extends AppCompatActivity {
         StringRecyclerViewAdapter upperAdapter = new StringRecyclerViewAdapter(getApplicationContext(), originContent);
         upperScroll.setAdapter(upperAdapter);
 
-//        RecyclerAdapter lowerAdapter = new RecyclerAdapter();
-//        lowerScroll.setAdapter(lowerAdapter);
         CustomAdapter lowerAdapter = new CustomAdapter(getApplicationContext(), data);
         lowerScroll.setAdapter(lowerAdapter);
         ItemTouchHelper mItemTouchHelper = new ItemTouchHelper(new ItemTouchHelperCallback(lowerAdapter));
         mItemTouchHelper.attachToRecyclerView(lowerScroll);
-//
-//        lowerAdapter.setItems(list);
 
         //radiogroup 추가
         RadioGroup radioGroup = (RadioGroup) findViewById(R.id.navbar);
@@ -134,8 +120,8 @@ public class DifActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ItemTest item = new Elevator();
-                list.add(item);
-                lowerAdapter.notifyItemInserted(list.size());
+                data.add(item);
+                lowerAdapter.notifyItemInserted(data.size());
             }
         });
 
@@ -143,8 +129,8 @@ public class DifActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ItemTest item = new Walk();
-                list.add(item);
-                lowerAdapter.notifyItemInserted(list.size());
+                data.add(item);
+                lowerAdapter.notifyItemInserted(data.size());
             }
         });
 
@@ -154,8 +140,8 @@ public class DifActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ItemTest item = new Pass();
-                list.add(item);
-                lowerAdapter.notifyItemInserted(list.size());
+                data.add(item);
+                lowerAdapter.notifyItemInserted(data.size());
             }
         });
 
@@ -163,8 +149,8 @@ public class DifActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ItemTest item = new Getoff();
-                list.add(item);
-                lowerAdapter.notifyItemInserted(list.size());
+                data.add(item);
+                lowerAdapter.notifyItemInserted(data.size());
             }
         });
     }
@@ -180,8 +166,8 @@ public class DifActivity extends AppCompatActivity {
         JSONObject jsonParams = new JSONObject();
         ArrayList<String> arr = new ArrayList<>();
 
-        for (int i = 0; i < list.size(); i++) {
-            ItemTest one = list.get(i);
+        for (int i = 0; i < data.size(); i++) {
+            ItemTest one = data.get(i);
             if (one instanceof Elevator) {
                 arr.add(((Elevator) one).getStartFloor() + "층 에서" + ((Elevator) one).getEndFloor() + "층으로 이동");
             } else if (one instanceof Walk) {

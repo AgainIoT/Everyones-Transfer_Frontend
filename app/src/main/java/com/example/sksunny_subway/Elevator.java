@@ -9,12 +9,12 @@ public class Elevator extends ItemTest{
     private String startFloor;
     private String endFloor;
 
-    Elevator(String abstractClassMemberString, String startFloor, String endFloor){
+    public Elevator(String abstractClassMemberString, String startFloor, String endFloor){
         super(abstractClassMemberString);
         this.startFloor = startFloor;
         this.endFloor = endFloor;
     }
-    Elevator(){
+    public Elevator(){
         this("1","출발층", "도착층");
     }
 
