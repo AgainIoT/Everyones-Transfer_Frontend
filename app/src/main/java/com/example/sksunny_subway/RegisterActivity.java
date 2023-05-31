@@ -123,7 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 lines.clear();
                 lines.add("호선 입력");
-                StringArray.setStringArrayPref(getApplicationContext(), "lines" , lines);
+                StringArray.setStringArrayPref(getApplicationContext(), "lines", lines);
 
                 Intent intent = new Intent(getApplicationContext(), DifActivity.class);
                 intent.putParcelableArrayListExtra("data", data);
@@ -170,8 +170,6 @@ public class RegisterActivity extends AppCompatActivity {
         RadioButton walk = (RadioButton) findViewById(R.id.walk);
         RadioButton pass = (RadioButton) findViewById(R.id.pass);
         RadioButton getOff = (RadioButton) findViewById(R.id.getOff);
-
-        originContent = StringArray.getStringArrayPref(getApplicationContext(), "originContent");
 
         elevator.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -286,14 +284,13 @@ public class RegisterActivity extends AppCompatActivity {
                                 Log.i("headers", String.valueOf(headers));
 
                                 JSONArray jsonarr = data.getJSONArray("originContent");
+                                Log.d("original", jsonarr.toString());
                                 ArrayList<String> arr = new ArrayList<>();
                                 for (int i = 0; i < jsonarr.length(); i++) {
                                     arr.add(jsonarr.getString(i));
                                 }
-                                arr.add("B1층에서 B2층으로 이동");
-                                arr.add("우측으로 100m 이동");
                                 StringArray.setStringArrayPref(getApplicationContext(), "originContent", arr);
-                                Log.i("originContent", originContent.toString());
+                                Log.i("originContent1", originContent.toString());
 
                             } catch (JSONException e) {
                                 Log.e("error", Log.getStackTraceString(e));
