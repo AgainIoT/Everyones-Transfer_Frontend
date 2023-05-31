@@ -1,9 +1,7 @@
 package com.example.sksunny_subway;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.text.InputType;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -16,12 +14,10 @@ import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 
 public class Request2API {
 

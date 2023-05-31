@@ -5,20 +5,21 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-public class Walk extends ItemTest{
+public class Walk extends ItemTest {
     private String direction;
     private int distance;
 
-    public Walk(String abstractClassMemberString, String direction, int distance){
+    public Walk(String abstractClassMemberString, String direction, int distance) {
         super(abstractClassMemberString);
         this.direction = direction;
         this.distance = distance;
     }
-    public Walk(){
-        this("2","방향", 0);
+
+    public Walk() {
+        this("2", "방향", 0);
     }
 
-    protected Walk(Parcel resouce){
+    protected Walk(Parcel resouce) {
         super(resouce);
         direction = resouce.readString();
         distance = resouce.readInt();
@@ -52,15 +53,4 @@ public class Walk extends ItemTest{
         dest.writeString(direction);
         dest.writeInt(distance);
     }
-//    public static final Parcelable.Creator<Walk> CREATOR = new Parcelable.Creator<Walk>() {
-//        @Override
-//        public Walk createFromParcel(Parcel in) {
-//            return new Walk(in);
-//        }
-//
-//        @Override
-//        public Walk[] newArray(int size) {
-//            return new Walk[size];
-//        }
-//    };
 }

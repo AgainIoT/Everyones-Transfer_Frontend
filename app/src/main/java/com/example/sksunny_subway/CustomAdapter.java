@@ -2,8 +2,8 @@ package com.example.sksunny_subway;
 
 import android.content.Context;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,11 +22,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
     Context context;
 
     private ArrayList<ItemTest> data;
-
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder).
-     */
 
     public CustomAdapter(Context context, ArrayList<ItemTest> data) {
         this.context = context;
@@ -166,6 +161,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 }
             });
             viewHolder.editText.setText(String.valueOf(((Walk) item).getDistance()));
+            viewHolder.editText.setInputType(InputType.TYPE_CLASS_NUMBER);
             viewHolder.editText.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {

@@ -34,33 +34,38 @@
         android:id="@+id/spinner_direction"
         android:layout_width="70dp"
         android:layout_height="25dp"
-        android:layout_weight="0.33"
         android:layout_marginStart="50dp"
+        android:layout_weight="0.33"
+        android:background="@drawable/layer_list_bg_white_200_radius_10"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv2"
         app:layout_constraintStart_toEndOf="@id/imageView"
-        android:background="@drawable/layer_list_bg_white_200_radius_10" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.457" />
+
 
     <TextView
         android:id="@+id/tv2"
-        android:text="으로"
-        android:textSize="15dp"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:text="으로"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/meter"
         app:layout_constraintStart_toEndOf="@+id/spinner_direction"
         app:layout_constraintTop_toTopOf="parent" />
-
 
     <EditText
         android:id="@+id/meter"
         android:layout_width="@dimen/_50pxh"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:background="@drawable/rectangle_bg_gray_100_border_gray_900"
         android:textColor="@color/black"
         android:textSize="15dp"
         android:gravity="center"
+        app:layout_constraintEnd_toStartOf="@+id/tv3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tv2"
         app:layout_constraintTop_toTopOf="parent"
@@ -70,12 +75,14 @@
 
     <TextView
         android:id="@+id/tv3"
-        android:text="m 이동"
-        android:textSize="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
+        android:text="m 이동"
+        android:textSize="15dp"
+        android:layout_marginEnd="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/meter"
         app:layout_constraintTop_toTopOf="parent" />
 

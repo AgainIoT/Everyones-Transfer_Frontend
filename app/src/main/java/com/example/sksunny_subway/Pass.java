@@ -5,19 +5,23 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-public class Pass extends ItemTest{
+public class Pass extends ItemTest {
 
-    public Pass(){
+    public Pass() {
         this("3");
     }
 
-    public Pass(String abstractClassMemberString){
+    public Pass(String abstractClassMemberString) {
         super(abstractClassMemberString);
-    };
+    }
 
-    protected Pass(Parcel resource){
+    ;
+
+    protected Pass(Parcel resource) {
         super(resource);
-    };
+    }
+
+    ;
 
     @Override
     public int describeContents() {
@@ -29,15 +33,4 @@ public class Pass extends ItemTest{
         dest.writeInt(CLASS_TYPE_THREE);
         super.writeToParcel(dest, flags);
     }
-//    public static final Parcelable.Creator<Pass> CREATOR = new Parcelable.Creator<Pass>() {
-//        @Override
-//        public Pass createFromParcel(Parcel in) {
-//            return new Pass(in);
-//        }
-//
-//        @Override
-//        public Pass[] newArray(int size) {
-//            return new Pass[size];
-//        }
-//    };
 }

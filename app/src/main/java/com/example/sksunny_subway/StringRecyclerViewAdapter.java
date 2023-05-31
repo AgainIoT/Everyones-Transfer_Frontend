@@ -18,11 +18,6 @@ public class StringRecyclerViewAdapter extends RecyclerView.Adapter<StringRecycl
 
     private ArrayList<String> data;
 
-    /**
-     * Provide a reference to the type of views that you are using
-     * (custom ViewHolder).
-     */
-
     public StringRecyclerViewAdapter(Context context, ArrayList<String> data) {
         this.context = context;
         this.data = data;
@@ -55,7 +50,6 @@ public class StringRecyclerViewAdapter extends RecyclerView.Adapter<StringRecycl
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-
         viewHolder.textview.setText(data.get(position));
     }
 
