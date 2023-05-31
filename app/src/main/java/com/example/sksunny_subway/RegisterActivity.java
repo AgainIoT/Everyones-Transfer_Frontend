@@ -49,7 +49,7 @@ public class RegisterActivity extends AppCompatActivity {
     //arrayList
     ArrayList<ItemTest> data = new ArrayList<>();   // 사용자한테 입력 받은 상세 경로
     ArrayList<String> lines = new ArrayList<>();    // 해당 역을 지나는 노선들로
-    ArrayList<String> originContent = new ArrayList<>();    // 해당 블럭의 기존 상세 경 정보
+//    ArrayList<String> originContent = new ArrayList<>();    // 해당 블럭의 기존 상세 경 정보
 
     static RequestQueue requestQueue;
 
@@ -290,7 +290,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     arr.add(jsonarr.getString(i));
                                 }
                                 StringArray.setStringArrayPref(getApplicationContext(), "originContent", arr);
-                                Log.i("originContent1", originContent.toString());
+                                Log.i("originContent1", jsonarr.toString());
 
                             } catch (JSONException e) {
                                 Log.e("error", Log.getStackTraceString(e));
