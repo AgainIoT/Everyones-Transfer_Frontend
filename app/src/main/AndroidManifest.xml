@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.sksunny_subway">
+    package="com.banana.sksunny_subway">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".LoadingActivity"
+            android:name="com.banana.sksunny_subway.LoadingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,13 +27,13 @@
         </activity>
 
         <activity
-            android:name=".DifActivity"
+            android:name="com.banana.sksunny_subway.DifActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name="com.banana.sksunny_subway.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.banana.sksunny_subway.MainActivity"
             android:exported="true"/>
 
     </application>
