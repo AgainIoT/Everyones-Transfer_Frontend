@@ -216,7 +216,7 @@ public class DifActivity extends AppCompatActivity {
         for (int i = 0; i < data.size(); i++) {
             ItemTest one = data.get(i);
             if (one instanceof Elevator) {
-                arr.add(((Elevator) one).getStartFloor() + "층에서 " + ((Elevator) one).getEndFloor() + "층으로 이동");
+                arr.add(((Elevator) one).getStartFloor() + "에서 " + ((Elevator) one).getEndFloor() + "으로 이동");
             } else if (one instanceof Walk) {
                 arr.add(((Walk) one).getDirection() + "으로" + String.valueOf(((Walk) one).getDistance()) + "m 이동");
             } else if (one instanceof Pass) {

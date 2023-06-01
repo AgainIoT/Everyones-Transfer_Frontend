@@ -107,7 +107,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         final ArrayList<String> directions = new ArrayList<>(Arrays.asList("전방", "좌측", "우측"));
         final ArrayList<String> carNo = new ArrayList<>(Arrays.asList("1", "2", "3", "4", "5", "6", "7", "8", "9", "10"));
         final ArrayList<String> doorNo = new ArrayList<>(Arrays.asList("1", "2", "3", "4"));
-        int distance;
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
@@ -115,12 +114,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         if (item instanceof Elevator) {
             AdapterSpinner adapterSpinner1 = new AdapterSpinner(this.context, stairs);
             viewHolder.spinner1.setAdapter(adapterSpinner1);
-            viewHolder.spinner1.setSelection(stairs.indexOf(((Elevator) item).getStartFloor() + "층"));
+            viewHolder.spinner1.setSelection(stairs.indexOf(((Elevator) item).getStartFloor()));
             viewHolder.spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    ((Elevator) item).setStartFloor(parent.getSelectedItem().toString().substring(0, 1));
-                    viewHolder.spinner1.setSelection(stairs.indexOf(((Elevator) item).getStartFloor() + "층"));
+                    ((Elevator) item).setStartFloor(parent.getSelectedItem().toString());
+                    viewHolder.spinner1.setSelection(stairs.indexOf(((Elevator) item).getStartFloor()));
                 }
 
                 @Override
@@ -130,12 +129,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             });
             AdapterSpinner adapterSpinner2 = new AdapterSpinner(this.context, stairs);
             viewHolder.spinner2.setAdapter(adapterSpinner2);
-            viewHolder.spinner2.setSelection(stairs.indexOf(((Elevator) item).getEndFloor() + "층"));
+            viewHolder.spinner2.setSelection(stairs.indexOf(((Elevator) item).getEndFloor()));
             viewHolder.spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    ((Elevator) item).setEndFloor(parent.getSelectedItem().toString().substring(0, 1));
-                    viewHolder.spinner2.setSelection(stairs.indexOf(((Elevator) item).getEndFloor() + "층"));
+                    ((Elevator) item).setEndFloor(parent.getSelectedItem().toString());
+                    viewHolder.spinner2.setSelection(stairs.indexOf(((Elevator) item).getEndFloor()));
                 }
 
                 @Override

@@ -45,7 +45,6 @@ import java.util.concurrent.Future;
 public class RegisterActivity extends AppCompatActivity {
     ArrayList<String> floors = new ArrayList<>(Arrays.asList("B5층", "B4층", "B3층", "B2층", "B1층", "1층", "2층", "3층", "4층", "5층"));
     ArrayList<String> locations = new ArrayList<>(Arrays.asList("승강장", "대합실", "외부"));
-    ArrayList<String> directions = new ArrayList<>(Arrays.asList("왼쪽", "오른쪽", "직진", "후진"));
     AdapterSpinner adapterfloors;
     AdapterSpinner adapterlines;
     AdapterSpinner adapterlocations;
@@ -53,7 +52,6 @@ public class RegisterActivity extends AppCompatActivity {
     //arrayList
     ArrayList<ItemTest> data = new ArrayList<>();   // 사용자한테 입력 받은 상세 경로
     ArrayList<String> lines = new ArrayList<>();    // 해당 역을 지나는 노선들로
-//    ArrayList<String> originContent = new ArrayList<>();    // 해당 블럭의 기존 상세 경 정보
 
     static RequestQueue requestQueue;
 
@@ -77,32 +75,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         LinearLayout btn_next = findViewById(R.id.layout_next);
         LinearLayout btn_finish = findViewById(R.id.layout_finish);
-//        SharedPreferences.OnSharedPreferenceChangeListener sharedPreferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
-//            @Override
-//            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-//                if (key.equals("originContent")) {
-//                    String str = getSharedPreferences("originContent", MODE_PRIVATE).getString("originContent", null);
-//                    Log.i("Changed1", str);
-//                    if (str != null) {
-//                        try {
-//                            JSONArray a = new JSONArray(str);
-//                            for (int i = 0; i < a.length(); i++) {
-//                                String url = a.optString(i);
-//                                originContentData.add(url);
-//                            }
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }
-//            }
-//        };
-
-//        SharedPreferences sharedPreferences = this.getSharedPreferences("originContent", MODE_PRIVATE);
-//        sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
-
 
         if (requestQueue == null) {
+            requestQueue = Volley.newRequestQueue(getApplicationContext());
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
 
@@ -142,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 SharedPreferences shared_save_nextpath = getSharedPreferences("save_nextpath", MODE_PRIVATE);
                 SharedPreferences.Editor editor_save_nextpath = shared_save_nextpath.edit();
-                editor_save_nextpath.putString("arfloors", "B5층");
+                editor_save_nextpath.putString("arfloors", "B5");
                 editor_save_nextpath.putString("arlocations", "승강장");
                 editor_save_nextpath.apply();
 
