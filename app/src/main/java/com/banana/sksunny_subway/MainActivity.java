@@ -97,6 +97,11 @@ public class MainActivity extends AppCompatActivity {
 
             startLine = shared_save_main.getString("startLine", "");
             endLine = shared_save_main.getString("endLine", "");
+
+            SharedPreferences done = getSharedPreferences("done", MODE_PRIVATE);
+            SharedPreferences.Editor done_editor = done.edit();
+            done_editor.putBoolean("done", true);
+            done_editor.apply();
         } catch (Exception e) {
 
         }
