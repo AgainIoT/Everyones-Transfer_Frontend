@@ -37,6 +37,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 public class RegisterActivity extends AppCompatActivity {
     ArrayList<String> floors = new ArrayList<>(Arrays.asList("B5층", "B4층", "B3층", "B2층", "B1층", "1층", "2층", "3층", "4층", "5층"));
@@ -73,12 +77,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         LinearLayout btn_next = findViewById(R.id.layout_next);
         LinearLayout btn_finish = findViewById(R.id.layout_finish);
-        SharedPreferences.OnSharedPreferenceChangeListener sharedPreferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
-            @Override
-            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                if (key.equals("originContent")) {
-                    String str = getSharedPreferences("originContent", MODE_PRIVATE).getString("originContent", null);
-                    Log.i("Changed1", str);
+//        SharedPreferences.OnSharedPreferenceChangeListener sharedPreferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+//            @Override
+//            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+//                if (key.equals("originContent")) {
+//                    String str = getSharedPreferences("originContent", MODE_PRIVATE).getString("originContent", null);
+//                    Log.i("Changed1", str);
 //                    if (str != null) {
 //                        try {
 //                            JSONArray a = new JSONArray(str);
@@ -90,12 +94,12 @@ public class RegisterActivity extends AppCompatActivity {
 //                            e.printStackTrace();
 //                        }
 //                    }
-                }
-            }
-        };
+//                }
+//            }
+//        };
 
-        SharedPreferences sharedPreferences = this.getSharedPreferences("originContent", MODE_PRIVATE);
-        sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
+//        SharedPreferences sharedPreferences = this.getSharedPreferences("originContent", MODE_PRIVATE);
+//        sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
 
 
         if (requestQueue == null) {
@@ -123,9 +127,6 @@ public class RegisterActivity extends AppCompatActivity {
                 SharedPreferences.Editor done_editor = done.edit();
                 done_editor.putBoolean("done", false);
                 done_editor.apply();
-                Intent intent = new Intent(getApplicationContext(), DifActivity.class);
-                intent.putParcelableArrayListExtra("data", data);
-                startActivity(intent);
             }
         });
 
@@ -299,31 +300,43 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onResponse(JSONObject response) {
 
-                            try {
-                                // get data and headers from the received response
-                                JSONObject data = response.getJSONObject("data");
-                                JSONObject headers = response.getJSONObject("headers");
-                                // Logs for debugging
-                                Log.i("body", String.valueOf(data));
-                                Log.i("headers", String.valueOf(headers));
+                            ExecutorService executorService = Executors.newCachedThreadPool();
 
-                                JSONArray jsonarr = data.getJSONArray("originContent");
-//                                Log.d("original", jsonarr.toString());
-//                                ArrayList<String> arr = new ArrayList<>();
-//                                for (int i = 0; i < jsonarr.length(); i++) {
-//                                    arr.add(jsonarr.getString(i));
-//                                }
-                                SharedPreferences originContent = getSharedPreferences("originContent", MODE_PRIVATE);
-                                SharedPreferences.Editor originContent_editor = originContent.edit();
-                                originContent_editor.putString("originContent", jsonarr.toString());
-                                originContent_editor.apply();
+                            Future<String> future = executorService.submit(() -> {
+                                try {
+                                    // get data and headers from the received response
+                                    JSONObject data = response.getJSONObject("data");
+                                    JSONObject headers = response.getJSONObject("headers");
+                                    // Logs for debugging
+                                    Log.i("body", String.valueOf(data));
+                                    Log.i("headers", String.valueOf(headers));
 
-//                                StringArray.setStringArrayPref(getApplicationContext(), "originContent", arr);
-                                Log.i("originContent body", jsonarr.toString());
+                                    JSONArray jsonarr = data.getJSONArray("originContent");
+                                    SharedPreferences originContent = getSharedPreferences("originContent", MODE_PRIVATE);
+                                    SharedPreferences.Editor originContent_editor = originContent.edit();
+                                    originContent_editor.putString("originContent", jsonarr.toString());
+                                    originContent_editor.apply();
 
-                            } catch (JSONException e) {
-                                Log.e("error", Log.getStackTraceString(e));
+                                } catch (JSONException e) {
+                                    Log.e("error", Log.getStackTraceString(e));
+                                }
+                                return "sadf";
+                            });
+                            while(true){
+                                if (future.isDone()){
+                                    try {
+                                        future.get();
+                                    } catch (ExecutionException e) {
+                                        throw new RuntimeException(e);
+                                    } catch (InterruptedException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                    break;
+                                }
                             }
+                            Intent intent = new Intent(getApplicationContext(), DifActivity.class);
+                            intent.putParcelableArrayListExtra("data", data);
+                            startActivity(intent);
                         }
                     }, new Response.ErrorListener() {
 
@@ -331,7 +344,7 @@ public class RegisterActivity extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     NetworkResponse respone = error.networkResponse;
                     if (error instanceof ServerError && respone != null) {
-                        Toast.makeText(getApplicationContext(), "정확한 경로 정보를 입력하세요", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "getBlock error", Toast.LENGTH_SHORT).show();
                         try {
                             String res = new String(respone.data, HttpHeaderParser.parseCharset(respone.headers, "utf-8"));
                             Log.e("volley error", res);

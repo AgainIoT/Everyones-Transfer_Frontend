@@ -34,6 +34,7 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -46,7 +47,6 @@ public class DifActivity extends AppCompatActivity {
     ArrayList<String> lines;
     RecyclerView lowerScroll;
     ArrayList<ItemTest> data;
-    ArrayList<String> originContentData = new ArrayList<>();
     StringRecyclerViewAdapter upperAdapter;
 
     @Override
@@ -57,52 +57,6 @@ public class DifActivity extends AppCompatActivity {
         AppCompatButton maintainBtn = findViewById(R.id.maintainBtn);
         AppCompatButton completeBtn = findViewById(R.id.completeBtn);
 
-        ExecutorService executorService = Executors.newCachedThreadPool();
-
-        Future<ArrayList<String>> future = executorService.submit(() -> {
-            String json = getSharedPreferences("originContent", MODE_PRIVATE).getString("originContent", null);
-            ArrayList<String> urls = new ArrayList<>();
-            if (json != null) {
-                try {
-                    JSONArray a = new JSONArray(json);
-                    for (int i = 0; i < a.length(); i++) {
-                        String url = a.optString(i);
-                        urls.add(url);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                Log.i("body change", json);
-            }
-            return urls;
-        });
-
-        SharedPreferences.OnSharedPreferenceChangeListener sharedPreferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                if (key.equals("originContent")) {
-                    while (true) {
-                        if (future.isDone()) {
-                            try {
-                                originContentData = future.get();
-                                upperAdapter.notifyDataSetChanged();
-                            } catch (ExecutionException e) {
-                                throw new RuntimeException(e);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-                            break;
-                        }
-                    }
-                }
-            }
-        };
-
-
-        SharedPreferences sharedPreferences = this.getSharedPreferences("originContent", MODE_PRIVATE);
-        sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
-
         Intent intent = getIntent();
         data = intent.getParcelableArrayListExtra("data");
 
@@ -110,10 +64,39 @@ public class DifActivity extends AppCompatActivity {
             requestQueue = Volley.newRequestQueue(getApplicationContext());
         }
 
+//        SharedPreferences.OnSharedPreferenceChangeListener sharedPreferenceChangeListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
+//            @SuppressLint("NotifyDataSetChanged")
+//            @Override
+//            public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+//                if (key.equals("originContent")) {
+//                    String json = getSharedPreferences("originContent", MODE_PRIVATE).getString("originContent", null);
+//                    ArrayList<String> urls = new ArrayList<>();
+//                    if (json != null) {
+//                        try {
+//                            JSONArray a = new JSONArray(json);
+//                            for (int i = 0; i < a.length(); i++) {
+//                                String url = a.optString(i);
+//                                urls.add(url);
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                        Log.i("body change", json);
+//                    }
+//                    originContentData.clear();
+//                    originContentData.addAll(urls);
+//                    upperAdapter.notifyDataSetChanged();
+//                }
+//            }
+//        };
+
+//        SharedPreferences sharedPreferences = getSharedPreferences("originContent", MODE_PRIVATE);
+//        sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferenceChangeListener);
+
+
         maintainBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                patchRoot();
                 Context context = getApplicationContext();
                 Toast.makeText(context, "기존 내용을 유지합니다.", Toast.LENGTH_SHORT).show();
                 if (context.getSharedPreferences("done", context.MODE_PRIVATE).getBoolean("done", false)) {
@@ -131,10 +114,10 @@ public class DifActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 patchBlock();
-                patchRoot();
                 Context context = getApplicationContext();
                 Toast.makeText(context, "수정된 내용이 저장되었습니다.", Toast.LENGTH_SHORT).show();
                 if (context.getSharedPreferences("done", context.MODE_PRIVATE).getBoolean("done", false)) {
+                    patchRoot();
                     Intent intent = new Intent(context, MainActivity.class);
                     startActivity(intent);
                 } else {
@@ -145,7 +128,6 @@ public class DifActivity extends AppCompatActivity {
             }
         });
 
-
         // 리사이클러뷰에 LinearLayoutManager 객체 지정.
         RecyclerView upperScroll = findViewById(R.id.upperScroll);
         upperScroll.setLayoutManager(new LinearLayoutManager(this));
@@ -154,7 +136,20 @@ public class DifActivity extends AppCompatActivity {
         lowerScroll.setLayoutManager(new LinearLayoutManager((this)));
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        upperAdapter = new StringRecyclerViewAdapter(getApplicationContext(), originContentData);
+        String json = getSharedPreferences("originContent", MODE_PRIVATE).getString("originContent", null);
+        ArrayList<String> urls = new ArrayList<>();
+        if (json != null) {
+            try {
+                JSONArray a = new JSONArray(json);
+                for (int i = 0; i < a.length(); i++) {
+                    String url = a.optString(i);
+                    urls.add(url);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        upperAdapter = new StringRecyclerViewAdapter(getApplicationContext(), urls);
         upperScroll.setAdapter(upperAdapter);
 
         CustomAdapter lowerAdapter = new CustomAdapter(getApplicationContext(), data);
@@ -252,7 +247,7 @@ public class DifActivity extends AppCompatActivity {
                             JSONObject data = response.getJSONObject("data");
                             JSONObject headers = response.getJSONObject("headers");
                             // Logs for debugging
-                            Log.i("body", String.valueOf(data));
+                            Log.i("patchBlock body", String.valueOf(data));
                             Log.i("headers", String.valueOf(headers));
 
                         } catch (JSONException e) {
@@ -311,7 +306,7 @@ public class DifActivity extends AppCompatActivity {
                             JSONObject data = response.getJSONObject("data");
                             JSONObject headers = response.getJSONObject("headers");
                             // Logs for debugging
-                            Log.i("root body", String.valueOf(data));
+                            Log.i("patchRoot body", String.valueOf(data));
                             Log.i("headers", String.valueOf(headers));
 
                         } catch (JSONException e) {
@@ -323,6 +318,10 @@ public class DifActivity extends AppCompatActivity {
             @Override
             public void onErrorResponse(VolleyError error) {
                 NetworkResponse respone = error.networkResponse;
+                if (error instanceof NoConnectionError) {
+                    Toast.makeText(getApplicationContext(), "인터넷 상태가 좋지 않습니다", Toast.LENGTH_SHORT).show();
+                }
+                Log.e("e", Log.getStackTraceString(error));
                 if (error instanceof ServerError && respone != null) {
                     Toast.makeText(getApplicationContext(), "정확한 경로 정보를 입력하세요", Toast.LENGTH_SHORT).show();
                     try {
@@ -332,10 +331,6 @@ public class DifActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-                if (error instanceof NoConnectionError) {
-                    Toast.makeText(getApplicationContext(), "인터넷 상태가 좋지 않습니다", Toast.LENGTH_SHORT).show();
-                }
-                Log.e("e", Log.getStackTraceString(error));
             }
         }) {
             @Override
