@@ -136,22 +136,26 @@ public class DifActivity extends AppCompatActivity {
         lowerScroll.setLayoutManager(new LinearLayoutManager((this)));
 
         // 리사이클러뷰에 SimpleTextAdapter 객체 지정.
-        String json = getSharedPreferences("originContent", MODE_PRIVATE).getString("originContent", "기존에 입력된 데이터가 없습니다");
+        String json = getSharedPreferences("originContent", MODE_PRIVATE).getString("originContent", null);
+        Log.i("json", json);
         ArrayList<String> urls = new ArrayList<>();
         if (json != null) {
-            try {
-                JSONArray a = new JSONArray(json);
-                for (int i = 0; i < a.length(); i++) {
-                    String url = a.optString(i);
-                    urls.add(url);
+            if (json.equals("[]")){
+                urls.add("기존 내용이 없습니다");
+            } else {
+                try {
+                    JSONArray a = new JSONArray(json);
+                    for (int i = 0; i < a.length(); i++) {
+                        String url = a.optString(i);
+                        urls.add(url);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-            } catch (JSONException e) {
-                e.printStackTrace();
             }
-        } else {
-            
         }
         upperAdapter = new StringRecyclerViewAdapter(getApplicationContext(), urls);
+        Log.i("urls", urls.toString());
         upperScroll.setAdapter(upperAdapter);
 
         CustomAdapter lowerAdapter = new CustomAdapter(getApplicationContext(), data);
