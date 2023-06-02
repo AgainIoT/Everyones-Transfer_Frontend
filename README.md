@@ -1,6 +1,6 @@
 ## 테스트 환경
 - OS : Windows 10, Ubuntu 22.04
-- 기기 : Galaxy Note 10 (API 31 : Android 12.0), Galaxy S21+ (API 30 : Android 10.0)
+- 기기 : Galaxy Note 10 (API 31 : Android 12), Galaxy S21+ (API 33 : Android 13)
 
 ## Minimum SDK
 
