@@ -196,7 +196,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        //얘는 확정! 더 손 안 대도 됨!
         pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
