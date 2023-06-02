@@ -84,6 +84,9 @@ public class RegisterActivity extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (data.size() == 0){
+                    Toast.makeText(getApplicationContext(), "정보를 입력해주세요", Toast.LENGTH_SHORT).show();
+                }
                 getBlock();
                 SharedPreferences shared_save_nextpath = getSharedPreferences("save_nextpath", MODE_PRIVATE);
                 SharedPreferences.Editor editor_save_nextpath = shared_save_nextpath.edit();
@@ -108,26 +111,30 @@ public class RegisterActivity extends AppCompatActivity {
         btn_finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getBlock();
+                if (data.size() == 0) {
+                    Toast.makeText(getApplicationContext(), "정보를 입력해주세요", Toast.LENGTH_SHORT).show();
+                } else {
+                    getBlock();
 
-                SharedPreferences done = getSharedPreferences("done", MODE_PRIVATE);
-                SharedPreferences.Editor done_editor = done.edit();
-                done_editor.putBoolean("done", true);
-                done_editor.apply();
+                    SharedPreferences done = getSharedPreferences("done", MODE_PRIVATE);
+                    SharedPreferences.Editor done_editor = done.edit();
+                    done_editor.putBoolean("done", true);
+                    done_editor.apply();
 
-                SharedPreferences shared_save_nextpath = getSharedPreferences("save_nextpath", MODE_PRIVATE);
-                SharedPreferences.Editor editor_save_nextpath = shared_save_nextpath.edit();
-                editor_save_nextpath.putString("arfloors", "B5");
-                editor_save_nextpath.putString("arlocations", "승강장");
-                editor_save_nextpath.apply();
+                    SharedPreferences shared_save_nextpath = getSharedPreferences("save_nextpath", MODE_PRIVATE);
+                    SharedPreferences.Editor editor_save_nextpath = shared_save_nextpath.edit();
+                    editor_save_nextpath.putString("arfloors", "B5");
+                    editor_save_nextpath.putString("arlocations", "승강장");
+                    editor_save_nextpath.apply();
 
-                lines.clear();
-                lines.add("호선 입력");
-                StringArray.setStringArrayPref(getApplicationContext(), "lines", lines);
+                    lines.clear();
+                    lines.add("호선 입력");
+                    StringArray.setStringArrayPref(getApplicationContext(), "lines", lines);
 
-                Intent intent = new Intent(getApplicationContext(), DifActivity.class);
-                intent.putParcelableArrayListExtra("data", data);
-                startActivity(intent);
+                    Intent intent = new Intent(getApplicationContext(), DifActivity.class);
+                    intent.putParcelableArrayListExtra("data", data);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -297,8 +304,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 }
                                 return "sadf";
                             });
-                            while(true){
-                                if (future.isDone()){
+                            while (true) {
+                                if (future.isDone()) {
                                     try {
                                         future.get();
                                     } catch (ExecutionException e) {
