@@ -159,7 +159,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
                 }
             });
-            viewHolder.editText.setText(String.valueOf(((Walk) item).getDistance()));
             viewHolder.editText.setInputType(InputType.TYPE_CLASS_NUMBER);
             viewHolder.editText.addTextChangedListener(new TextWatcher() {
                 @Override

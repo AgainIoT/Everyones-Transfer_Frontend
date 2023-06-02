@@ -53,6 +53,7 @@
         android:maxLines="1"
         android:textAlignment="center"
         android:maxLength="3"
+        android:hint = "0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textview2"
         app:layout_constraintTop_toTopOf="parent" />
