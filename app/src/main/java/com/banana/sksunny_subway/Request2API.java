@@ -67,8 +67,6 @@ public class Request2API {
                     NetworkResponse respone = error.networkResponse;
                     if (error instanceof ServerError && respone != null) {
                         Toast.makeText(context, "정확한 역 이름을 입력해주세요", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(context, RegisterActivity.class);
-//                        startActivity(intent);
                         try {
                             String res = new String(respone.data, HttpHeaderParser.parseCharset(respone.headers, "utf-8"));
                             Log.e("volley error", res);
@@ -78,8 +76,6 @@ public class Request2API {
                     }
                     if (error instanceof NoConnectionError) {
                         Toast.makeText(context, "인터넷 상태가 좋지 않습니다", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(context, RegisterActivity.class);
-//                        startActivity(intent);
                     }
                     Log.e("e", Log.getStackTraceString(error));
                 }

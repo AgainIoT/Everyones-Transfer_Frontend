@@ -86,25 +86,26 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (data.size() == 0) {
                     Toast.makeText(getApplicationContext(), "정보를 입력해주세요", Toast.LENGTH_SHORT).show();
-                }
-                getBlock();
-                SharedPreferences shared_save_nextpath = getSharedPreferences("save_nextpath", MODE_PRIVATE);
-                SharedPreferences.Editor editor_save_nextpath = shared_save_nextpath.edit();
-                if (!spinner_arfloors.getSelectedItem().toString().isEmpty()) {
-                    editor_save_nextpath.putString("arfloors", spinner_arfloors.getSelectedItem().toString());
-                }
-                if (!spinner_arlines.getSelectedItem().toString().isEmpty()) {
-                    editor_save_nextpath.putString("arlines", spinner_arlines.getSelectedItem().toString());
-                }
-                if (!spinner_arlocations.getSelectedItem().toString().isEmpty()) {
-                    editor_save_nextpath.putString("arlocations", spinner_arlocations.getSelectedItem().toString());
-                }
-                editor_save_nextpath.apply();
+                } else {
+                    getBlock();
+                    SharedPreferences shared_save_nextpath = getSharedPreferences("save_nextpath", MODE_PRIVATE);
+                    SharedPreferences.Editor editor_save_nextpath = shared_save_nextpath.edit();
+                    if (!spinner_arfloors.getSelectedItem().toString().isEmpty()) {
+                        editor_save_nextpath.putString("arfloors", spinner_arfloors.getSelectedItem().toString());
+                    }
+                    if (!spinner_arlines.getSelectedItem().toString().isEmpty()) {
+                        editor_save_nextpath.putString("arlines", spinner_arlines.getSelectedItem().toString());
+                    }
+                    if (!spinner_arlocations.getSelectedItem().toString().isEmpty()) {
+                        editor_save_nextpath.putString("arlocations", spinner_arlocations.getSelectedItem().toString());
+                    }
+                    editor_save_nextpath.apply();
 
-                SharedPreferences done = getSharedPreferences("done", MODE_PRIVATE);
-                SharedPreferences.Editor done_editor = done.edit();
-                done_editor.putBoolean("done", false);
-                done_editor.apply();
+                    SharedPreferences done = getSharedPreferences("done", MODE_PRIVATE);
+                    SharedPreferences.Editor done_editor = done.edit();
+                    done_editor.putBoolean("done", false);
+                    done_editor.apply();
+                }
             }
         });
 

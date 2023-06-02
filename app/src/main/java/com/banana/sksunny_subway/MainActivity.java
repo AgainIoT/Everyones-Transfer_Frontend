@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
         editor_save_main.apply();
 
         StringArray.setStringArrayPref(getApplicationContext(), "lines", lines);
+        removeCookie();
     }
 
     private long backpressedTime = 0;
@@ -433,5 +434,41 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException ex) {
             Log.e("exception", ex.toString());
         }
+    }
+
+    public void removeCookie(){
+        String url = "http://3.39.25.196:8000/remove";
+
+        JsonRequest jsonRequest = new JsonRequest(Request.Method.POST, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONObject data = response.getJSONObject("data");
+                            JSONObject headers = response.getJSONObject("headers");
+                            Log.i("body", String.valueOf(data));
+                            Log.i("headers", String.valueOf(headers));
+                        } catch (JSONException e) {
+                            Log.e("client error", Log.getStackTraceString(e));
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse respone = error.networkResponse;
+                if (error instanceof ServerError && respone != null) {
+                    try {
+                        String res = new String(respone.data, HttpHeaderParser.parseCharset(respone.headers, "utf-8"));
+                        Log.e("volley error", res);
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Log.e("e", Log.getStackTraceString(error));
+            }
+        });
+        // By adding the request to the RequestQueue, make the request.
+        requestQueue.add(jsonRequest);
     }
 }
