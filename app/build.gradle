@@ -10,7 +10,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.sksunny_subway"
+        applicationId "com.banana.sksunny_subway"
         minSdk 21
         targetSdk 33
         versionCode 1
