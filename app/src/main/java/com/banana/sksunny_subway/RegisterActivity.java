@@ -84,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (data.size() == 0){
+                if (data.size() == 0) {
                     Toast.makeText(getApplicationContext(), "정보를 입력해주세요", Toast.LENGTH_SHORT).show();
                 }
                 getBlock();
