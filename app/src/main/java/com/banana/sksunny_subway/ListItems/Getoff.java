@@ -1,10 +1,10 @@
-package com.banana.sksunny_subway;
+package com.banana.sksunny_subway.ListItems;
 
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
 
-public class Getoff extends ItemTest {
+public class Getoff extends ListItem {
 
     private int carNo;
     private int doorNo;

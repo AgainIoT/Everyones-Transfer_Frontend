@@ -27,6 +27,11 @@ import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.Volley;
+import com.banana.sksunny_subway.ListItems.Elevator;
+import com.banana.sksunny_subway.ListItems.Getoff;
+import com.banana.sksunny_subway.ListItems.ListItem;
+import com.banana.sksunny_subway.ListItems.Pass;
+import com.banana.sksunny_subway.ListItems.Walk;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
     AdapterSpinner adapterlocations;
 
     //arrayList
-    ArrayList<ItemTest> data = new ArrayList<>();   // 사용자한테 입력 받은 상세 경로
+    ArrayList<ListItem> data = new ArrayList<>();   // 사용자한테 입력 받은 상세 경로
     ArrayList<String> lines = new ArrayList<>();    // 해당 역을 지나는 노선들로
 
     static RequestQueue requestQueue;
@@ -182,7 +187,7 @@ public class RegisterActivity extends AppCompatActivity {
         elevator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ItemTest item = new Elevator();
+                ListItem item = new Elevator();
                 data.add(item);
                 customAdapter.notifyItemInserted(data.size());
             }
@@ -191,7 +196,7 @@ public class RegisterActivity extends AppCompatActivity {
         walk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ItemTest item = new Walk();
+                ListItem item = new Walk();
                 data.add(item);
                 customAdapter.notifyItemInserted(data.size());
             }
@@ -200,7 +205,7 @@ public class RegisterActivity extends AppCompatActivity {
         pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ItemTest item = new Pass();
+                ListItem item = new Pass();
                 data.add(item);
                 customAdapter.notifyItemInserted(data.size());
             }
@@ -209,7 +214,7 @@ public class RegisterActivity extends AppCompatActivity {
         getOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ItemTest item = new Getoff();
+                ListItem item = new Getoff();
                 data.add(item);
                 customAdapter.notifyItemInserted(data.size());
             }

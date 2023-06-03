@@ -14,6 +14,12 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.banana.sksunny_subway.ListItems.Elevator;
+import com.banana.sksunny_subway.ListItems.Getoff;
+import com.banana.sksunny_subway.ListItems.ListItem;
+import com.banana.sksunny_subway.ListItems.Pass;
+import com.banana.sksunny_subway.ListItems.Walk;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -21,16 +27,16 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
     Context context;
 
-    private ArrayList<ItemTest> data;
+    private ArrayList<ListItem> data;
 
-    public CustomAdapter(Context context, ArrayList<ItemTest> data) {
+    public CustomAdapter(Context context, ArrayList<ListItem> data) {
         this.context = context;
         this.data = data;
     }
 
     @Override
     public boolean onItemMove(int form_position, int to_position) {
-        ItemTest item = data.get(form_position);
+        ListItem item = data.get(form_position);
         data.remove(form_position);
         data.add(to_position, item);
         item.setNumber(to_position);
@@ -62,13 +68,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         }
     }
 
-    public CustomAdapter(ArrayList<ItemTest> dataset) {
+    public CustomAdapter(ArrayList<ListItem> dataset) {
         data = dataset;
     }
 
     @Override
     public int getItemViewType(int position) {
-        ItemTest listItem = data.get(position);
+        ListItem listItem = data.get(position);
         if (listItem instanceof Pass) {
             return 1;
         } else if (listItem instanceof Walk) {
@@ -110,7 +116,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        ItemTest item = data.get(position);
+        ListItem item = data.get(position);
         if (item instanceof Elevator) {
             AdapterSpinner adapterSpinner1 = new AdapterSpinner(this.context, stairs);
             viewHolder.spinner1.setAdapter(adapterSpinner1);

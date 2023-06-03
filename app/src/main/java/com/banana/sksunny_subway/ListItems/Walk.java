@@ -1,10 +1,10 @@
-package com.banana.sksunny_subway;
+package com.banana.sksunny_subway.ListItems;
 
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
 
-public class Walk extends ItemTest {
+public class Walk extends ListItem {
     private String direction;
     private int distance;
 

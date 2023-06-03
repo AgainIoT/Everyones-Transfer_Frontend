@@ -1,10 +1,10 @@
-package com.banana.sksunny_subway;
+package com.banana.sksunny_subway.ListItems;
 
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
 
-public class Elevator extends ItemTest{
+public class Elevator extends ListItem {
     private String startFloor;
     private String endFloor;
 

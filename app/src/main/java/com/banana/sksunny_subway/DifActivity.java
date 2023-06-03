@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +26,11 @@ import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.Volley;
+import com.banana.sksunny_subway.ListItems.Elevator;
+import com.banana.sksunny_subway.ListItems.Getoff;
+import com.banana.sksunny_subway.ListItems.ListItem;
+import com.banana.sksunny_subway.ListItems.Pass;
+import com.banana.sksunny_subway.ListItems.Walk;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,19 +38,14 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
 public class DifActivity extends AppCompatActivity {
     static RequestQueue requestQueue;
     ArrayList<String> lines;
     RecyclerView lowerScroll;
-    ArrayList<ItemTest> data;
+    ArrayList<ListItem> data;
     StringRecyclerViewAdapter upperAdapter;
 
     @Override
@@ -174,7 +173,7 @@ public class DifActivity extends AppCompatActivity {
         elevator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ItemTest item = new Elevator();
+                ListItem item = new Elevator();
                 data.add(item);
                 lowerAdapter.notifyItemInserted(data.size());
             }
@@ -183,7 +182,7 @@ public class DifActivity extends AppCompatActivity {
         walk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ItemTest item = new Walk();
+                ListItem item = new Walk();
                 data.add(item);
                 lowerAdapter.notifyItemInserted(data.size());
             }
@@ -192,7 +191,7 @@ public class DifActivity extends AppCompatActivity {
         pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ItemTest item = new Pass();
+                ListItem item = new Pass();
                 data.add(item);
                 lowerAdapter.notifyItemInserted(data.size());
             }
@@ -201,7 +200,7 @@ public class DifActivity extends AppCompatActivity {
         getOff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ItemTest item = new Getoff();
+                ListItem item = new Getoff();
                 data.add(item);
                 lowerAdapter.notifyItemInserted(data.size());
             }
@@ -220,7 +219,7 @@ public class DifActivity extends AppCompatActivity {
         ArrayList<String> arr = new ArrayList<>();
 
         for (int i = 0; i < data.size(); i++) {
-            ItemTest one = data.get(i);
+            ListItem one = data.get(i);
             if (one instanceof Elevator) {
                 arr.add(((Elevator) one).getStartFloor() + "에서 " + ((Elevator) one).getEndFloor() + "으로 이동");
             } else if (one instanceof Walk) {

@@ -28,7 +28,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpClientStack;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.HttpStack;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -36,6 +38,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.net.CookieStore;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -247,9 +250,20 @@ public class MainActivity extends AppCompatActivity {
         start_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
         arrive_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
         getStationList();
+    }
 
-//        JSONObject jsonParams = new JSONObject();
+    public void register() {
+        if (TextUtils.isEmpty(start_nextst.getText().toString()) && TextUtils.isEmpty(start_nextst.getText().toString())) {
+            Toast.makeText(getApplicationContext(), "승하차 한 역의 다음 역을 입력해주세요", Toast.LENGTH_LONG).show();
+        } else {
+            getRoot();
+        }
+    }
+
+
+    public void getStationList() {
 //        try{
+//            JSONObject jsonParams = new JSONObject();
 //            jsonParams.put("stationName", Et_Search.getText().toString());
 //            JSONObject response =  new Request2API().getStationList(getApplicationContext(), requestQueue, jsonParams);
 //            Log.i("response", response.toString());
@@ -270,18 +284,6 @@ public class MainActivity extends AppCompatActivity {
 //        } catch (JSONException e){
 //            Log.e("JSONException", e.toString());
 //        }
-    }
-
-    public void register() {
-        if (TextUtils.isEmpty(start_nextst.getText().toString()) && TextUtils.isEmpty(start_nextst.getText().toString())) {
-            Toast.makeText(getApplicationContext(), "승하차 한 역의 다음 역을 입력해주세요", Toast.LENGTH_LONG).show();
-        } else {
-            getRoot();
-        }
-    }
-
-
-    public void getStationList() {
         try {
             // request body
             JSONObject jsonParams = new JSONObject();
