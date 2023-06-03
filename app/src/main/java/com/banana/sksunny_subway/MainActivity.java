@@ -28,7 +28,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpClientStack;
 import com.android.volley.toolbox.HttpHeaderParser;
+import com.android.volley.toolbox.HttpStack;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -36,6 +38,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
+import java.net.CookieStore;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -163,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
         editor_save_main.apply();
 
         StringArray.setStringArrayPref(getApplicationContext(), "lines", lines);
+        removeCookie();
     }
 
     private long backpressedTime = 0;
@@ -246,9 +250,20 @@ public class MainActivity extends AppCompatActivity {
         start_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
         arrive_nextst.setInputType(InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE);
         getStationList();
+    }
 
-//        JSONObject jsonParams = new JSONObject();
+    public void register() {
+        if (TextUtils.isEmpty(start_nextst.getText().toString()) && TextUtils.isEmpty(start_nextst.getText().toString())) {
+            Toast.makeText(getApplicationContext(), "승하차 한 역의 다음 역을 입력해주세요", Toast.LENGTH_LONG).show();
+        } else {
+            getRoot();
+        }
+    }
+
+
+    public void getStationList() {
 //        try{
+//            JSONObject jsonParams = new JSONObject();
 //            jsonParams.put("stationName", Et_Search.getText().toString());
 //            JSONObject response =  new Request2API().getStationList(getApplicationContext(), requestQueue, jsonParams);
 //            Log.i("response", response.toString());
@@ -269,18 +284,6 @@ public class MainActivity extends AppCompatActivity {
 //        } catch (JSONException e){
 //            Log.e("JSONException", e.toString());
 //        }
-    }
-
-    public void register() {
-        if (TextUtils.isEmpty(start_nextst.getText().toString()) && TextUtils.isEmpty(start_nextst.getText().toString())) {
-            Toast.makeText(getApplicationContext(), "승하차 한 역의 다음 역을 입력해주세요", Toast.LENGTH_LONG).show();
-        } else {
-            getRoot();
-        }
-    }
-
-
-    public void getStationList() {
         try {
             // request body
             JSONObject jsonParams = new JSONObject();
@@ -433,5 +436,41 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException ex) {
             Log.e("exception", ex.toString());
         }
+    }
+
+    public void removeCookie(){
+        String url = "http://3.39.25.196:8000/remove";
+
+        JsonRequest jsonRequest = new JsonRequest(Request.Method.POST, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            JSONObject data = response.getJSONObject("data");
+                            JSONObject headers = response.getJSONObject("headers");
+                            Log.i("body", String.valueOf(data));
+                            Log.i("headers", String.valueOf(headers));
+                        } catch (JSONException e) {
+                            Log.e("client error", Log.getStackTraceString(e));
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkResponse respone = error.networkResponse;
+                if (error instanceof ServerError && respone != null) {
+                    try {
+                        String res = new String(respone.data, HttpHeaderParser.parseCharset(respone.headers, "utf-8"));
+                        Log.e("volley error", res);
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Log.e("e", Log.getStackTraceString(error));
+            }
+        });
+        // By adding the request to the RequestQueue, make the request.
+        requestQueue.add(jsonRequest);
     }
 }

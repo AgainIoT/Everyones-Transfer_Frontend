@@ -1,10 +1,10 @@
-package com.banana.sksunny_subway;
+package com.banana.sksunny_subway.ListItems;
 
 import android.os.Parcel;
 
 import androidx.annotation.NonNull;
 
-public class Pass extends ItemTest {
+public class Pass extends ListItem {
 
     public Pass() {
         this("3");

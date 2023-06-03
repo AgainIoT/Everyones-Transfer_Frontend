@@ -1,11 +1,11 @@
-package com.banana.sksunny_subway;
+package com.banana.sksunny_subway.ListItems;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-public abstract class ItemTest implements Parcelable {
+public abstract class ListItem implements Parcelable {
 
     public static final int CLASS_TYPE_ONE = 1;
     public static final int CLASS_TYPE_TWO = 2;
@@ -16,28 +16,28 @@ public abstract class ItemTest implements Parcelable {
 
     protected String mabstractClassMemberString;
 
-    public ItemTest(String abstractClassMemberString){
+    public ListItem(String abstractClassMemberString){
         mabstractClassMemberString = abstractClassMemberString;
     };
 
-    protected ItemTest(Parcel resource) {
+    protected ListItem(Parcel resource) {
         mabstractClassMemberString = resource.readString();
         this.resourceId = resource.readInt();
     }
 
-    public ItemTest(int resourceId) {
+    public ListItem(int resourceId) {
         this.resourceId = resourceId;
     }
 
-    public static final Creator<ItemTest> CREATOR = new Creator<ItemTest>() {
+    public static final Creator<ListItem> CREATOR = new Creator<ListItem>() {
         @Override
-        public ItemTest createFromParcel(Parcel source) {
-            return ItemTest.getConcreteClass(source);
+        public ListItem createFromParcel(Parcel source) {
+            return ListItem.getConcreteClass(source);
         }
 
         @Override
-        public ItemTest[] newArray(int size) {
-            return new ItemTest[size];
+        public ListItem[] newArray(int size) {
+            return new ListItem[size];
         }
     };
 
@@ -64,7 +64,7 @@ public abstract class ItemTest implements Parcelable {
         this.resourceId = resourceId;
     }
 
-    public static ItemTest getConcreteClass(Parcel source){
+    public static ListItem getConcreteClass(Parcel source){
         switch (source.readInt()){
             case CLASS_TYPE_ONE:
                 return new Elevator(source);
